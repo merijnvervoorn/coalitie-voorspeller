@@ -17,6 +17,7 @@ Draft: **What implications (for democracy) does the increase of inter- and intra
 ## 💾 Data Source
 
 - **Political Speech Dataset:** Speeches from the Tweede Kamer. Fetched from [opendata.tweedekamer.nl](https://opendata.tweedekamer.nl/)
+- **Post X Society:** The creators of DemocratieMonitor offered the structured speech dataset per year between 2014 and 2024.
 
 
 ## 🤝 Stakeholders
