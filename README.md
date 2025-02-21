@@ -37,12 +37,12 @@ Draft: **What implications (for democracy) does the increase of inter- and intra
 
 ## 📁 Project Structure
 ```
-cssci-political-speech/ 
-├──data/ # Main folder for all datasets
-│  └──opendata-tk/ # Raw and processed speech data from the Tweede Kamer 
-│     └──opendata-notebooks/ # Original jupyter notebooks from Tweede Kamer data
-├──methods/ # Different methods we might use for models
-├──results/ # Eventual visualizations, model outputs, and analysis summaries 
-└──README.md # This file
+cssci-political-speech/
+├── data/ # Main folder for all datasets
+│ └── opendata-tk/ # Raw and processed speech data from the Tweede Kamer
+│   └── opendata-notebooks/ # Original Jupyter notebooks from Tweede Kamer data
+├── methods/ # Different methods we might use for models
+├── results/ # Eventual visualizations, model outputs, and analysis summaries
+└── README.md # This file
 ```
 
