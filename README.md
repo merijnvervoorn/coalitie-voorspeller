@@ -26,8 +26,14 @@ Draft: **What implications (for democracy) does the increase of inter- and intra
 - Other academic and policy-making bodies that might be interested in the project.
 
 
+## 🪛 Setup
 
-## 🔧 Setup & Requirements
+- **Download Speech Files:** Some datasets are too big for Github, download them here: [go.merijnvervoorn.com/tk-download1](https://go.merijnvervoorn.com/tk-download1) (includes pdf's of all speeches, csv with speeches from 2014-2024, and original notebook pdf's 2024)
+
+*Note: Gitignore is setup so these files won't sync, please use the provided project structure and don't change file names*
+
+
+## 🔧 Requirements
 
 - **Programming Language:** Python 3 (or your preferred data analysis tools)
 - **Key Libraries:** scikit-learn, pandas, nltk, matplotlib, and others as needed.

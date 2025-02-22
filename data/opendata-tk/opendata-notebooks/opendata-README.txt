@@ -1,4 +1,9 @@
-READ ME FIRST
+READ ME PROVIDED BY OPENDATA OF TWEEDE KAMER
+
+These files are created using the OData API from https://opendata.tweedekamer.nl
+
+Uses: https://gegevensmagazijn.tweedekamer.nl/OData/v4/2.0
+For query writing: https://opendata.tweedekamer.nl/documentatie/odata-api
 
 Contents
 
