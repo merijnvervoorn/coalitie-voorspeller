@@ -46,8 +46,12 @@ Draft: **What implications (for democracy) does the increase of inter- and intra
 ```
 cssci-political-speech/
 ├── data/ # Main folder for all datasets
+│ └── api/ # Files relating to using the OData and SyncFeed API from [https://opendata.tweedekamer.nl](https://opendata.tweedekamer.nl/)
+│   └── data/ # Output files form the API's
 │ └── opendata-tk/ # Raw and processed speech data from the Tweede Kamer
 │   └── opendata-notebooks/ # Original Jupyter notebooks from Tweede Kamer data
+│ └── zetelverdeling/ # Files relating to historical seat distributions in Tweede Kamer
+│   └── zetel-data/ # The data and plots regarding historical seat distribution
 ├── methods/ # Different methods we might use for models
 ├── results/ # Eventual visualizations, model outputs, and analysis summaries
 └── README.md # This file
