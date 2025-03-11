@@ -48,6 +48,7 @@ cssci-political-speech/
 ├── data/                       # Main folder for all datasets
 │   ├── api/                    # Files relating to using the OData and SyncFeed API
 │   │   └── data/               # Output files from the APIs
+│   ├── cabinets/               # Data on all historical Dutch cabinets
 │   ├── opendata-tk/            # Raw and processed speech data from the Tweede Kamer
 │   │   └── opendata-notebooks/ # Original Jupyter notebooks from Tweede Kamer data
 │   └── zetelverdeling/         # Files relating to historical seat distributions in Tweede Kamer
