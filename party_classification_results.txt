@@ -1,0 +1,483 @@
+Party: uzovi-code
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.44%
+  - 701 - Labour Groups: Positive: 2.73%
+  - 107 - Internationalism: Positive: 2.67%
+
+Party: Fractie-Den Haan
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.58%
+  - 413 - Nationalisation: 2.92%
+  - 303 - Governmental and Administrative Efficiency: 2.71%
+
+Party: JA21
+Predicted Class: 105 - Military: Negative
+Top 3 Topics:
+  - 105 - Military: Negative: 3.32%
+  - 501 - Environmental Protection: Positive: 3.24%
+  - 106 - Peace: 3.0%
+
+Party: 50PLUS
+Predicted Class: 409 - Keynesian Demand Management
+Top 3 Topics:
+  - 409 - Keynesian Demand Management: 3.4%
+  - 501 - Environmental Protection: Positive: 3.05%
+  - 606 - Civic Mindedness: Positive: 2.87%
+
+Party: Groep Kuzu_Öztürk
+Predicted Class: 105 - Military: Negative
+Top 3 Topics:
+  - 105 - Military: Negative: 3.65%
+  - 107 - Internationalism: Positive: 2.81%
+  - 303 - Governmental and Administrative Efficiency: 2.59%
+
+Party: Monasch
+Predicted Class: 109 - Internationalism: Negative
+Top 3 Topics:
+  - 109 - Internationalism: Negative: 3.91%
+  - 107 - Internationalism: Positive: 3.68%
+  - 110 - European Community/Union: Negative: 3.35%
+
+Party: PVV
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.72%
+  - 201 - Freedom and Human Rights: 2.81%
+  - 203 - Constitutionalism: Positive: 2.79%
+
+Party: EP_SGP
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.05%
+  - 109 - Internationalism: Negative: 2.87%
+  - 203 - Constitutionalism: Positive: 2.78%
+
+Party: EP_PvdD
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 2.87%
+  - 110 - European Community/Union: Negative: 2.79%
+  - 414 - Economic Orthodoxy: 2.66%
+
+Party: lid Tweede Kamer
+Predicted Class: 604 - Traditional Morality: Negative
+Top 3 Topics:
+  - 604 - Traditional Morality: Negative: 3.37%
+  - 413 - Nationalisation: 3.17%
+  - 105 - Military: Negative: 3.07%
+
+Party: EP_CDA
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.23%
+  - 412 - Controlled Economy: 2.72%
+  - 302 - Centralisation: 2.63%
+
+Party: ingetrokken in 1991
+Predicted Class: 409 - Keynesian Demand Management
+Top 3 Topics:
+  - 409 - Keynesian Demand Management: 3.36%
+  - 103 - Anti-Imperialism: 2.86%
+  - 106 - Peace: 2.77%
+
+Party: het lid Omtzigt
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.47%
+  - 412 - Controlled Economy: 2.95%
+  - 413 - Nationalisation: 2.88%
+
+Party: 50PLUS_Klein
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.01%
+  - 405 - Corporatism/ Mixed Economy: 2.64%
+  - 302 - Centralisation: 2.61%
+
+Party: Houwers
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 2.99%
+  - 304 - Political Corruption: 2.88%
+  - 413 - Nationalisation: 2.81%
+
+Party: DENK
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.9%
+  - 507 - Education Limitation: 3.13%
+  - 703 - Agriculture and Farmers: Positive: 2.67%
+
+Party: PW
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.5%
+  - 507 - Education Limitation: 2.97%
+  - 107 - Internationalism: Positive: 2.81%
+
+Party: BIJ1
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 4.1%
+  - 302 - Centralisation: 3.76%
+  - 501 - Environmental Protection: Positive: 2.76%
+
+Party: Verdonk
+Predicted Class: 604 - Traditional Morality: Negative
+Top 3 Topics:
+  - 604 - Traditional Morality: Negative: 3.01%
+  - 409 - Keynesian Demand Management: 2.69%
+  - 102 - Foreign Special Relationships: Negative: 2.62%
+
+Party: D66
+Predicted Class: 415 - Marxist Analysis: Positive
+Top 3 Topics:
+  - 415 - Marxist Analysis: Positive: 3.19%
+  - 405 - Corporatism/ Mixed Economy: 2.89%
+  - 302 - Centralisation: 2.74%
+
+Party: Forum voor Democratie
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.04%
+  - 412 - Controlled Economy: 2.91%
+  - 401 - Free Market Economy: 2.74%
+
+Party: EP_GroenLinks
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 2.9%
+  - 203 - Constitutionalism: Positive: 2.82%
+  - 412 - Controlled Economy: 2.81%
+
+Party: EP_VVD
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.65%
+  - 107 - Internationalism: Positive: 3.45%
+  - 413 - Nationalisation: 2.97%
+
+Party: EP_JA21
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 2.99%
+  - 703 - Agriculture and Farmers: Positive: 2.9%
+  - 302 - Centralisation: 2.81%
+
+Party: WD
+Predicted Class: 401 - Free Market Economy
+Top 3 Topics:
+  - 401 - Free Market Economy: 2.8%
+  - 409 - Keynesian Demand Management: 2.72%
+  - 412 - Controlled Economy: 2.61%
+
+Party: EP_D66
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.4%
+  - 203 - Constitutionalism: Positive: 2.86%
+  - 412 - Controlled Economy: 2.78%
+
+Party: ChristenUnie
+Predicted Class: 607 - Multiculturalism: Positive
+Top 3 Topics:
+  - 607 - Multiculturalism: Positive: 3.2%
+  - 302 - Centralisation: 3.12%
+  - 103 - Anti-Imperialism: 2.98%
+
+Party: Groep Van Haga
+Predicted Class: 413 - Nationalisation
+Top 3 Topics:
+  - 413 - Nationalisation: 3.03%
+  - 604 - Traditional Morality: Negative: 2.86%
+  - 412 - Controlled Economy: 2.63%
+
+Party: GroenLinks-PvdA
+Predicted Class: 604 - Traditional Morality: Negative
+Top 3 Topics:
+  - 604 - Traditional Morality: Negative: 2.9%
+  - 401 - Free Market Economy: 2.78%
+  - 102 - Foreign Special Relationships: Negative: 2.72%
+
+Party: Fractie Den Haan
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.38%
+  - 409 - Keynesian Demand Management: 2.89%
+  - 303 - Governmental and Administrative Efficiency: 2.61%
+
+Party: 50PLUS_Baay-Timmerman
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.15%
+  - 105 - Military: Negative: 2.92%
+  - 304 - Political Corruption: 2.88%
+
+Party: Van Haga
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 2.83%
+  - 302 - Centralisation: 2.77%
+  - 105 - Military: Negative: 2.58%
+
+Party: 50PLUS_Krol
+Predicted Class: 303 - Governmental and Administrative Efficiency
+Top 3 Topics:
+  - 303 - Governmental and Administrative Efficiency: 2.93%
+  - 105 - Military: Negative: 2.78%
+  - 501 - Environmental Protection: Positive: 2.59%
+
+Party: Volt
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 3.04%
+  - 302 - Centralisation: 2.93%
+  - 409 - Keynesian Demand Management: 2.88%
+
+Party: NSC
+Predicted Class: 606 - Civic Mindedness: Positive
+Top 3 Topics:
+  - 606 - Civic Mindedness: Positive: 3.47%
+  - 107 - Internationalism: Positive: 3.21%
+  - 415 - Marxist Analysis: Positive: 2.94%
+
+Party: VVD
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.59%
+  - 415 - Marxist Analysis: Positive: 3.34%
+  - 604 - Traditional Morality: Negative: 2.87%
+
+Party: voorzitter van het stembureau
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 3.53%
+  - 604 - Traditional Morality: Negative: 2.89%
+  - 412 - Controlled Economy: 2.74%
+
+Party: EP_ChristenUnie_SGP
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 5.2%
+  - 507 - Education Limitation: 2.9%
+  - 404 - Economic Planning: 2.69%
+
+Party: PvdA
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.81%
+  - 703 - Agriculture and Farmers: Positive: 2.96%
+  - 501 - Environmental Protection: Positive: 2.59%
+
+Party: vKA
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 3.15%
+  - 413 - Nationalisation: 3.03%
+  - 409 - Keynesian Demand Management: 2.71%
+
+Party: EP_PvdA
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.72%
+  - 103 - Anti-Imperialism: 3.31%
+  - 413 - Nationalisation: 3.04%
+
+Party: Krol
+Predicted Class: 702 - Labour Groups: Negative
+Top 3 Topics:
+  - 702 - Labour Groups: Negative: 3.33%
+  - 103 - Anti-Imperialism: 3.11%
+  - 302 - Centralisation: 3.08%
+
+Party: Van Vliet
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 4.41%
+  - 403 - Market Regulation: 3.93%
+  - 105 - Military: Negative: 2.5%
+
+Party: EP_SP
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 5.0%
+  - 303 - Governmental and Administrative Efficiency: 3.13%
+  - 103 - Anti-Imperialism: 2.94%
+
+Party: SGP
+Predicted Class: 409 - Keynesian Demand Management
+Top 3 Topics:
+  - 409 - Keynesian Demand Management: 4.0%
+  - 302 - Centralisation: 3.23%
+  - 604 - Traditional Morality: Negative: 2.94%
+
+Party: EP_FVD
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 3.36%
+  - 110 - European Community/Union: Negative: 3.09%
+  - 302 - Centralisation: 3.09%
+
+Party: lid der commissie
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 3.56%
+  - 501 - Environmental Protection: Positive: 2.97%
+  - 412 - Controlled Economy: 2.96%
+
+Party: SP
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.9%
+  - 203 - Constitutionalism: Positive: 3.61%
+  - 406 - Protectionism: Positive: 3.01%
+
+Party: Lid Gündoğan
+Predicted Class: 109 - Internationalism: Negative
+Top 3 Topics:
+  - 109 - Internationalism: Negative: 3.87%
+  - 102 - Foreign Special Relationships: Negative: 3.63%
+  - 107 - Internationalism: Positive: 3.46%
+
+Party: voorzitter van de commissie
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 3.43%
+  - 413 - Nationalisation: 3.01%
+  - 604 - Traditional Morality: Negative: 2.79%
+
+Party: groep Kortenoeven_Hernandez
+Predicted Class: 413 - Nationalisation
+Top 3 Topics:
+  - 413 - Nationalisation: 3.62%
+  - 105 - Military: Negative: 3.32%
+  - 409 - Keynesian Demand Management: 3.12%
+
+Party: Klein
+Predicted Class: 413 - Nationalisation
+Top 3 Topics:
+  - 413 - Nationalisation: 3.21%
+  - 501 - Environmental Protection: Positive: 2.97%
+  - 608 - Multiculturalism: Negative: 2.91%
+
+Party: voorzitter der commissie
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 3.48%
+  - 501 - Environmental Protection: Positive: 3.04%
+  - 412 - Controlled Economy: 2.97%
+
+Party: CDA
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.68%
+  - 107 - Internationalism: Positive: 3.22%
+  - 303 - Governmental and Administrative Efficiency: 3.1%
+
+Party: Groep Bontes_Van Klaveren
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 4.4%
+  - 403 - Market Regulation: 3.96%
+  - 303 - Governmental and Administrative Efficiency: 3.23%
+
+Party: PvdD
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.28%
+  - 413 - Nationalisation: 3.22%
+  - 606 - Civic Mindedness: Positive: 3.06%
+
+Party: Lid Omtzigt
+Predicted Class: 103 - Anti-Imperialism
+Top 3 Topics:
+  - 103 - Anti-Imperialism: 3.01%
+  - 409 - Keynesian Demand Management: 2.97%
+  - 302 - Centralisation: 2.56%
+
+Party: GKVK
+Predicted Class: 303 - Governmental and Administrative Efficiency
+Top 3 Topics:
+  - 303 - Governmental and Administrative Efficiency: 3.24%
+  - 403 - Market Regulation: 3.11%
+  - 107 - Internationalism: Positive: 3.03%
+
+Party: lid van de commissie
+Predicted Class: 102 - Foreign Special Relationships: Negative
+Top 3 Topics:
+  - 102 - Foreign Special Relationships: Negative: 3.11%
+  - 412 - Controlled Economy: 2.9%
+  - 302 - Centralisation: 2.8%
+
+Party: EP_CU_SGP
+Predicted Class: 415 - Marxist Analysis: Positive
+Top 3 Topics:
+  - 415 - Marxist Analysis: Positive: 3.0%
+  - 703 - Agriculture and Farmers: Positive: 2.77%
+  - 302 - Centralisation: 2.66%
+
+Party: Lid Ephraim
+Predicted Class: 604 - Traditional Morality: Negative
+Top 3 Topics:
+  - 604 - Traditional Morality: Negative: 2.9%
+  - 606 - Civic Mindedness: Positive: 2.88%
+  - 107 - Internationalism: Positive: 2.65%
+
+Party: BBB
+Predicted Class: 703 - Agriculture and Farmers: Positive
+Top 3 Topics:
+  - 703 - Agriculture and Farmers: Positive: 3.17%
+  - 606 - Civic Mindedness: Positive: 3.16%
+  - 702 - Labour Groups: Negative: 2.8%
+
+Party: GroenLinks
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 4.6%
+  - 203 - Constitutionalism: Positive: 2.98%
+  - 405 - Corporatism/ Mixed Economy: 2.58%
+
+Party: Brinkman
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.46%
+  - 109 - Internationalism: Negative: 2.97%
+  - 103 - Anti-Imperialism: 2.74%
+
+Party: FvD
+Predicted Class: 413 - Nationalisation
+Top 3 Topics:
+  - 413 - Nationalisation: 3.63%
+  - 107 - Internationalism: Positive: 3.04%
+  - 203 - Constitutionalism: Positive: 2.88%
+
+Party: Van Kooten-Arissen
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 3.93%
+  - 303 - Governmental and Administrative Efficiency: 2.98%
+  - 608 - Multiculturalism: Negative: 2.78%
+
+Party: EP_ChristenUnie
+Predicted Class: 302 - Centralisation
+Top 3 Topics:
+  - 302 - Centralisation: 3.65%
+  - 401 - Free Market Economy: 3.24%
+  - 109 - Internationalism: Negative: 3.16%
+
+Party: Bontes
+Predicted Class: 606 - Civic Mindedness: Positive
+Top 3 Topics:
+  - 606 - Civic Mindedness: Positive: 3.41%
+  - 102 - Foreign Special Relationships: Negative: 3.3%
+  - 203 - Constitutionalism: Positive: 3.23%
+
+Party: FVD
+Predicted Class: 107 - Internationalism: Positive
+Top 3 Topics:
+  - 107 - Internationalism: Positive: 5.14%
+  - 409 - Keynesian Demand Management: 2.92%
+  - 701 - Labour Groups: Positive: 2.91%
+
