@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweede Kamer Seat Distribution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+        #seating-container {
+            position: relative;
+            width: 600px;
+            height: 300px;
+            margin: auto;
+        }
+        .dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+        .sliders {
+            margin-top: 20px;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Tweede Kamer Seat Distribution</h2>
+    
+    <div id="seating-container"></div>
+
+    <div class="sliders">
+        <h3>Adjust Seat Counts</h3>
+        <div id="slider-controls"></div>
+    </div>
+
+    <script>
+        const parties = [
+            { name: "VVD", color: "#FF6600", seats: 34 },
+            { name: "D66", color: "#66CC66", seats: 24 },
+            { name: "PVV", color: "#003399", seats: 17 },
+            { name: "CDA", color: "#009933", seats: 15 },
+            { name: "PvdA", color: "#CC0000", seats: 9 },
+            { name: "GroenLinks", color: "#009900", seats: 8 },
+            { name: "SP", color: "#CC0000", seats: 9 },
+            { name: "FvD", color: "#660000", seats: 8 },
+            { name: "PvdD", color: "#33AA33", seats: 6 },
+            { name: "CU", color: "#3366FF", seats: 5 },
+            { name: "JA21", color: "#0000CC", seats: 3 },
+            { name: "SGP", color: "#FF6600", seats: 3 },
+            { name: "Volt", color: "#6600CC", seats: 3 },
+            { name: "DENK", color: "#0099CC", seats: 3 },
+            { name: "BBB", color: "#669900", seats: 1 }
+        ];
+
+        const totalSeats = 150;
+        const container = document.getElementById("seating-container");
+        const sliderControls = document.getElementById("slider-controls");
+
+        function updateSeats() {
+            container.innerHTML = ""; // Clear previous dots
+            let angle = Math.PI, radius = 130;
+            let xCenter = 300, yCenter = 280;
+            let seatIndex = 0;
+
+            parties.forEach(party => {
+                for (let i = 0; i < party.seats; i++) {
+                    let x = xCenter + radius * Math.cos(angle);
+                    let y = yCenter - radius * Math.sin(angle);
+
+                    const dot = document.createElement("div");
+                    dot.className = "dot";
+                    dot.style.backgroundColor = party.color;
+                    dot.style.left = `${x}px`;
+                    dot.style.top = `${y}px`;
+                    container.appendChild(dot);
+
+                    angle += Math.PI / totalSeats * 2;
+                    seatIndex++;
+                    if (seatIndex % 30 === 0) radius -= 25;
+                }
+            });
+        }
+
+        function createSliders() {
+            parties.forEach((party, index) => {
+                const sliderContainer = document.createElement("div");
+                sliderContainer.className = "slider-container";
+
+                const label = document.createElement("label");
+                label.innerText = `${party.name} (${party.seats} seats)`;
+                label.style.color = party.color;
+
+                const slider = document.createElement("input");
+                slider.type = "range";
+                slider.min = 0;
+                slider.max = 40;
+                slider.value = party.seats;
+                slider.addEventListener("input", () => {
+                    parties[index].seats = parseInt(slider.value);
+                    label.innerText = `${party.name} (${slider.value} seats)`;
+                    updateSeats();
+                });
+
+                sliderContainer.appendChild(label);
+                sliderContainer.appendChild(slider);
+                sliderControls.appendChild(sliderContainer);
+            });
+        }
+
+        createSliders();
+        updateSeats();
+    </script>
+
+</body>
+</html>
