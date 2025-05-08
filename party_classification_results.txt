@@ -23,15 +23,15 @@ Party: 50PLUS
 Predicted Class: 409 - Keynesian Demand Management
 Top 3 Topics:
   - 409 - Keynesian Demand Management: 3.4%
-  - 501 - Environmental Protection: Positive: 3.05%
-  - 606 - Civic Mindedness: Positive: 2.87%
+  - 501 - Environmental Protection: Positive: 3.03%
+  - 606 - Civic Mindedness: Positive: 2.89%
 
 Party: Groep Kuzu_Öztürk
 Predicted Class: 105 - Military: Negative
 Top 3 Topics:
-  - 105 - Military: Negative: 3.65%
-  - 107 - Internationalism: Positive: 2.81%
-  - 303 - Governmental and Administrative Efficiency: 2.59%
+  - 105 - Military: Negative: 3.92%
+  - 107 - Internationalism: Positive: 3.09%
+  - 303 - Governmental and Administrative Efficiency: 2.84%
 
 Party: Monasch
 Predicted Class: 109 - Internationalism: Negative
@@ -62,11 +62,11 @@ Top 3 Topics:
   - 414 - Economic Orthodoxy: 2.66%
 
 Party: lid Tweede Kamer
-Predicted Class: 604 - Traditional Morality: Negative
+Predicted Class: 107 - Internationalism: Positive
 Top 3 Topics:
-  - 604 - Traditional Morality: Negative: 3.37%
-  - 413 - Nationalisation: 3.17%
-  - 105 - Military: Negative: 3.07%
+  - 107 - Internationalism: Positive: 3.23%
+  - 105 - Military: Negative: 3.04%
+  - 302 - Centralisation: 2.99%
 
 Party: EP_CDA
 Predicted Class: 203 - Constitutionalism: Positive
@@ -106,9 +106,9 @@ Top 3 Topics:
 Party: DENK
 Predicted Class: 203 - Constitutionalism: Positive
 Top 3 Topics:
-  - 203 - Constitutionalism: Positive: 3.9%
-  - 507 - Education Limitation: 3.13%
-  - 703 - Agriculture and Farmers: Positive: 2.67%
+  - 203 - Constitutionalism: Positive: 3.94%
+  - 507 - Education Limitation: 3.09%
+  - 413 - Nationalisation: 2.71%
 
 Party: PW
 Predicted Class: 203 - Constitutionalism: Positive
@@ -135,7 +135,7 @@ Party: D66
 Predicted Class: 415 - Marxist Analysis: Positive
 Top 3 Topics:
   - 415 - Marxist Analysis: Positive: 3.19%
-  - 405 - Corporatism/ Mixed Economy: 2.89%
+  - 405 - Corporatism/ Mixed Economy: 2.86%
   - 302 - Centralisation: 2.74%
 
 Party: Forum voor Democratie
@@ -197,9 +197,9 @@ Top 3 Topics:
 Party: GroenLinks-PvdA
 Predicted Class: 604 - Traditional Morality: Negative
 Top 3 Topics:
-  - 604 - Traditional Morality: Negative: 2.9%
-  - 401 - Free Market Economy: 2.78%
-  - 102 - Foreign Special Relationships: Negative: 2.72%
+  - 604 - Traditional Morality: Negative: 3.05%
+  - 409 - Keynesian Demand Management: 2.72%
+  - 415 - Marxist Analysis: Positive: 2.62%
 
 Party: Fractie Den Haan
 Predicted Class: 302 - Centralisation
@@ -211,9 +211,9 @@ Top 3 Topics:
 Party: 50PLUS_Baay-Timmerman
 Predicted Class: 107 - Internationalism: Positive
 Top 3 Topics:
-  - 107 - Internationalism: Positive: 3.15%
-  - 105 - Military: Negative: 2.92%
-  - 304 - Political Corruption: 2.88%
+  - 107 - Internationalism: Positive: 3.5%
+  - 304 - Political Corruption: 2.98%
+  - 409 - Keynesian Demand Management: 2.79%
 
 Party: Van Haga
 Predicted Class: 107 - Internationalism: Positive
@@ -230,11 +230,11 @@ Top 3 Topics:
   - 501 - Environmental Protection: Positive: 2.59%
 
 Party: Volt
-Predicted Class: 103 - Anti-Imperialism
+Predicted Class: 403 - Market Regulation
 Top 3 Topics:
-  - 103 - Anti-Imperialism: 3.04%
-  - 302 - Centralisation: 2.93%
-  - 409 - Keynesian Demand Management: 2.88%
+  - 403 - Market Regulation: 2.99%
+  - 103 - Anti-Imperialism: 2.78%
+  - 405 - Corporatism/ Mixed Economy: 2.66%
 
 Party: NSC
 Predicted Class: 606 - Civic Mindedness: Positive
@@ -253,9 +253,9 @@ Top 3 Topics:
 Party: voorzitter van het stembureau
 Predicted Class: 102 - Foreign Special Relationships: Negative
 Top 3 Topics:
-  - 102 - Foreign Special Relationships: Negative: 3.53%
-  - 604 - Traditional Morality: Negative: 2.89%
-  - 412 - Controlled Economy: 2.74%
+  - 102 - Foreign Special Relationships: Negative: 3.29%
+  - 412 - Controlled Economy: 3.22%
+  - 413 - Nationalisation: 2.76%
 
 Party: EP_ChristenUnie_SGP
 Predicted Class: 203 - Constitutionalism: Positive
@@ -267,9 +267,9 @@ Top 3 Topics:
 Party: PvdA
 Predicted Class: 107 - Internationalism: Positive
 Top 3 Topics:
-  - 107 - Internationalism: Positive: 3.81%
-  - 703 - Agriculture and Farmers: Positive: 2.96%
-  - 501 - Environmental Protection: Positive: 2.59%
+  - 107 - Internationalism: Positive: 3.91%
+  - 703 - Agriculture and Farmers: Positive: 2.91%
+  - 404 - Economic Planning: 2.56%
 
 Party: vKA
 Predicted Class: 103 - Anti-Imperialism
@@ -306,6 +306,13 @@ Top 3 Topics:
   - 303 - Governmental and Administrative Efficiency: 3.13%
   - 103 - Anti-Imperialism: 2.94%
 
+Party: VOORZITTER
+Predicted Class: 203 - Constitutionalism: Positive
+Top 3 Topics:
+  - 203 - Constitutionalism: Positive: 3.32%
+  - 302 - Centralisation: 3.02%
+  - 413 - Nationalisation: 2.91%
+
 Party: SGP
 Predicted Class: 409 - Keynesian Demand Management
 Top 3 Topics:
@@ -323,16 +330,16 @@ Top 3 Topics:
 Party: lid der commissie
 Predicted Class: 102 - Foreign Special Relationships: Negative
 Top 3 Topics:
-  - 102 - Foreign Special Relationships: Negative: 3.56%
-  - 501 - Environmental Protection: Positive: 2.97%
-  - 412 - Controlled Economy: 2.96%
+  - 102 - Foreign Special Relationships: Negative: 3.61%
+  - 501 - Environmental Protection: Positive: 2.99%
+  - 105 - Military: Negative: 2.91%
 
 Party: SP
 Predicted Class: 107 - Internationalism: Positive
 Top 3 Topics:
-  - 107 - Internationalism: Positive: 3.9%
-  - 203 - Constitutionalism: Positive: 3.61%
-  - 406 - Protectionism: Positive: 3.01%
+  - 107 - Internationalism: Positive: 3.97%
+  - 203 - Constitutionalism: Positive: 3.45%
+  - 606 - Civic Mindedness: Positive: 3.1%
 
 Party: Lid Gündoğan
 Predicted Class: 109 - Internationalism: Negative
@@ -351,9 +358,9 @@ Top 3 Topics:
 Party: groep Kortenoeven_Hernandez
 Predicted Class: 413 - Nationalisation
 Top 3 Topics:
-  - 413 - Nationalisation: 3.62%
-  - 105 - Military: Negative: 3.32%
-  - 409 - Keynesian Demand Management: 3.12%
+  - 413 - Nationalisation: 3.14%
+  - 302 - Centralisation: 3.08%
+  - 507 - Education Limitation: 2.98%
 
 Party: Klein
 Predicted Class: 413 - Nationalisation
@@ -365,9 +372,9 @@ Top 3 Topics:
 Party: voorzitter der commissie
 Predicted Class: 102 - Foreign Special Relationships: Negative
 Top 3 Topics:
-  - 102 - Foreign Special Relationships: Negative: 3.48%
-  - 501 - Environmental Protection: Positive: 3.04%
-  - 412 - Controlled Economy: 2.97%
+  - 102 - Foreign Special Relationships: Negative: 3.44%
+  - 501 - Environmental Protection: Positive: 3.24%
+  - 412 - Controlled Economy: 3.01%
 
 Party: CDA
 Predicted Class: 302 - Centralisation
@@ -409,7 +416,7 @@ Predicted Class: 102 - Foreign Special Relationships: Negative
 Top 3 Topics:
   - 102 - Foreign Special Relationships: Negative: 3.11%
   - 412 - Controlled Economy: 2.9%
-  - 302 - Centralisation: 2.8%
+  - 302 - Centralisation: 2.82%
 
 Party: EP_CU_SGP
 Predicted Class: 415 - Marxist Analysis: Positive
@@ -435,9 +442,9 @@ Top 3 Topics:
 Party: GroenLinks
 Predicted Class: 302 - Centralisation
 Top 3 Topics:
-  - 302 - Centralisation: 4.6%
+  - 302 - Centralisation: 4.7%
   - 203 - Constitutionalism: Positive: 2.98%
-  - 405 - Corporatism/ Mixed Economy: 2.58%
+  - 405 - Corporatism/ Mixed Economy: 2.55%
 
 Party: Brinkman
 Predicted Class: 302 - Centralisation
@@ -449,9 +456,9 @@ Top 3 Topics:
 Party: FvD
 Predicted Class: 413 - Nationalisation
 Top 3 Topics:
-  - 413 - Nationalisation: 3.63%
-  - 107 - Internationalism: Positive: 3.04%
-  - 203 - Constitutionalism: Positive: 2.88%
+  - 413 - Nationalisation: 3.6%
+  - 107 - Internationalism: Positive: 2.97%
+  - 203 - Constitutionalism: Positive: 2.92%
 
 Party: Van Kooten-Arissen
 Predicted Class: 107 - Internationalism: Positive
