@@ -1,0 +1,156 @@
+Party,Predicted Class,Top 1 Topic,Top 1 Probability (%),Top 2 Topic,Top 2 Probability (%),Top 3 Topic,Top 3 Probability (%)
+VOORZITTER,413 - Nationalisation,413 - Nationalisation,2.9,412 - Controlled Economy,2.73,604 - Traditional Morality: Negative,2.52
+VOORZITTER,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.84,401 - Free Market Economy,2.66,103 - Anti-Imperialism,2.61
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.82,106 - Peace,2.7,102 - Foreign Special Relationships: Negative,2.6
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.18,401 - Free Market Economy,3.04,110 - European Community/Union: Negative,2.55
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.14,413 - Nationalisation,3.1,604 - Traditional Morality: Negative,2.74
+VOORZITTER,103 - Anti-Imperialism,103 - Anti-Imperialism,3.06,102 - Foreign Special Relationships: Negative,2.87,412 - Controlled Economy,2.65
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.59,102 - Foreign Special Relationships: Negative,3.3,103 - Anti-Imperialism,2.95
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.83,413 - Nationalisation,2.81,412 - Controlled Economy,2.72
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.12,102 - Foreign Special Relationships: Negative,2.93,412 - Controlled Economy,2.8
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.34,401 - Free Market Economy,3.24,412 - Controlled Economy,2.89
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.01,103 - Anti-Imperialism,2.94,105 - Military: Negative,2.79
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.25,413 - Nationalisation,3.02,102 - Foreign Special Relationships: Negative,2.68
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.57,103 - Anti-Imperialism,3.44,412 - Controlled Economy,2.98
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.0,413 - Nationalisation,2.86,412 - Controlled Economy,2.78
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.16,413 - Nationalisation,2.86,606 - Civic Mindedness: Positive,2.84
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.92,102 - Foreign Special Relationships: Negative,2.91,413 - Nationalisation,2.78
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.13,412 - Controlled Economy,2.93,413 - Nationalisation,2.72
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,3.38,102 - Foreign Special Relationships: Negative,2.98,103 - Anti-Imperialism,2.95
+VOORZITTER,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.64,106 - Peace,2.57,401 - Free Market Economy,2.51
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.1,102 - Foreign Special Relationships: Negative,2.93,103 - Anti-Imperialism,2.76
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.89,413 - Nationalisation,2.83,412 - Controlled Economy,2.61
+VOORZITTER,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.01,302 - Centralisation,2.76,102 - Foreign Special Relationships: Negative,2.72
+VOORZITTER,304 - Political Corruption,304 - Political Corruption,2.75,606 - Civic Mindedness: Positive,2.74,415 - Marxist Analysis: Positive,2.67
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.17,401 - Free Market Economy,3.17,103 - Anti-Imperialism,2.93
+VOORZITTER,103 - Anti-Imperialism,103 - Anti-Imperialism,3.14,401 - Free Market Economy,2.95,412 - Controlled Economy,2.8
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.7,401 - Free Market Economy,2.67,102 - Foreign Special Relationships: Negative,2.48
+VOORZITTER,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.93,103 - Anti-Imperialism,2.68,401 - Free Market Economy,2.6
+VOORZITTER,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.17,412 - Controlled Economy,2.86,606 - Civic Mindedness: Positive,2.73
+VOORZITTER,409 - Keynesian Demand Management,409 - Keynesian Demand Management,3.07,102 - Foreign Special Relationships: Negative,2.98,413 - Nationalisation,2.84
+VOORZITTER,413 - Nationalisation,413 - Nationalisation,3.01,102 - Foreign Special Relationships: Negative,2.61,412 - Controlled Economy,2.55
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,2.82,102 - Foreign Special Relationships: Negative,2.8,412 - Controlled Economy,2.76
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.06,102 - Foreign Special Relationships: Negative,2.96,103 - Anti-Imperialism,2.89
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.04,413 - Nationalisation,2.94,102 - Foreign Special Relationships: Negative,2.91
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.08,413 - Nationalisation,2.98,102 - Foreign Special Relationships: Negative,2.88
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.18,102 - Foreign Special Relationships: Negative,2.94,401 - Free Market Economy,2.8
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.07,102 - Foreign Special Relationships: Negative,2.94,413 - Nationalisation,2.83
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.86,102 - Foreign Special Relationships: Negative,2.85,401 - Free Market Economy,2.83
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.97,102 - Foreign Special Relationships: Negative,2.79,413 - Nationalisation,2.78
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.98,102 - Foreign Special Relationships: Negative,2.92,413 - Nationalisation,2.91
+VOORZITTER,413 - Nationalisation,413 - Nationalisation,3.02,412 - Controlled Economy,2.97,102 - Foreign Special Relationships: Negative,2.88
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,3.0,102 - Foreign Special Relationships: Negative,2.91,413 - Nationalisation,2.86
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.99,102 - Foreign Special Relationships: Negative,2.93,413 - Nationalisation,2.92
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.9,413 - Nationalisation,2.87,102 - Foreign Special Relationships: Negative,2.84
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.95,102 - Foreign Special Relationships: Negative,2.89,413 - Nationalisation,2.88
+VOORZITTER,412 - Controlled Economy,412 - Controlled Economy,2.99,102 - Foreign Special Relationships: Negative,2.97,413 - Nationalisation,2.92
+VOORZITTER,401 - Free Market Economy,401 - Free Market Economy,2.96,102 - Foreign Special Relationships: Negative,2.76,110 - European Community/Union: Negative,2.74
+VOORZITTER,413 - Nationalisation,413 - Nationalisation,3.05,401 - Free Market Economy,2.8,102 - Foreign Special Relationships: Negative,2.71
+CDA,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.66,413 - Nationalisation,2.55,103 - Anti-Imperialism,2.5
+CDA,103 - Anti-Imperialism,103 - Anti-Imperialism,2.8,606 - Civic Mindedness: Positive,2.72,401 - Free Market Economy,2.68
+CDA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.6,606 - Civic Mindedness: Positive,2.59,412 - Controlled Economy,2.51
+CDA,302 - Centralisation,302 - Centralisation,2.73,413 - Nationalisation,2.68,404 - Economic Planning,2.57
+CDA,703 - Agriculture and Farmers: Positive,703 - Agriculture and Farmers: Positive,3.11,304 - Political Corruption,2.97,401 - Free Market Economy,2.91
+CDA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.91,606 - Civic Mindedness: Positive,2.66,412 - Controlled Economy,2.6
+CDA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.02,413 - Nationalisation,2.7,103 - Anti-Imperialism,2.68
+CDA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.87,412 - Controlled Economy,2.73,413 - Nationalisation,2.69
+CDA,401 - Free Market Economy,401 - Free Market Economy,3.14,101 - Foreign Special Relationships: Positive,2.66,103 - Anti-Imperialism,2.59
+CDA,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.85,102 - Foreign Special Relationships: Negative,2.76,413 - Nationalisation,2.63
+CDA,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.83,414 - Economic Orthodoxy,3.35,606 - Civic Mindedness: Positive,2.68
+50PLUS,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.65,703 - Agriculture and Farmers: Positive,2.52,107 - Internationalism: Positive,2.44
+DENK,110 - European Community/Union: Negative,110 - European Community/Union: Negative,2.67,606 - Civic Mindedness: Positive,2.65,401 - Free Market Economy,2.64
+D66,401 - Free Market Economy,401 - Free Market Economy,2.63,102 - Foreign Special Relationships: Negative,2.58,606 - Civic Mindedness: Positive,2.56
+PVV,401 - Free Market Economy,401 - Free Market Economy,2.95,103 - Anti-Imperialism,2.76,107 - Internationalism: Positive,2.73
+PVV,107 - Internationalism: Positive,107 - Internationalism: Positive,2.78,103 - Anti-Imperialism,2.77,110 - European Community/Union: Negative,2.72
+PVV,401 - Free Market Economy,401 - Free Market Economy,3.03,103 - Anti-Imperialism,2.84,412 - Controlled Economy,2.61
+PVV,401 - Free Market Economy,401 - Free Market Economy,3.1,102 - Foreign Special Relationships: Negative,3.06,103 - Anti-Imperialism,2.81
+PVV,401 - Free Market Economy,401 - Free Market Economy,3.09,102 - Foreign Special Relationships: Negative,2.88,103 - Anti-Imperialism,2.8
+PVV,401 - Free Market Economy,401 - Free Market Economy,3.54,102 - Foreign Special Relationships: Negative,3.07,103 - Anti-Imperialism,2.8
+PVV,401 - Free Market Economy,401 - Free Market Economy,3.14,110 - European Community/Union: Negative,3.13,102 - Foreign Special Relationships: Negative,2.92
+Minister Timmermans,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,2.96,110 - European Community/Union: Negative,2.46,703 - Agriculture and Farmers: Positive,2.46
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,3.29,102 - Foreign Special Relationships: Negative,3.03,703 - Agriculture and Farmers: Positive,2.91
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,2.78,110 - European Community/Union: Negative,2.63,103 - Anti-Imperialism,2.61
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,3.25,103 - Anti-Imperialism,3.04,102 - Foreign Special Relationships: Negative,2.98
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,3.39,103 - Anti-Imperialism,3.22,109 - Internationalism: Negative,2.96
+Minister Timmermans,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,2.8,412 - Controlled Economy,2.77,302 - Centralisation,2.59
+Minister Timmermans,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.68,401 - Free Market Economy,2.63,703 - Agriculture and Farmers: Positive,2.62
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,2.94,412 - Controlled Economy,2.78,102 - Foreign Special Relationships: Negative,2.71
+Minister Timmermans,401 - Free Market Economy,401 - Free Market Economy,2.81,412 - Controlled Economy,2.65,413 - Nationalisation,2.54
+Minister Timmermans,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.14,401 - Free Market Economy,3.14,103 - Anti-Imperialism,3.05
+Minister Timmermans,107 - Internationalism: Positive,107 - Internationalism: Positive,2.92,103 - Anti-Imperialism,2.75,703 - Agriculture and Farmers: Positive,2.72
+Minister Timmermans,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.35,109 - Internationalism: Negative,2.62,401 - Free Market Economy,2.48
+Minister Timmermans,703 - Agriculture and Farmers: Positive,703 - Agriculture and Farmers: Positive,2.9,401 - Free Market Economy,2.64,107 - Internationalism: Positive,2.62
+Minister Timmermans,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.7,103 - Anti-Imperialism,2.63,203 - Constitutionalism: Positive,2.59
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.64,401 - Free Market Economy,2.56,103 - Anti-Imperialism,2.54
+ChristenUnie,413 - Nationalisation,413 - Nationalisation,2.69,103 - Anti-Imperialism,2.6,302 - Centralisation,2.55
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.74,103 - Anti-Imperialism,2.52,413 - Nationalisation,2.5
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.87,606 - Civic Mindedness: Positive,2.68,302 - Centralisation,2.62
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.98,302 - Centralisation,2.98,103 - Anti-Imperialism,2.71
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.75,413 - Nationalisation,2.74,606 - Civic Mindedness: Positive,2.68
+ChristenUnie,412 - Controlled Economy,412 - Controlled Economy,2.66,302 - Centralisation,2.52,606 - Civic Mindedness: Positive,2.5
+ChristenUnie,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.05,412 - Controlled Economy,2.86,413 - Nationalisation,2.61
+VVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.54,606 - Civic Mindedness: Positive,2.53,110 - European Community/Union: Negative,2.52
+VVD,401 - Free Market Economy,401 - Free Market Economy,2.97,102 - Foreign Special Relationships: Negative,2.72,103 - Anti-Imperialism,2.58
+VVD,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.17,413 - Nationalisation,2.98,302 - Centralisation,2.63
+VVD,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.01,413 - Nationalisation,2.68,102 - Foreign Special Relationships: Negative,2.5
+VVD,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,2.71,102 - Foreign Special Relationships: Negative,2.6,107 - Internationalism: Positive,2.53
+VVD,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.58,414 - Economic Orthodoxy,2.87,110 - European Community/Union: Negative,2.59
+SGP,703 - Agriculture and Farmers: Positive,703 - Agriculture and Farmers: Positive,2.95,401 - Free Market Economy,2.63,606 - Civic Mindedness: Positive,2.54
+PvdD,413 - Nationalisation,413 - Nationalisation,3.32,102 - Foreign Special Relationships: Negative,3.03,103 - Anti-Imperialism,3.01
+GroenLinks-PvdA,413 - Nationalisation,413 - Nationalisation,3.02,102 - Foreign Special Relationships: Negative,2.98,401 - Free Market Economy,2.67
+GroenLinks-PvdA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.12,103 - Anti-Imperialism,2.59,401 - Free Market Economy,2.58
+GroenLinks-PvdA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.79,103 - Anti-Imperialism,2.77,401 - Free Market Economy,2.65
+GroenLinks-PvdA,103 - Anti-Imperialism,103 - Anti-Imperialism,2.83,102 - Foreign Special Relationships: Negative,2.71,401 - Free Market Economy,2.66
+GroenLinks-PvdA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.77,413 - Nationalisation,2.7,412 - Controlled Economy,2.6
+GroenLinks-PvdA,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.83,401 - Free Market Economy,2.71,412 - Controlled Economy,2.58
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.0,102 - Foreign Special Relationships: Negative,2.91,302 - Centralisation,2.6
+Minister Beljaarts,302 - Centralisation,302 - Centralisation,2.85,102 - Foreign Special Relationships: Negative,2.77,606 - Civic Mindedness: Positive,2.71
+Minister Beljaarts,401 - Free Market Economy,401 - Free Market Economy,3.18,102 - Foreign Special Relationships: Negative,2.95,606 - Civic Mindedness: Positive,2.76
+Minister Beljaarts,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.29,401 - Free Market Economy,3.02,606 - Civic Mindedness: Positive,2.85
+Minister Beljaarts,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.08,401 - Free Market Economy,2.96,606 - Civic Mindedness: Positive,2.84
+Minister Beljaarts,409 - Keynesian Demand Management,409 - Keynesian Demand Management,3.01,102 - Foreign Special Relationships: Negative,2.89,302 - Centralisation,2.81
+Minister Beljaarts,103 - Anti-Imperialism,103 - Anti-Imperialism,3.13,412 - Controlled Economy,2.78,102 - Foreign Special Relationships: Negative,2.76
+Minister Beljaarts,302 - Centralisation,302 - Centralisation,3.11,606 - Civic Mindedness: Positive,2.81,102 - Foreign Special Relationships: Negative,2.69
+Minister Beljaarts,110 - European Community/Union: Negative,110 - European Community/Union: Negative,2.77,102 - Foreign Special Relationships: Negative,2.66,412 - Controlled Economy,2.62
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.6,107 - Internationalism: Positive,2.57,103 - Anti-Imperialism,2.53
+Minister Beljaarts,302 - Centralisation,302 - Centralisation,2.91,606 - Civic Mindedness: Positive,2.85,102 - Foreign Special Relationships: Negative,2.56
+Minister Beljaarts,401 - Free Market Economy,401 - Free Market Economy,2.93,102 - Foreign Special Relationships: Negative,2.85,412 - Controlled Economy,2.73
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.85,302 - Centralisation,2.8,102 - Foreign Special Relationships: Negative,2.62
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.71,302 - Centralisation,2.68,102 - Foreign Special Relationships: Negative,2.64
+Minister Beljaarts,302 - Centralisation,302 - Centralisation,2.7,606 - Civic Mindedness: Positive,2.69,102 - Foreign Special Relationships: Negative,2.65
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.13,302 - Centralisation,2.73,703 - Agriculture and Farmers: Positive,2.63
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.07,102 - Foreign Special Relationships: Negative,2.74,412 - Controlled Economy,2.48
+Minister Beljaarts,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.81,413 - Nationalisation,2.7,606 - Civic Mindedness: Positive,2.68
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.79,102 - Foreign Special Relationships: Negative,2.61,413 - Nationalisation,2.59
+Minister Beljaarts,401 - Free Market Economy,401 - Free Market Economy,3.37,102 - Foreign Special Relationships: Negative,2.91,103 - Anti-Imperialism,2.86
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.97,413 - Nationalisation,2.63,102 - Foreign Special Relationships: Negative,2.62
+Minister Beljaarts,412 - Controlled Economy,412 - Controlled Economy,2.82,102 - Foreign Special Relationships: Negative,2.72,401 - Free Market Economy,2.61
+Minister Beljaarts,412 - Controlled Economy,412 - Controlled Economy,3.05,102 - Foreign Special Relationships: Negative,2.98,413 - Nationalisation,2.9
+Minister Beljaarts,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.0,413 - Nationalisation,2.98,401 - Free Market Economy,2.74
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.7,302 - Centralisation,2.64,102 - Foreign Special Relationships: Negative,2.5
+Minister Beljaarts,412 - Controlled Economy,412 - Controlled Economy,3.11,102 - Foreign Special Relationships: Negative,3.03,401 - Free Market Economy,3.02
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.11,102 - Foreign Special Relationships: Negative,2.99,413 - Nationalisation,2.76
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.92,102 - Foreign Special Relationships: Negative,2.6,103 - Anti-Imperialism,2.53
+Minister Beljaarts,413 - Nationalisation,413 - Nationalisation,2.8,401 - Free Market Economy,2.71,102 - Foreign Special Relationships: Negative,2.69
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.11,102 - Foreign Special Relationships: Negative,2.89,302 - Centralisation,2.78
+Minister Beljaarts,413 - Nationalisation,413 - Nationalisation,2.86,606 - Civic Mindedness: Positive,2.83,102 - Foreign Special Relationships: Negative,2.79
+Minister Beljaarts,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.05,102 - Foreign Special Relationships: Negative,2.83,302 - Centralisation,2.49
+NSC,302 - Centralisation,302 - Centralisation,3.02,102 - Foreign Special Relationships: Negative,2.79,412 - Controlled Economy,2.61
+NSC,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.97,102 - Foreign Special Relationships: Negative,2.67,302 - Centralisation,2.62
+NSC,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,3.33,415 - Marxist Analysis: Positive,2.63,102 - Foreign Special Relationships: Negative,2.62
+NSC,409 - Keynesian Demand Management,409 - Keynesian Demand Management,3.28,413 - Nationalisation,3.24,102 - Foreign Special Relationships: Negative,2.97
+NSC,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.24,606 - Civic Mindedness: Positive,2.78,413 - Nationalisation,2.64
+NSC,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.49,409 - Keynesian Demand Management,3.23,413 - Nationalisation,3.14
+NSC,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.86,401 - Free Market Economy,2.86,412 - Controlled Economy,2.71
+FVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.03,409 - Keynesian Demand Management,2.72,412 - Controlled Economy,2.71
+FVD,413 - Nationalisation,413 - Nationalisation,3.17,409 - Keynesian Demand Management,2.87,102 - Foreign Special Relationships: Negative,2.85
+FVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.22,413 - Nationalisation,2.74,606 - Civic Mindedness: Positive,2.74
+FVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.22,413 - Nationalisation,2.94,302 - Centralisation,2.73
+FVD,606 - Civic Mindedness: Positive,606 - Civic Mindedness: Positive,2.7,302 - Centralisation,2.69,413 - Nationalisation,2.61
+FVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,2.99,409 - Keynesian Demand Management,2.96,412 - Controlled Economy,2.73
+FVD,102 - Foreign Special Relationships: Negative,102 - Foreign Special Relationships: Negative,3.18,413 - Nationalisation,2.89,103 - Anti-Imperialism,2.78
+PvdA,413 - Nationalisation,413 - Nationalisation,3.11,401 - Free Market Economy,2.88,102 - Foreign Special Relationships: Negative,2.71
+Minister Rosenthal,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,4.02,507 - Education Limitation,3.07,414 - Economic Orthodoxy,3.05
+Minister Rosenthal,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,2.9,107 - Internationalism: Positive,2.51,412 - Controlled Economy,2.51
+Minister Rosenthal,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,2.64,413 - Nationalisation,2.54,401 - Free Market Economy,2.51
+Minister Rosenthal,203 - Constitutionalism: Positive,203 - Constitutionalism: Positive,3.26,414 - Economic Orthodoxy,2.98,606 - Civic Mindedness: Positive,2.62
