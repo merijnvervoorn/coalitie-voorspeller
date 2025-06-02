@@ -8,33 +8,57 @@ import re
 # -------------------------------
 # Ideological spectrum (manually defined, -5=far-left to +5=far-right)
 # -------------------------------
-IDEOLOGY_MAP = {
-    "SP": -5,
-    "PvdA": -3,
-    "GL": -3,
-    "PvdD": -2,
-    "D66": -1,
-    "Volt": -1,
-    "CDA": 1,
-    "CU": 1,
-    "SGP": 2,
-    "VVD": 3,
-    "JA21": 4,
-    "PVV": 5,
-    "BBB": 2,
-    "Forum voor Democratie": 5,
-    "DENK": -4,
-    "50PLUS": 0,
-    "BIJ1": -5,
-    "LP": 3,
-    "NSC": 1
+
+# 2D ideological map: (Left-Right, Prog-Cons) from Kieskompas
+IDEOLOGY_2D_MAP = {
+    "BIJ1": (-5.0, 5.0),
+    "PvdD": (-5.0, 4.5),
+    "GL/PvdA": (-2.8, 3.3),
+    "DENK": (-3.4, 1.5),
+    "SP": (-3.8, 1.0),
+    "Volt": (-0.7, 4.6),
+    "D66": (-0.3, 2.7),
+    "CU": (-1.7, 1.0),
+    "50PLUS": (-1.2, -0.2),
+    "NSC": (-0.5, -0.4),
+    "CDA": (1.2, -1.2),
+    "SGP": (1.3, -2.1),
+    "BBB": (0.5, -2.1),
+    "VVD": (2.5, -1.5),
+    "PVV": (0.5, -3.7),
+    "FvD": (3.2, -5.0),
+    "JA21": (3.8, -4.8),
+    "BVNL": (5.0, -4.8)
+}
+
+# 4D ideological map: (Economic_Left_Right,Cultural_Progressive_Conservative,Globalist_Nationalist,Libertarian_Authoritarian)
+IDEOLOGY_4D_MAP = {
+    "50PLUS": (-0.43, 0.61, 0.36, -0.61),
+    "BBB": (-0.23, 0.65, 0.62, -0.25),
+    "BIJ1": (-0.1, 0.41, 0.73, -0.2),
+    "CDA": (-0.38, 0.66, 0.68, -0.25),
+    "CU": (-0.36, 0.7, 0.66, -0.27),
+    "D66": (-0.4, 0.63, 0.65, -0.29),
+    "DENK": (-0.17, 0.37, 0.72, -0.35),
+    "FvD": (-0.2, 0.39, 0.64, -0.37),
+    "GL/PvdA": (-0.39, 0.65, 0.56, -0.3),
+    "JA21": (-0.21, 0.52, 0.64, -0.22),
+    "NSC": (-0.47, 0.68, 0.64, -0.33),
+    "PVV": (-0.27, 0.49, 0.57, -0.25),
+    "PvdD": (-0.34, 0.83, 0.5, -0.29),
+    "SGP": (-0.39, 0.54, 0.73, -0.23),
+    "SP": (-0.44, 0.56, 0.52, -0.37),
+    "VVD": (-0.33, 0.72, 0.63, -0.22),
+    "Volt": (-0.36, 0.66, 0.62, -0.38)
 }
 
 
+
+
 def load_data():
-    kabinetten = pd.read_csv('data/cabinets/kabinetten_schoongemaakt-no2023.csv')                   #Exclude 2021 data
+    kabinetten = pd.read_csv('data/cabinets/kabinetten_schoongemaakt-no2023.csv')                   #Exclude 2023 data
     zetels_100 = pd.read_csv('data/zetelverdeling/zetel-data/tk_zetels100_1918-1956.csv')
-    zetels_150 = pd.read_csv('data/zetelverdeling/zetel-data/tk_zetels150_1956-2023-no2023.csv')    #Exclude 2021 data
+    zetels_150 = pd.read_csv('data/zetelverdeling/zetel-data/tk_zetels150_1956-2023-no2023.csv')    #Exclude 2023 data
     zetels = pd.concat([zetels_100, zetels_150], ignore_index=True)
     ek_50_old = pd.read_csv('data/zetelverdeling/zetel-data/ek_zetels50_1888-1956_filled.csv')
     ek_75_new = pd.read_csv('data/zetelverdeling/zetel-data/ek_zetels75_1956-2023_filled.csv')
@@ -60,11 +84,29 @@ def build_coalition_frequency(kabinetten):
 # Ideological compatibility score (lower is better)
 # -------------------------------
 def ideological_distance(parties):
-    ideologies = [IDEOLOGY_MAP.get(p, 0) for p in parties]
-    if len(ideologies) <= 1:
-        return 0
-    pairwise_diffs = [abs(a - b) for a, b in itertools.combinations(ideologies, 2)]
-    return sum(pairwise_diffs) / len(pairwise_diffs)
+    points_2d = [IDEOLOGY_2D_MAP.get(p, (0.0, 0.0)) for p in parties]
+    points_4d = [IDEOLOGY_4D_MAP.get(p, (0.0, 0.0, 0.0, 0.0)) for p in parties]
+
+    if len(parties) <= 1:
+        return 0.0
+
+    # Compute average pairwise Euclidean distance in 2D
+    dist_2d = [
+        math.sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2)
+        for a, b in combinations(points_2d, 2)
+    ]
+    avg_2d = sum(dist_2d) / len(dist_2d)
+
+    # Compute average pairwise Euclidean distance in 4D
+    dist_4d = [
+        math.sqrt(sum((a[i] - b[i])**2 for i in range(4)))
+        for a, b in combinations(points_4d, 2)
+    ]
+    avg_4d = sum(dist_4d) / len(dist_4d)
+
+    return (avg_2d * 0.5 + avg_4d * 0.5)
+
+
 
 
 # -------------------------------

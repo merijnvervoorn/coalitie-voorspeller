@@ -93,10 +93,10 @@ This ranking helps identify the **most realistic and ideologically feasible majo
 
 ---
 
-## 🤝 Stakeholders
+## 🤝 Information
 
-* **DemocratieMonitor:** Our primary stakeholder, providing key insights and contextual feedback.
-* Academic researchers and policymakers exploring coalition dynamics and democratic stability in multiparty systems.
+- ManifestoBERTa codes: https://manifesto-project.wzb.eu/coding_schemes/mp_v4
+- Files from .gitignore: http://merijn.cc/cssci-tweedekamer
 
 ---
 
@@ -141,3 +141,4 @@ cssci-political-speech/
 ├── coalition-output.ipynb      # Coalition prediction
 └── README.md                   # This file
 ```
+
