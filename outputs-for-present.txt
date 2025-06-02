@@ -155,4 +155,89 @@ Coalition: ('VVD', 'GL/PvdA', 'D66', 'PvdD', 'Volt')
 
 Outlandish:
 
+        'VVD': 11,
+        'GL/PvdA': 13,
+        'D66': 3,
+        'CDA': 5,
+        'CU': 6,
+        'PVV': 17,
+        'BBB': 1,
+        'SP': 3,
+        'PvdD': 19,
+        'NSC': 0,
+        'DENK': 2,
+        'FvD': 28,
+        'SGP': 6,
+        'Volt': 26,
+        'JA21': 10
 
+
+Coalition: ('VVD', 'GL/PvdA', 'CDA', 'PvdD', 'FvD')
+  Seats: 76
+  History Score: 1.05
+  Ideology Score: 3.41
+  EK Score: 0.44
+  EK Seats: 33
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('VVD', 'PVV', 'BBB', 'PvdD', 'FvD')
+  Seats: 76
+  History Score: 0.84
+  Ideology Score: 3.02
+  EK Score: 0.44
+  EK Seats: 33
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('GL/PvdA', 'CU', 'PvdD', 'FvD', 'JA21')
+  Seats: 76
+  History Score: 0
+  Ideology Score: 3.75
+  EK Score: 0.27
+  EK Seats: 20
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('GL/PvdA', 'PvdD', 'FvD', 'SGP', 'JA21')
+  Seats: 76
+  History Score: 0
+  Ideology Score: 3.76
+  EK Score: 0.25
+  EK Seats: 19
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('CU', 'PVV', 'PvdD', 'FvD', 'SGP')
+  Seats: 76
+  History Score: 0
+  Ideology Score: 3.24
+  EK Score: 0.16
+  EK Seats: 12
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('VVD', 'GL/PvdA', 'CDA', 'PvdD', 'NSC', 'FvD')
+  Seats: 76
+  History Score: 1.05
+  Ideology Score: 3.04
+  EK Score: 0.44
+  EK Seats: 33
+  Party Penalty: 4
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('VVD', 'GL/PvdA', 'SP', 'PvdD', 'DENK', 'FvD')
+  Seats: 76
+  History Score: 1.0
+  Ideology Score: 3.14
+  EK Score: 0.4
+  EK Seats: 30
+  Party Penalty: 4
+  Surplus Penalty: 0.0
+  Final Score: 0%
