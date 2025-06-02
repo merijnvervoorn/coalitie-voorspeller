@@ -1,9 +1,9 @@
 /data/opendata-tk/all_speeches_pdf/
 /data/opendata-tk/all_speeches_pdf.tar.gz
-/data/opendata-tk/seperated_speeches_2014-2024/
-/data/opendata-tk/seperated_speeches_2014-2024.tar.gz
-/data/opendata-tk/combined_speeches_2014-2024.csv
-/data/opendata-tk/combined_speeches_2014-2024.csv.tar.gz
+/data/opendata-tk/DemocratieMonitor_speeches_2014-2024/
+/data/opendata-tk/DemocratieMonitor_speeches_2014-2024.tar.gz
+/data/opendata-tk/DemocratieMonitor_combined_speeches_2014-2024.csv
+/data/opendata-tk/DemocratieMonitor_combined_speeches_2014-2024.csv.tar.gz
 /data/opendata-tk/opendata-notebooks/tweede_pdfs2024/
 /data/opendata-tk/opendata-notebooks/tweede_pdfs2024.tar.gz
 /data/opendata-tk/opendata-notebooks/tweede_2024.csv
@@ -13,7 +13,6 @@
 /party_speeches/
 /data/api/pdf/
 output_partial.csv
-party_classific
 party_speeches.csv
 party_speeches_classification.csv
 party_speeches_classification_cleaned.csv
