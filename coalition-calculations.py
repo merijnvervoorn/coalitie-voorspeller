@@ -135,6 +135,7 @@ def is_unrealistic_combo(parties):
         ('GL/PvdA', 'BBB'),
         ('PVV', 'D66'),
         ('PVV', 'CDA'),
+        ('GL/PvdA', 'SGP'),
     ]
     party_set = set(parties)
     for a, b in extremes:
