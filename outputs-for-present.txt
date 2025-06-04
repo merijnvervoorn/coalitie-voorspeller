@@ -78,16 +78,6 @@ Coalition: ('VVD', 'PVV', 'NSC', 'FvD')
 
 Polls from 27-05-2025:
 
-Coalition: ('VVD', 'GL/PvdA', 'CDA', 'SGP')
-  Seats: 79
-  History Score: 1.05
-  Ideology Score: 2.04
-  EK Score: 0.43
-  EK Seats: 32
-  Party Penalty: 0
-  Surplus Penalty: 0.0
-  Final Score: 3.3%
-
 Coalition: ('VVD', 'GL/PvdA', 'CDA', 'NSC')
   Seats: 78
   History Score: 1.05
@@ -128,16 +118,6 @@ Coalition: ('VVD', 'GL/PvdA', 'D66', 'CU', 'PvdD')
   Surplus Penalty: 0.0
   Final Score: 0%
 
-Coalition: ('VVD', 'GL/PvdA', 'D66', 'PvdD', 'SGP')
-  Seats: 76
-  History Score: 1.1
-  Ideology Score: 2.81
-  EK Score: 0.45
-  EK Seats: 34
-  Party Penalty: 2
-  Surplus Penalty: 0.0
-  Final Score: 0%
-
 Coalition: ('VVD', 'GL/PvdA', 'D66', 'PvdD', 'Volt')
   Seats: 76
   History Score: 1.1
@@ -147,6 +127,27 @@ Coalition: ('VVD', 'GL/PvdA', 'D66', 'PvdD', 'Volt')
   Party Penalty: 2
   Surplus Penalty: 0.0
   Final Score: 0%
+
+Coalition: ('VVD', 'GL/PvdA', 'D66', 'PvdD', 'JA21')
+  Seats: 76
+  History Score: 1.1
+  Ideology Score: 3.47
+  EK Score: 0.43
+  EK Seats: 32
+  Party Penalty: 2
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
+Coalition: ('VVD', 'GL/PvdA', 'D66', 'CU', 'NSC', 'Volt')
+  Seats: 76
+  History Score: 1.17
+  Ideology Score: 1.96
+  EK Score: 1.0
+  EK Seats: 40
+  Party Penalty: 4
+  Surplus Penalty: 0.0
+  Final Score: 0%
+
 
 
 
