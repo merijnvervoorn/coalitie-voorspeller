@@ -1,9 +1,12 @@
 import pandas as pd
+import numpy as np
 from collections import Counter
 import itertools
 from itertools import combinations
 import math
+from scipy.spatial.distance import jensenshannon
 import re
+import json
 
 # -------------------------------
 # Ideological spectrum
@@ -63,7 +66,14 @@ def load_data():
     ek_zetels = pd.concat([ek_50_old, ek_75_new], ignore_index=True)
 
     kabinetten['Partijen'] = kabinetten['Partijen'].dropna().str.split(', ')
-    return kabinetten, zetels, ek_zetels
+
+    with open("topic_vectors.json", "r") as f:
+        json_ready_vectors = json.load(f)
+
+    # Convert lists back to NumPy arrays
+    topic_vectors = {k: np.array(v) for k, v in json_ready_vectors.items()}
+
+    return kabinetten, zetels, ek_zetels, topic_vectors
 
 
 # -------------------------------
@@ -219,10 +229,28 @@ def calculate_ek_alignment_score(coalition, ek_seats, majority_threshold):
     return normalized_score, coalition_ek_total
 
 
+# --------------------------------------------
+# Compute mean Jensen-Shannon divergence for a set of parties
+# --------------------------------------------
+
+def mean_jsd_for_coalition(coalition, topic_vectors):
+    if len(coalition) < 2:
+        return 0.0  # trivial case
+
+    jsd_values = []
+    for p1, p2 in combinations(coalition, 2):
+        v1 = topic_vectors.get(p1)
+        v2 = topic_vectors.get(p2)
+        if v1 is not None and v2 is not None:
+            jsd = jensenshannon(v1, v2, base=2)
+            jsd_values.append(jsd)
+    return np.mean(jsd_values) if jsd_values else 0.0
+
+
 # -------------------------------
 # Define main prediction function
 # -------------------------------
-def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, threshold=76, top_k=5):
+def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, threshold=76, top_k=5, topic_vectors=None):
     parties = list(seat_distribution.keys())
 
     # ✅ Get Eerste Kamer seat distribution for the given year
@@ -262,18 +290,21 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
                 party_penalty = max(0, len(combo) - 4) * 2
                 surplus_penalty = max(0, seats - 90) * 0.5
 
+                jsd_penalty = mean_jsd_for_coalition(combo, topic_vectors)
+
                 # Final score computation
                 score = (
                     (historical_score * 2)
                     - (ideology_score * 2)
                     + (ek_score * 0.25)  # new EK weight
+                    - 10 * jsd_penalty
                     - (party_penalty * 2)
                     - surplus_penalty
                 )
 
                 # Given a fixed score range
-                min_score = -2
-                max_score = 2
+                min_score = -3
+                max_score = 3
 
                 # Calculate percentage
                 final_score = (score - min_score) / (max_score - min_score) * 100
@@ -287,6 +318,7 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
                     "ideology_score": round(ideology_score, 2),
                     "ek_score": round(ek_score, 2),
                     "ek_total_seats": ek_total_seats,
+                    "jsd_penalty": round(jsd_penalty, 2),
                     "party_penalty": round(party_penalty, 2),
                     "surplus_penalty": round(surplus_penalty, 2),
                     "final_score": round(final_score, 1)
