@@ -224,7 +224,6 @@ def calculate_ek_alignment_score(coalition, ek_seats, majority_threshold):
 # -------------------------------
 def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, threshold=76, top_k=5):
     parties = list(seat_distribution.keys())
-    # party_topics = load_party_topics()
 
     # ✅ Get Eerste Kamer seat distribution for the given year
     ek_year_data = ek_zetels[ek_zetels['Jaar'] == Jaar].copy() 
@@ -253,11 +252,6 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
 
                 ek_score, ek_total_seats = calculate_ek_alignment_score(combo, ek_seat_dist, majority_threshold=38)
 
-
-
-
-                # topic_score = topic_alignment_score(combo, party_topics)
-
                 # Calculate historical score with lineage adjustments and seat scaling
                 historical_score = calculate_historical_score(combo, coalition_counter, seat_distribution)
                 
@@ -272,7 +266,6 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
                 score = (
                     (historical_score * 2)
                     - (ideology_score * 2)
-                    # + (topic_score * 2)
                     + (ek_score * 0.25)  # new EK weight
                     - (party_penalty * 2)
                     - surplus_penalty
