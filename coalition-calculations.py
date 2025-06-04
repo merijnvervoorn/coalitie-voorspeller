@@ -6,7 +6,7 @@ import math
 import re
 
 # -------------------------------
-# Ideological spectrum (manually defined, -5=far-left to +5=far-right)
+# Ideological spectrum
 # -------------------------------
 
 # 2D ideological map: (Left-Right, Prog-Cons) from Kieskompas
@@ -51,8 +51,6 @@ IDEOLOGY_4D_MAP = {
     "VVD": (-0.33, 0.72, 0.63, -0.22),
     "Volt": (-0.36, 0.66, 0.62, -0.38)
 }
-
-
 
 
 def load_data():
@@ -219,47 +217,6 @@ def calculate_ek_alignment_score(coalition, ek_seats, majority_threshold):
     if coalition_ek_total >= majority_threshold:
         return 1.0, coalition_ek_total  # Return score and EK seats
     return normalized_score, coalition_ek_total
-
-
-
-# --------------------------------------------
-# Load topic codes from a structured txt file
-# --------------------------------------------
-# def load_party_topics(filename='party_classification_results.txt'):
-#     party_topics = {}
-#     current_party = None
-
-#     with open(filename, 'r', encoding='utf-8') as f:
-#         for line in f:
-#             line = line.strip()
-#             if line.startswith("Party:"):
-#                 current_party = line.replace("Party:", "").strip()
-#                 party_topics[current_party] = set()
-#             elif line.startswith("-") and current_party:
-#                 match = re.match(r"-\s*(\d+)\s*-\s*.+?:", line)
-#                 if match:
-#                     topic_code = match.group(1)
-#                     party_topics[current_party].add(topic_code)
-#     return party_topics
-
-
-# --------------------------------------------------
-# Compute topic alignment score for a party combo
-# --------------------------------------------------
-# def topic_alignment_score(combo, party_topics):
-#     topic_sets = [party_topics.get(party, set()) for party in combo if party in party_topics]
-
-#     if len(topic_sets) < 2:
-#         return 0.0
-
-#     shared_topics = set.intersection(*topic_sets)
-#     total_topics = set.union(*topic_sets)
-
-#     if not total_topics:
-#         return 0.0
-
-#     return len(shared_topics) / len(total_topics)  # Value between 0 and 1
-
 
 
 # -------------------------------
