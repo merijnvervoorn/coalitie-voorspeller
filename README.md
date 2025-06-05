@@ -1,27 +1,80 @@
-# 📊 Coalition Predictions and Ideological Divergence
+## 📊 Coalition Predictions: Modeling Ideological Viability in Dutch Politics
 
-This group project is part of the Bachelor in Computational Social Science. We are investigating how ideological divergence shapes coalition formation in the Netherlands' multiparty democracy, using a mix of speech data and historical coalition patterns.
+This project, part of the Bachelor in Computational Social Science, investigates how ideological divergence shapes coalition formation in the Netherlands' multiparty democracy. We analyze Tweede Kamer speeches, historical coalition patterns, and seat distributions to rank realistic majority coalitions using a weighted scoring system.
 
----
+Our model combines machine learning, rule-based logic, and historical data to evaluate coalitions based on ideological fit, policy alignment, historical precedent, and institutional viability. We focus especially on:
 
-## 🔍 Overview
+* Ideological distance between parties
+* Historical frequency of coalition combinations
+* Known incompatibilities and public rejections
+* Institutional feasibility (e.g., Eerste Kamer alignment)
 
-This project explores how **ideological differences influence coalition formation** in the Netherlands. We analyze Tweede Kamer speeches alongside historical government formation data and seat distributions to model coalition viability.
-
-Our approach combines **machine learning, rule-based modeling, and historical analysis** to simulate coalitions that are not only numerically viable, but also ideologically and institutionally feasible.
-
-We pay special attention to:
-
-* The role of ideological distance between parties
-* The influence of Eerste Kamer (Senate) alignment
-* The historical frequency of similar coalitions
-* Known incompatibilities between parties
 
 ---
 
-## 🎯 Research Question
+## 🧠 Coalition Model Components
 
-**How do ideological differences influence coalition formation in the Netherlands’ multiparty system?**
+#### 1. Historical Coalition Score
+
+Rewards overlap with past governments, based on:
+
+* Frequency in past coalitions
+* Party size (log-scaled for diminishing returns)
+* Lineage mapping (e.g., GL/PvdA → GL + PvdA; NSC ← CDA)
+* Partial matches via lineage count as 50%
+
+#### 2. Ideological Distance
+
+Penalizes ideological spread between parties, using:
+
+* 2D axes: Left–Right, Progressive–Conservative
+* 4D axes: Economic, Cultural, Globalist–Nationalist, Libertarian–Authoritarian
+* Based on average pairwise Euclidean distance
+
+#### 3. Topic Compatibility
+
+Assesses programmatic alignment using the mean Jensen–Shannon Divergence (JSD) between parties’ topic distributions. Higher divergence = lower compatibility.
+
+#### 4. Eerste Kamer Alignment
+
+Checks for majority (38+ seats) in the Senate using expanded lineage. Full majority is rewarded; partial presence is proportionally scored.
+
+#### 5. Exclusion Filters
+
+Certain combinations are ruled out entirely due to irreconcilable differences (e.g., PVV + Volt, FvD + BIJ1). These are filtered before scoring.
+
+#### 6. Complexity Penalties
+
+To discourage large or excessive coalitions:
+
+* +2 penalty per party beyond 4
+* Minor penalty for surplus seats over 76
+  Encourages minimal winning coalitions.
+
+---
+
+### 🧪 Final Score Formula
+
+```python
+Final Score = (
+    + Historical Score × 2
+    – Ideological Distance × 2
+    + EK Alignment × 0.25
+    – JSD × 10
+    – Party Count Penalty × 2
+    – Surplus Seat Penalty
+)
+```
+
+All scores are normalized to a 0–100 scale using fixed bounds (4.5; -3). 
+
+---
+
+
+## 🤝 Information
+
+- ManifestoBERTa codes: https://manifesto-project.wzb.eu/coding_schemes/mp_v4
+- Files from .gitignore: http://merijn.cc/cssci-tweedekamer
 
 ---
 
@@ -31,72 +84,6 @@ We pay special attention to:
 * **Post X Society / DemocratieMonitor:** Provided structured speech data, seat distributions, and feedback
 * **Historical Cabinet Data:** Coalition compositions from 1918 to 2023
 * **Seat Distributions:** Both Tweede Kamer (100 and 150 seats) and Eerste Kamer (50 and 75 seats) distributions
-
----
-
-## 🧠 Modeling Approach
-
-We simulate and rank realistic majority coalitions based on several weighted factors:
-
-### 1. **Historical Frequency Score**
-
-Coalitions are scored based on how often similar combinations of parties (including historical equivalents like *PvdA + GL*) occurred in past Dutch cabinets. We account for:
-
-* **Partial lineage matches** (e.g., *JA21* treated as a split from *FvD*)
-* **Scaled weighting** by party seat size using a logarithmic function
-* **Overlap normalization** across coalition size
-
-### 2. **Ideological Distance Penalty**
-
-We assign each party a value on a manually defined ideological scale from **–5 (far-left)** to **+5 (far-right)**. Each coalition receives a penalty based on:
-
-* **Mean pairwise ideological distance**
-* Greater distance = lower compatibility
-
-### 3. **Eerste Kamer (EK) Alignment Score**
-
-We calculate how well each coalition is represented in the *Eerste Kamer*, based on:
-
-* Actual EK seat distributions for the given year
-* Whether the coalition would reach a **38-seat majority** in the EK
-* Scaled EK alignment contributes positively to the final score
-
-### 4. **Penalties for Overcomplexity**
-
-To reduce unrealistic or inefficient coalitions:
-
-* **Party count penalty:** Coalitions with >4 parties are penalized
-* **Surplus seat penalty:** Coalitions with >90 TK seats are slightly penalized to prefer minimal-majority formations
-
-### 5. **Exclusion of Unrealistic Combinations**
-
-Known ideologically incompatible or adversarial party pairs (e.g., *PVV* + *BIJ1*, *FvD* + *Volt*) are excluded from the simulation entirely.
-
----
-
-## 📊 Final Coalition Score Calculation
-
-Each viable coalition receives a **final score between 0 and 100**, calculated as:
-
-```
-Final Score = (
-    Historical Score × 2
-    – Ideological Distance × 2
-    + EK Alignment × 0.25
-    – Party Count Penalty × 2
-    – Surplus Penalty
-)
-→ Scaled to a 0–100 range
-```
-
-This ranking helps identify the **most realistic and ideologically feasible majority coalitions** given a seat distribution in the Tweede Kamer and EK.
-
----
-
-## 🤝 Information
-
-- ManifestoBERTa codes: https://manifesto-project.wzb.eu/coding_schemes/mp_v4
-- Files from .gitignore: http://merijn.cc/cssci-tweedekamer
 
 ---
 
@@ -112,7 +99,7 @@ This ranking helps identify the **most realistic and ideologically feasible majo
    cd cssci-political-speech
    ```
 
-3. open coalition-output.ipynb in Jupyter Notebook or your preferred IDE.
+3. open /rule-based_model/coalition-output.ipynb in Jupyter Notebook or your preferred IDE.
 
 4. Fill in the seat distribution you want to check and the year the model should look at for the Eerste Kamer distributions.
     - make sure to remove the year you are looking at from the dataset in coalition-calculations.py
@@ -126,19 +113,22 @@ This ranking helps identify the **most realistic and ideologically feasible majo
 
 ```
 cssci-political-speech/
-├── data/                       # All datasets
-│   ├── api/                    # API-related scripts and output
-│   ├── cabinets/               # Historical Dutch cabinet data
-│   ├── opendata-tk/            # Raw and processed Tweede Kamer speech data
-│   │   └── opendata-notebooks/ # Original notebooks
-│   │
-│   └── zetelverdeling/         # Historical seat distribution data
-│       └── zetel-data/
-│
-├── methods/                    # Modeling and analysis scripts
-├── results/                    # Visualizations, outputs, and summaries
-├── coalition-calculations.py   # Coalition calculation scripts
-├── coalition-output.ipynb      # Coalition prediction
-└── README.md                   # This file
+├── data
+│   ├── api
+│   │   ├── data                                 # API-related data
+│   │   └── pdf                                  # All PDFs from the API
+│   ├── cabinets                                 # Historical Dutch cabinet data
+│   ├── opendata-tk                              # Raw and processed Tweede Kamer speech data
+│   │   ├── DemocratieMonitor_speeches_2014-2024 # Processed speeches from DemocratieMonitor
+│   │   └── opendata-notebooks                   # Original notebooks from opendata.tweedekamer.nl
+│   └── zetelverdeling                           # Historical seat distribution data
+│       ├── eerste-zetels                        # Raw Eerste Kamer seat distributions
+│       └── zetel-data                           # Tweede and Eerste Kamer seat distributions
+│           └── verkiezingsuitslag               # Election results and seat distributions
+├── methods                                      # Jensen-Shannon divergence and ideology score calculations
+├── old-weekly_goals                             # Weekly goals trying out different methods
+├── party_speeches                               # All speeches sorted by party
+├── roberta                                      # RoBERTa model for topic modeling
+├── rule-based_model                             # Rule-based model for coalition predictions
+└── txt                                          # All speeches in txt format
 ```
-
