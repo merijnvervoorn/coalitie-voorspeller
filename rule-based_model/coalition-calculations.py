@@ -204,20 +204,16 @@ def calculate_historical_score(combo, coalition_counter, seat_distribution):
     return score
 
 
-# --------------------------------------------
-# Get the Eerste Kamer seat distribution for a specific year
-# --------------------------------------------
 def get_ek_seat_distribution(ek_zetels, Jaar):
+    """Get the Eerste Kamer seat distribution for a specific year."""
     year_data = ek_zetels[ek_zetels['Jaar'] == Jaar]
     if year_data.empty:
         return {}
     return dict(zip(year_data.columns[1:], year_data.iloc[0, 1:]))  # Skip 'Jaar'
 
 
-# --------------------------------------------
-# Calculate alignment score for a coalition in the Eerste Kamer
-# --------------------------------------------
 def calculate_ek_alignment_score(coalition, ek_seats, majority_threshold):
+    """ Calculate the alignment score of a coalition based on its EK seats."""
     expanded = get_expanded_coalition(coalition)
     coalition_ek_total = sum(ek_seats.get(p, 0) for p in expanded)
     total_ek = sum(ek_seats.values()) or 1  # avoid division by zero
@@ -229,11 +225,8 @@ def calculate_ek_alignment_score(coalition, ek_seats, majority_threshold):
     return normalized_score, coalition_ek_total
 
 
-# --------------------------------------------
-# Compute mean Jensen-Shannon divergence for a set of parties
-# --------------------------------------------
-
 def mean_jsd_for_coalition(coalition, topic_vectors):
+    """Compute mean Jensen-Shannon divergence for a set of parties"""
     if len(coalition) < 2:
         return 0.0  # trivial case
 
@@ -247,10 +240,12 @@ def mean_jsd_for_coalition(coalition, topic_vectors):
     return np.mean(jsd_values) if jsd_values else 0.0
 
 
+
 # -------------------------------
-# Define main prediction function
+# Main prediction function
 # -------------------------------
 def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, threshold=76, top_k=5, topic_vectors=None):
+    """ Predict potential coalitions based on seat distribution and historical data."""
     parties = list(seat_distribution.keys())
 
     # ✅ Get Eerste Kamer seat distribution for the given year
@@ -259,7 +254,7 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
 
     valid_coalitions = []
 
-    for r in range(2, len(parties) + 1):
+    for r in range(1, len(parties) + 1):
         for combo in combinations(parties, r):
 
             # -------------------------------
@@ -304,7 +299,7 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
 
                 # Given a fixed score range
                 min_score = -3
-                max_score = 3
+                max_score = 4.51
 
                 # Calculate percentage
                 final_score = (score - min_score) / (max_score - min_score) * 100
