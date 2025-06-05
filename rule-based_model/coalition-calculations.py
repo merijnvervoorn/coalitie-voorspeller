@@ -57,17 +57,17 @@ IDEOLOGY_4D_MAP = {
 
 
 def load_data():
-    kabinetten = pd.read_csv('data/cabinets/kabinetten_schoongemaakt.csv')
-    zetels_100 = pd.read_csv('data/zetelverdeling/zetel-data/tk_zetels100_1918-1956.csv')
-    zetels_150 = pd.read_csv('data/zetelverdeling/zetel-data/tk_zetels150_1956-2023.csv')
+    kabinetten = pd.read_csv('../data/cabinets/kabinetten_schoongemaakt.csv')
+    zetels_100 = pd.read_csv('../data/zetelverdeling/zetel-data/tk_zetels100_1918-1956.csv')
+    zetels_150 = pd.read_csv('../data/zetelverdeling/zetel-data/tk_zetels150_1956-2023.csv')
     zetels = pd.concat([zetels_100, zetels_150], ignore_index=True)
-    ek_50_old = pd.read_csv('data/zetelverdeling/zetel-data/ek_zetels50_1888-1956_filled.csv')
-    ek_75_new = pd.read_csv('data/zetelverdeling/zetel-data/ek_zetels75_1956-2023_filled.csv')
+    ek_50_old = pd.read_csv('../data/zetelverdeling/zetel-data/ek_zetels50_1888-1956_filled.csv')
+    ek_75_new = pd.read_csv('../data/zetelverdeling/zetel-data/ek_zetels75_1956-2023_filled.csv')
     ek_zetels = pd.concat([ek_50_old, ek_75_new], ignore_index=True)
 
     kabinetten['Partijen'] = kabinetten['Partijen'].dropna().str.split(', ')
 
-    with open("topic_vectors.json", "r") as f:
+    with open("../methods/topic_vectors.json", "r") as f:
         json_ready_vectors = json.load(f)
 
     # Convert lists back to NumPy arrays
