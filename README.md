@@ -81,7 +81,6 @@ All scores are normalized to a 0–100 scale using fixed bounds (4.5; -3).
 ## 💾 Data Sources
 
 * **Political Speech Dataset:** Speeches from the Tweede Kamer (2014–2024), sourced from [opendata.tweedekamer.nl](https://opendata.tweedekamer.nl/)
-* **Post X Society / DemocratieMonitor:** Provided structured speech data, seat distributions, and feedback
 * **Historical Cabinet Data:** Coalition compositions from 1918 to 2023
 * **Seat Distributions:** Both Tweede Kamer (100 and 150 seats) and Eerste Kamer (50 and 75 seats) distributions
 
