@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coalitie Visualisatie Tweede Kamer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+
+        .dutch-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 50%, #ef4444 100%);
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        header { 
+            background: #1e3a8a;
+            color: #fff; 
+            padding: 3em 2em 2em;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5em; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.3em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+            position: relative;
+            z-index: 1;
+        }
+
+        #controls { 
+            background: white;
+            border-radius: 20px;
+            padding: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5em;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .switch-container {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            background: #f8fafc;
+            padding: 1em 1.5em;
+            border-radius: 15px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .switch-container:hover {
+            border-color: #3b82f6;
+            background: #f1f5f9;
+        }
+
+        .switch-label { 
+            font-size: 1.1em; 
+            font-weight: 500;
+            color: #475569;
+        }
+
+        #toggle-biggest {
+            width: 50px;
+            height: 25px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #cbd5e1;
+            border-radius: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #toggle-biggest:checked {
+            background: #3b82f6;
+        }
+
+        #toggle-biggest::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #toggle-biggest:checked::before {
+            transform: translateX(25px);
+        }
+
+        #coalition-select { 
+            font-size: 1.1em; 
+            padding: 1em 1.5em;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            background: white;
+            min-width: 400px;
+            font-weight: 500;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #coalition-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        #viz { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            background: white;
+            border-radius: 24px; 
+            box-shadow: 0 20px 64px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(20px);
+            width: 100%; 
+            height: 250px;
+            margin-bottom: 2em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #info { 
+            background: white;
+            border-radius: 20px; 
+            box-shadow: 0 12px 48px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 2.5em;
+            backdrop-filter: blur(10px);
+            min-height: 200px;
+        }
+
+        #info h2 {
+            color: #1e3a8a;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+            border-bottom: 3px solid #e2e8f0;
+        }
+
+        #info h3 {
+            color: #3b82f6;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 0.8em;
+        }
+
+        #info p {
+            margin-bottom: 0.8em;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+
+        #info strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1em;
+            margin-top: 1.5em;
+        }
+
+        .metric-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.2em;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .metric-title {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5em;
+        }
+
+        .metric-value {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        @media (max-width: 768px) { 
+            header h1 { font-size: 2em; }
+            .main-container { padding: 1em; }
+            #viz { height: 400px; }
+            #coalition-select { min-width: auto; width: 100%; }
+            .control-group { flex-direction: column; }
+            .metric-grid { grid-template-columns: 1fr; }
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.2em;
+            color: #64748b;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1em;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .bar-segment {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .bar-segment:hover {
+            opacity: 0.8;
+        }
+        header h1 {
+            font-size: 2.5em; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.3em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+
+    </style>
+</head>
+<body>
+    <div class="dutch-pattern"></div>
+
+    <header>
+        <h1>Tweede Kamer</h1>
+        <div class="subtitle">Coalitie Visualisatie • Nederlandse Politiek</div>
+    </header>
+
+    <div class="main-flex-container" style="display: flex; gap: 2em; max-width: 1200px; margin: 0 auto; padding: 2em 0; align-items: flex-start;">
+        <div class="side-info" style="flex: 0 0 340px; min-width: 260px; max-width: 400px;">
+            <div style="background: #f8fafc; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); padding: 1.5em; color: #334155; font-size: 1.1em; margin-bottom: 2em;">
+                <p>
+                    Deze pagina toont mogelijke coalities in de Tweede Kamer op basis van een model dat is ontwikkeld om alle realistische meerderheidscoalities te vinden. Het model analyseert zetelverdelingen, historische en ideologische gegevens, en zoekt naar coalities die samen een meerderheid vormen (minimaal 76 zetels). Minderheidscoalities worden niet meegenomen in de resultaten.
+                </p>
+                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" style="display: inline-block; margin-top: 1em; padding: 0.7em 1.5em; background: #1e3a8a; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none; box-shadow: 0 2px 8px rgba(30,58,138,0.12); transition: background 0.2s;">Bekijk het model op GitHub</a>
+            </div>
+            <div id="peiling-container" style="background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); padding: 1.5em; color: #334155; font-size: 1.1em;">
+                <h2 style="margin-top:0; color:#1e3a8a; font-size:1.3em;">Zetelpeiling</h2>
+                <ul id="peiling-list" style="list-style:none; padding:0; margin:0;"></ul>
+            </div>
+        </div>
+        <div class="main-container" style="flex: 1 1 0; min-width: 0;">
+            <div id="controls">
+                <div class="control-group">
+                    <div class="switch-container">
+                        <span class="switch-label">Coalitie moet grootste partij bevatten</span>
+                        <input type="checkbox" id="toggle-biggest" checked>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="coalition-select" style="font-weight: 600; color: #475569;">Selecteer coalitie:</label>
+                    <select id="coalition-select">
+                        <option>Coalities laden...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="viz">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Coalitie visualisatie laden...
+                </div>
+            </div>
+
+            <div id="info">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Selecteer een coalitie om details te bekijken...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Verbeterde partijkleuren met beter contrast en Nederlands politiek thema
+    const partyColors = {
+        "VVD": "#1e40af", "GL/PvdA": "#dc2626", "D66": "#16a34a", "CDA": "#059669",
+        "CU": "#1e3a8a", "PVV": "#2563eb", "BBB": "#65a30d", "SP": "#dc2626",
+        "PvdD": "#10b981", "NSC": "#f59e0b", "DENK": "#0891b2", "FvD": "#991b1b",
+        "SGP": "#ea580c", "Volt": "#7c3aed", "JA21": "#374151", "50PLUS": "#9333ea",
+        "BIJ1": "#eab308", "BVNL": "#c2410c"
+    };
+
+    let dataWithBiggest = [], dataAny = [];
+    let currentData = [];
+    let biggestParty = null;
+
+    // Load both datasets with error handling
+    // Eerst verdeling.json laden en tonen
+    fetch('model/verdeling.json')
+        .then(r => {
+            if (!r.ok) throw new Error('Kon zetelverdeling niet laden');
+            return r.json();
+        })
+        .then(seatDist => {
+            // Vul de zetelpeiling-lijst
+            const peilingList = document.getElementById('peiling-list');
+            peilingList.innerHTML = '';
+            Object.entries(seatDist)
+                .sort((a,b) => b[1]-a[1])
+                .forEach(([party, seats]) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${party}: ${seats} zetels`;
+                    li.style.padding = '0.3em 0';
+                    peilingList.appendChild(li);
+                });
+
+            // Daarna coalitie-data laden
+            Promise.all([
+                fetch('model/coalition_data_with_biggest.json').then(r => {
+                    if (!r.ok) throw new Error('Kon coalitiegegevens met grootste partij niet laden');
+                    return r.json();
+                }),
+                fetch('model/coalition_data_any.json').then(r => {
+                    if (!r.ok) throw new Error('Kon coalitiegegevens niet laden');
+                    return r.json();
+                })
+            ]).then(([withBiggest, anyCoalition]) => {
+                dataWithBiggest = withBiggest;
+                dataAny = anyCoalition;
+                // Find biggest party from first coalition (assumes sorted by seats)
+                if (withBiggest.length > 0) {
+                    let seatDistCoalition = withBiggest[0].seat_distribution;
+                    biggestParty = Object.entries(seatDistCoalition).sort((a,b) => b[1]-a[1])[0][0];
+                }
+                updateCoalitionList();
+            }).catch(error => {
+                console.error('Fout bij laden van gegevens:', error);
+                document.getElementById('coalition-select').innerHTML = '<option>Fout bij laden van gegevens</option>';
+                document.getElementById('viz').innerHTML = '<div style="color: #dc2626; text-align: center;">Kon coalitiegegevens niet laden</div>';
+            });
+        })
+        .catch(error => {
+            console.error('Fout bij laden van zetelverdeling:', error);
+            document.getElementById('peiling-list').innerHTML = '<li style="color:#dc2626;">Kon zetelverdeling niet laden</li>';
+        });
+
+    document.getElementById('toggle-biggest').addEventListener('change', updateCoalitionList);
+
+    function updateCoalitionList() {
+    const mustIncludeBiggest = document.getElementById('toggle-biggest').checked;
+    currentData = mustIncludeBiggest ? dataWithBiggest : dataAny;
+
+    const select = document.getElementById('coalition-select');
+    const viz = document.getElementById('viz');
+    const info = document.getElementById('info');
+
+    // Filter coalitions with a score > 0
+    let filtered = currentData.filter(c => c.final_score > 0);
+
+    if (filtered.length === 0) {
+        // Show message for no possible coalitions
+        select.innerHTML = '<option disabled selected>Geen coalitie mogelijk</option>';
+        viz.innerHTML = `
+            <div class="loading" style="color: #dc2626;">
+                <div class="spinner"></div>
+                Geen mogelijke coalitie gevonden.
+            </div>
+        `;
+        info.innerHTML = `
+            <div class="loading" style="color: #dc2626;">
+                <div class="spinner"></div>
+                Geen coalitiegegevens beschikbaar om weer te geven.
+            </div>
+        `;
+        return;
+    }
+
+    // Fallback to top 3 if no valid coalitions found
+    if (filtered.length === 0) {
+        filtered = [...currentData].sort((a, b) => b.final_score - a.final_score).slice(0, 3);
+    }
+
+    // Update selector
+    select.innerHTML = '';
+    filtered.forEach((coalition, idx) => {
+        const option = document.createElement('option');
+        option.value = idx;
+            option.text = `${coalition.coalition.join(' + ')} (${coalition.seats} zetels, ${coalition.final_score}%)`;
+        select.appendChild(option);
+    });
+
+    select.onchange = () => drawCoalitionViz(filtered, select.value);
+    drawCoalitionViz(filtered, 0);
+}
+
+
+    function drawCoalitionViz(data, coalitionIdx) {
+        if (!data || data.length === 0) return;
+        const coalition = data[coalitionIdx];
+        const seatDist = {};
+        coalition.coalition.forEach(party => {
+            seatDist[party] = coalition.seat_distribution[party] || 0;
+        });
+
+        d3.select("#viz").selectAll("*").remove();
+        const svg = d3.select("#viz")
+            .append("svg")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("viewBox", "0 0 1000 250");
+
+        // Add gradient definitions
+        const defs = svg.append("defs");
+        Object.entries(seatDist).forEach(([party, seats]) => {
+            const gradient = defs.append("linearGradient")
+                .attr("id", `gradient-${party}`)
+                .attr("x1", "0%").attr("y1", "0%")
+                .attr("x2", "0%").attr("y2", "100%");
+            gradient.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", partyColors[party] || "#94a3b8")
+                .attr("stop-opacity", "1");
+            gradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", d3.color(partyColors[party] || "#94a3b8").darker(0.5))
+                .attr("stop-opacity", "1");
+        });
+
+        // Create proportional bar chart
+        const totalSeats = coalition.seats;
+        const barWidth = 700;
+        const barHeight = 60;
+        const startX = 150;
+        const startY = 120;
+
+        // Title
+        svg.append("text")
+            .attr("x", 500)
+            .attr("y", 80)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "20px")
+            .attr("font-weight", "700")
+            .attr("fill", "#1e293b")
+            .text(`Zetelverdeling coalitie (${totalSeats} van 150 zetels)`);
+
+        let currentX = startX;
+        
+        // Draw bar segments
+        Object.entries(seatDist).forEach(([party, seats], idx) => {
+            const segmentWidth = (seats / totalSeats) * barWidth;
+            
+            // Party segment
+            const rect = svg.append("rect")
+                .attr("class", "bar-segment")
+                .attr("x", currentX)
+                .attr("y", startY)
+                .attr("width", 0)
+                .attr("height", barHeight)
+                .attr("fill", `url(#gradient-${party})`)
+                .attr("stroke", "white")
+                .attr("stroke-width", 3)
+                .attr("rx", 8)
+                .on("mouseover", function() {
+                    showPartyInfo(party, coalition);
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("stroke", "#1e3a8a")
+                        .attr("stroke-width", 5);
+                })
+                .on("mouseout", function() {
+                    d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .attr("stroke", "white")
+                        .attr("stroke-width", 3);
+                    showCoalitionInfo(coalition);
+                });
+
+            // Animate width
+            rect.transition()
+                .duration(1000)
+                .delay(idx * 200)
+                .attr("width", segmentWidth);
+
+            // Party labels
+            if (segmentWidth > 50) {
+                // Label inside segment
+                svg.append("text")
+                    .attr("x", currentX + segmentWidth / 2)
+                    .attr("y", startY + barHeight / 2 - 5)
+                    .attr("text-anchor", "middle")
+                    .attr("dominant-baseline", "middle")
+                    .attr("fill", "white")
+                    .attr("font-size", "16px")
+                    .attr("font-weight", "700")
+                    .style("opacity", 0)
+                    .text(party)
+                    .transition()
+                    .duration(500)
+                    .delay(1200 + idx * 200)
+                    .style("opacity", 1);
+
+                svg.append("text")
+                    .attr("x", currentX + segmentWidth / 2)
+                    .attr("y", startY + barHeight / 2 + 12)
+                    .attr("text-anchor", "middle")
+                    .attr("dominant-baseline", "middle")
+                    .attr("fill", "white")
+                    .attr("font-size", "14px")
+                    .attr("font-weight", "500")
+                    .style("opacity", 0)
+                    .text(`${seats} zetels`)
+                    .transition()
+                    .duration(500)
+                    .delay(1300 + idx * 200)
+                    .style("opacity", 1);
+            } else {
+                // Label above segment for small parties
+                svg.append("text")
+                    .attr("x", currentX + segmentWidth / 2)
+                    .attr("y", startY - 15)
+                    .attr("text-anchor", "middle")
+                    .attr("fill", partyColors[party] || "#64748b")
+                    .attr("font-size", "14px")
+                    .attr("font-weight", "600")
+                    .style("opacity", 0)
+                    .text(`${party} (${seats})`)
+                    .transition()
+                    .duration(500)
+                    .delay(1200 + idx * 200)
+                    .style("opacity", 1);
+            }
+
+            currentX += segmentWidth;
+        });
+
+        // Majority line at 76 seats
+        const majorityPosition = startX + (76 / totalSeats) * barWidth;
+        svg.append("line")
+            .attr("x1", majorityPosition)
+            .attr("y1", startY - 30)
+            .attr("x2", majorityPosition)
+            .attr("y2", startY + barHeight + 30)
+            .attr("stroke", "#dc2626")
+            .attr("stroke-width", 3)
+            .attr("stroke-dasharray", "8,4")
+            .style("opacity", 0)
+            .transition()
+            .duration(500)
+            .delay(1800)
+            .style("opacity", 0.8);
+
+        svg.append("text")
+            .attr("x", majorityPosition)
+            .attr("y", startY - 40)
+            .attr("text-anchor", "middle")
+            .attr("fill", "#dc2626")
+            .attr("font-size", "14px")
+            .attr("font-weight", "600")
+            .style("opacity", 0)
+            .text("Meerderheid (76)")
+            .transition()
+            .duration(500)
+            .delay(1800)
+            .style("opacity", 1);
+
+       
+
+        showCoalitionInfo(coalition);
+    }
+
+    function showPartyInfo(party, coalition) {
+        const info = document.getElementById('info');
+        info.innerHTML = `
+            <h3>${party}</h3>
+            <p><strong>Zetels:</strong> ${coalition.seat_distribution[party] || 0}</p>
+            <p style="color: ${partyColors[party] || '#64748b'}; font-weight: 600; font-size: 1.2em;">■ Partijkleur</p>
+            <p style="padding-bottom: 257px"><strong>Percentage van coalitie:</strong> ${Math.round((coalition.seat_distribution[party] / coalition.seats) * 100)}%</p>
+        `;
+    }
+
+    function showCoalitionInfo(coalition) {
+        const info = document.getElementById('info');
+        info.innerHTML = `
+            <h2>Coalitie: ${coalition.coalition.join(' + ')}</h2>
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-title">Totaal zetels</div>
+                    <div class="metric-value">${coalition.seats}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Eindscore</div>
+                    <div class="metric-value">${coalition.final_score}%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Historische score</div>
+                    <div class="metric-value">${coalition.historical_score}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Ideologie score</div>
+                    <div class="metric-value">${coalition.ideology_score}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Eerste Kamer score</div>
+                    <div class="metric-value">${coalition.ek_score}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Eerste Kamer zetels</div>
+                    <div class="metric-value">${coalition.ek_total_seats}</div>
+                </div>
+            </div>
+            <p style="margin-top: 1.5em;"><strong>JSD Straf:</strong> ${coalition.jsd_penalty}</p>
+            <p><strong>Partij Straf:</strong> ${coalition.party_penalty}</p>
+            <p><strong>Surplus Straf:</strong> ${coalition.surplus_penalty}</p>
+        `;
+    }
+    </script>
+</body>
+</html>

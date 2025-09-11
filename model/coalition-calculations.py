@@ -133,17 +133,21 @@ def is_unrealistic_combo(parties):
     # Add more logic if needed
     extremes = [
         ('FvD', 'Volt'),
-        ('PVV', 'BIJ1'),
-        ('SGP', 'BIJ1'),
         ('FvD', 'D66'),
         ('PVV', 'GL/PvdA'),
-        ('PVV', 'DENK'),
-        ('PVV', 'Volt'),
-        ('SGP', 'Volt'),
-        ('GL/PvdA', 'BBB'),
         ('PVV', 'D66'),
         ('PVV', 'CDA'),
+        ('PVV', 'SP'),
+        ('PVV', 'PvdD'),
+        ('PVV', 'DENK'),
+        ('PVV', 'Volt'),
+        ('PVV', 'BIJ1'),
+        ('SGP', 'BIJ1'),
+        ('SGP', 'Volt'),
+        ('GL/PvdA', 'BBB'),
         ('GL/PvdA', 'SGP'),
+        ('GL/PvdA', 'FvD'),
+        ('VVD', 'PVV')
     ]
     party_set = set(parties)
     for a, b in extremes:
@@ -240,7 +244,6 @@ def mean_jsd_for_coalition(coalition, topic_vectors):
     return np.mean(jsd_values) if jsd_values else 0.0
 
 
-
 # -------------------------------
 # Main prediction function
 # -------------------------------
@@ -257,16 +260,21 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
     for r in range(1, len(parties) + 1):
         for combo in combinations(parties, r):
 
-            # # -------------------------------
-            # # Check if the coalition includes the largest party (comment if opposition coalition)
-            # largest_party = max(seat_distribution.items(), key=lambda x: x[1])[0]
-            # if largest_party not in combo:
-            #     continue  # Skip coalitions that don't include the largest party 
-            # # -------------------------------
+            # -------------------------------
+            # Check if the coalition includes the largest party (comment if opposition coalition)
+            largest_party = max(seat_distribution.items(), key=lambda x: x[1])[0]
+            if largest_party not in combo:
+                continue  # Skip coalitions that don't include the largest party 
+            # -------------------------------
 
             seats = sum(seat_distribution[p] for p in combo)
             if seats >= threshold:
 
+                # skip zero seat parties
+                if any(seat_distribution[p] == 0 for p in combo):
+                    continue
+
+                # Skip unrealistic combinations
                 if is_unrealistic_combo(combo):
                     continue
 
@@ -298,7 +306,7 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
                 )
 
                 # Given a fixed score range
-                min_score = -3
+                min_score = -4
                 max_score = 4.51
 
                 # Calculate percentage
