@@ -2,12 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Coalitie Visualisatie Tweede Kamer</title>
+    <title>Coalitie Voorspelling Tweede Kamer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        a.github-btn {
+            background: #1e3a8a;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.12);
+            transition: background 0.2s;
+        }
+        a.github-btn:hover, a.github-btn:focus {
+            background: #162e5c;
+            color: #fff;
+        }
         
         * {
             margin: 0;
@@ -252,13 +266,69 @@
             color: #1e293b;
         }
 
-        @media (max-width: 768px) { 
-            header h1 { font-size: 2em; }
-            .main-container { padding: 1em; }
-            #viz { height: 400px; }
-            #coalition-select { min-width: auto; width: 100%; }
-            .control-group { flex-direction: column; }
-            .metric-grid { grid-template-columns: 1fr; }
+        @media (max-width: 900px) {
+            .main-flex-container {
+                flex-direction: column-reverse;
+                gap: 0;
+                padding: 0.5em 0.5em;
+                max-width: 100vw;
+            }
+            .side-info {
+                max-width: 100%;
+                min-width: 0;
+                width: 100%;
+                margin-bottom: 2em;
+            }
+            .main-container {
+                max-width: 100%;
+                min-width: 0;
+                width: 100%;
+                padding: 0;
+            }
+            #controls {
+                padding: 1em;
+            }
+            #viz {
+                height: 250px;
+                min-height: 180px;
+            }
+            #coalition-select {
+                min-width: auto;
+                width: 100%;
+            }
+            .control-group {
+                flex-direction: column;
+                gap: 1em;
+            }
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.3em;
+                padding: 0.5em 0;
+            }
+            .main-flex-container {
+                padding: 0.2em 0.2em;
+            }
+            .side-info > div, #peiling-container {
+                padding: 1em;
+                font-size: 1em;
+            }
+            #controls {
+                padding: 0.7em;
+            }
+            #viz {
+                height: 180px;
+                min-height: 120px;
+            }
+            #info {
+                padding: 1em;
+            }
+            .metric-card {
+                padding: 0.7em;
+            }
         }
 
         .loading {
@@ -309,8 +379,8 @@
     <div class="dutch-pattern"></div>
 
     <header>
-        <h1>Tweede Kamer</h1>
-        <div class="subtitle">Coalitie Visualisatie • Nederlandse Politiek</div>
+        <h1>Tweede Kamer Coalitie Voorspeller</h1>
+        <div class="subtitle">Coalitie Voorspelling • Algoritme</div>
     </header>
 
     <div class="main-flex-container" style="display: flex; gap: 2em; max-width: 1200px; margin: 0 auto; padding: 2em 0; align-items: flex-start;">
@@ -319,7 +389,7 @@
                 <p>
                     Deze pagina toont mogelijke coalities in de Tweede Kamer op basis van een model dat is ontwikkeld om alle realistische meerderheidscoalities te vinden. Het model analyseert zetelverdelingen, historische en ideologische gegevens, en zoekt naar coalities die samen een meerderheid vormen (minimaal 76 zetels). Minderheidscoalities worden niet meegenomen in de resultaten.
                 </p>
-                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" style="display: inline-block; margin-top: 1em; padding: 0.7em 1.5em; background: #1e3a8a; color: #fff; border-radius: 8px; font-weight: 600; text-decoration: none; box-shadow: 0 2px 8px rgba(30,58,138,0.12); transition: background 0.2s;">Bekijk het model op GitHub</a>
+                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" class="github-btn" style="display: inline-block; margin-top: 1em; padding: 0.7em 1.5em;">Bekijk het model op GitHub</a>
             </div>
             <div id="peiling-container" style="background: #fff; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); padding: 1.5em; color: #334155; font-size: 1.1em;">
                 <h2 style="margin-top:0; color:#1e3a8a; font-size:1.3em;">Zetelpeiling</h2>
