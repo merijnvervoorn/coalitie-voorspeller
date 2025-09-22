@@ -6,7 +6,7 @@
       "VVD",
       "D66"
     ],
-    "seats": 77,
+    "seats": 76,
     "historical_score": 1.17,
     "ideology_score": 2.25,
     "ek_score": 0.47,
@@ -16,10 +16,10 @@
     "surplus_penalty": 0.0,
     "final_score": 17.3,
     "seat_distribution": {
-      "GL/PvdA": 28,
-      "CDA": 24,
-      "VVD": 15,
-      "D66": 10
+      "GL/PvdA": 26,
+      "CDA": 22,
+      "VVD": 16,
+      "D66": 12
     }
   }
 ]
