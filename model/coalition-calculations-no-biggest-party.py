@@ -306,7 +306,7 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
                 )
 
                 # Given a fixed score range
-                min_score = -4
+                min_score = -6
                 max_score = 4.51
 
                 # Calculate percentage
