@@ -535,9 +535,12 @@
 
     // Filter coalitions with a score > 0
     let filtered = currentData.filter(c => c.final_score > 0);
-
+    // If all final_scores are 0, show top 3 by seats (or whatever order)
+    if (filtered.length === 0 && currentData.length > 0) {
+        filtered = [...currentData].sort((a, b) => b.seats - a.seats).slice(0, 3);
+    }
+    // If still nothing, show 'geen coalitie mogelijk'
     if (filtered.length === 0) {
-        // Show message for no possible coalitions
         select.innerHTML = '<option disabled selected>Geen coalitie mogelijk</option>';
         viz.innerHTML = `
             <div class="loading" style="color: #dc2626;">
@@ -553,21 +556,14 @@
         `;
         return;
     }
-
-    // Fallback to top 3 if no valid coalitions found
-    if (filtered.length === 0) {
-        filtered = [...currentData].sort((a, b) => b.final_score - a.final_score).slice(0, 3);
-    }
-
     // Update selector
     select.innerHTML = '';
     filtered.forEach((coalition, idx) => {
         const option = document.createElement('option');
         option.value = idx;
-            option.text = `${coalition.coalition.join(' + ')} (${coalition.seats} zetels, ${coalition.final_score}%)`;
+        option.text = `${coalition.coalition.join(' + ')} (${coalition.seats} zetels, ${coalition.final_score}%)`;
         select.appendChild(option);
     });
-
     select.onchange = () => drawCoalitionViz(filtered, select.value);
     drawCoalitionViz(filtered, 0);
 }
