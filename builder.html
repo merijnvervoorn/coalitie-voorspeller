@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Coalitie Bouwer Tweede Kamer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .navbar {
+            width: 100%;
+            background: #1e3a8a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2em;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0.7em 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.3em 1.2em;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover, .navbar a:focus {
+            background: #3b82f6;
+            color: #fff;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+        .dutch-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 200px;
+            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 50%, #ef4444 100%);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        header {
+            background: #1e3a8a;
+            color: #fff;
+            padding: 3em 2em 2em;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 0.3em;
+        }
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2em 1em;
+            z-index: 1;
+        }
+        .party-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            justify-content: center;
+            margin-bottom: 2em;
+        }
+        .party-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.7em 1.2em;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 90px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.04);
+        }
+        .party-btn.selected {
+            background: #3b82f6;
+            color: #fff;
+            border-color: #1e3a8a;
+        }
+        .party-color {
+            display: inline-block;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            margin-right: 0.3em;
+            border: 2px solid #e2e8f0;
+        }
+        .coalition-bar-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 2em 1em 2.5em 1em;
+            margin-bottom: 2em;
+            position: relative;
+            overflow: hidden;
+        }
+        .coalition-bar-visual {
+            width: 100%;
+            height: 48px;
+            display: flex;
+            align-items: stretch;
+            border-radius: 12px;
+            background: #f1f5f9;
+            margin-bottom: 1.2em;
+            position: relative;
+        }
+        .coalition-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            transition: width 0.3s;
+            border-right: 2px solid #fff;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .coalition-segment:last-child {
+            border-right: none;
+        }
+        .majority-bar-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #dc2626;
+            left: 0;
+            z-index: 3;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        .majority-label {
+            position: absolute;
+            left: 0;
+            top: -1.7em;
+            color: #dc2626;
+            font-weight: 700;
+            font-size: 1em;
+            background: #fff;
+            padding: 0 0.7em;
+            border-radius: 8px;
+            z-index: 4;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .zetel-tabel {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0 0.5em 0;
+        }
+        .zetel-tabel th, .zetel-tabel td {
+            padding: 0.6em 0.5em;
+            text-align: left;
+        }
+        .zetel-tabel th {
+            color: #64748b;
+            font-size: 1em;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .zetel-tabel td {
+            font-size: 1.1em;
+            font-weight: 500;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .majority-line {
+            position: absolute;
+            left: 0; right: 0;
+            height: 0;
+            border-top: 3px dashed #dc2626;
+            top: 60%;
+            z-index: 2;
+        }
+        .majority-label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: calc(60% - 1.7em);
+            color: #dc2626;
+            font-weight: 700;
+            font-size: 1em;
+            background: #fff;
+            padding: 0 0.7em;
+            border-radius: 8px;
+            z-index: 3;
+        }
+        .total-seats {
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 1em;
+            color: #1e3a8a;
+        }
+        @media (max-width: 700px) {
+            .main-container { padding: 1em 0.2em; }
+            .party-list { gap: 0.5em; }
+            .coalition-bar-container { padding: 1em 0.2em 2em 0.2em; }
+            .zetel-tabel th, .zetel-tabel td { font-size: 0.98em; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Voorspelling</a>
+        <a href="builder.html" class="active">Build it Yourself</a>
+    </nav>
+    <div class="dutch-pattern"></div>
+    <header>
+        <h1>Tweede Kamer Coalitie Bouwer</h1>
+        <div class="subtitle">Stel zelf een coalitie samen en zie direct het aantal zetels</div>
+    </header>
+    <div class="main-container">
+        <div class="party-list" id="party-list"></div>
+        <div class="coalition-bar-container">
+            <div style="position: relative;">
+                <div class="majority-label" id="majority-label" style="position: static; display: block; margin-bottom: 0.5em; text-align: right; background: #fff; color: #dc2626; font-weight: 700; font-size: 1em; border-radius: 8px; padding: 0 0.7em; pointer-events: none;">Meerderheid (76 zetels)</div>
+                <div class="coalition-bar-visual" id="coalition-bar-visual"></div>
+                <div class="majority-bar-line" id="majority-bar-line"></div>
+            </div>
+            <table class="zetel-tabel" id="zetel-tabel">
+                <thead>
+                    <tr><th>Partij</th><th>Zetels</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="total-seats" id="total-seats"></div>
+        </div>
+    </div>
+    <script>
+    const partyColors = {
+        "PVV": "#2563eb", "CDA": "#059669", "GL/PvdA": "#dc2626", "VVD": "#1e40af",
+        "D66": "#16a34a", "JA21": "#374151", "SP": "#dc2626", "PvdD": "#10b981",
+        "CU": "#1e3a8a", "FvD": "#991b1b", "SGP": "#ea580c"
+    };
+    const seatData = { "PVV": 34, "CDA": 23, "GL/PvdA": 23, "VVD": 14, "D66": 11, "JA21": 11, "SP": 7, "PvdD": 4, "CU": 4, "FvD": 4, "SGP": 4 };
+    let selected = {};
+    Object.keys(seatData).forEach(p => selected[p] = false);
+
+    function renderPartyButtons() {
+        const list = document.getElementById('party-list');
+        list.innerHTML = '';
+        Object.entries(seatData).forEach(([party, seats]) => {
+            const btn = document.createElement('button');
+            btn.className = 'party-btn' + (selected[party] ? ' selected' : '');
+            btn.innerHTML = `<span class="party-color" style="background:${partyColors[party]||'#64748b'}"></span>${party}`;
+            btn.onclick = () => {
+                selected[party] = !selected[party];
+                renderPartyButtons();
+                renderTable();
+            };
+            list.appendChild(btn);
+        });
+    }
+
+    function renderTable() {
+        const tbody = document.querySelector('#zetel-tabel tbody');
+        tbody.innerHTML = '';
+        let total = 0;
+        let selectedParties = [];
+        Object.entries(seatData).forEach(([party, seats]) => {
+            if (selected[party]) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><span class=\"party-color\" style=\"background:${partyColors[party]||'#64748b'}\"></span> ${party}</td><td>${seats}</td>`;
+                tbody.appendChild(tr);
+                total += seats;
+                selectedParties.push({party, seats});
+            }
+        });
+        document.getElementById('total-seats').textContent = `Totaal: ${total} zetels`;
+
+        // Visuele bar
+        const bar = document.getElementById('coalition-bar-visual');
+        bar.innerHTML = '';
+        let acc = 0;
+        selectedParties.forEach(({party, seats}, idx) => {
+            const div = document.createElement('div');
+            div.className = 'coalition-segment';
+            div.style.background = partyColors[party] || '#64748b';
+            div.style.width = (seats/150*100) + '%';
+            div.title = `${party}: ${seats} zetels`;
+            div.innerHTML = seats >= 8 ? `${party} <span style='font-weight:400;'>(${seats})</span>` : `${party}`;
+            bar.appendChild(div);
+            acc += seats;
+        });
+
+        // Zet de majority line op de juiste plek
+        const line = document.getElementById('majority-bar-line');
+        const label = document.getElementById('majority-label');
+        // 76/150 = 50.666...%
+        line.style.left = (76/150*100) + '%';
+        line.style.width = '3px';
+        label.style.left = (76/150*100) + '%';
+        if (total >= 76) {
+            label.style.background = '#d1fae5';
+            label.style.color = '#059669';
+        } else {
+            label.style.background = '#fff';
+            label.style.color = '#dc2626';
+        }
+    }
+    renderPartyButtons();
+    renderTable();
+    </script>
+</body>
+    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0;">
+        Pagina gemaakt door Merijn Vervoorn, model gemaakt door Merijn Vervoorn en Jacco Friedeberg
+    </footer>
+</html>

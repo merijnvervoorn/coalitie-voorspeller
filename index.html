@@ -7,6 +7,33 @@
     <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
+        .navbar {
+            width: 100%;
+            background: #1e3a8a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2em;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0.7em 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.3em 1.2em;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover, .navbar a:focus {
+            background: #3b82f6;
+            color: #fff;
+        }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         a.github-btn {
@@ -376,6 +403,10 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a href="index.html" class="active">Voorspelling</a>
+        <a href="builder.html">Build it Yourself</a>
+    </nav>
     <div class="dutch-pattern"></div>
 
     <header>
@@ -765,4 +796,7 @@
     }
     </script>
 </body>
+    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0;">
+        Pagina gemaakt door Merijn Vervoorn, model gemaakt door Merijn Vervoorn en Jacco Friedeberg
+    </footer>
 </html>
