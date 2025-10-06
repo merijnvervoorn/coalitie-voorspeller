@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <title>Coalitie Voorspelling Tweede Kamer</title>
@@ -400,6 +400,77 @@
         }
 
         header .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tooltip styling */
+        .metric-card {
+            position: relative;
+        }
+
+        .info-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #64748b;
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+
+        .info-icon:hover {
+            background: #3b82f6;
+            transform: scale(1.1);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            margin-bottom: 8px;
+            padding: 12px 16px;
+            background: #1f2937;
+            color: white;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.4;
+            white-space: normal;
+            width: 320px;
+            max-width: 320px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(4px);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            border: 6px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .info-icon:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
     </style>
 </head>
@@ -842,31 +913,66 @@
                 <div class="metric-card">
                     <div class="metric-title">Totaal zetels</div>
                     <div class="metric-value">${coalition.seats}</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Het totale aantal Tweede Kamerzetels van deze coalitie. Een meerderheid vereist minimaal 76 zetels.</div>
+                    </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Eindscore</div>
                     <div class="metric-value">${coalition.final_score}%</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Gecombineerde score gebaseerd op de andere scores. Hoe hoger, hoe waarschijnlijker de coalitie.</div>
+                    </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Historische score</div>
                     <div class="metric-value">${coalition.historical_score}</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Score gebaseerd op hoe vaak vergelijkbare partijcombinaties historisch samen hebben geregeerd.</div>
+                    </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Ideologie score</div>
                     <div class="metric-value">${coalition.ideology_score}</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Gemiddelde ideologische afstand tussen partijen op 2D schaal van Kieskompas (links-rechts, progressief-conservatief) en een zelf-ontwikkelde 4D schaal. Lagere score = betere ideologische overeenstemming.</div>
+                    </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Eerste Kamer score</div>
                     <div class="metric-value">${coalition.ek_score}</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Proportie van Eerste Kamerzetels die deze coalitie zou hebben. Score van 1.0 betekent EK-meerderheid (≥38 zetels), lagere scores zijn proportioneel.</div>
+                    </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-title">Eerste Kamer zetels</div>
                     <div class="metric-value">${coalition.ek_total_seats}</div>
+                    <div class="info-icon">i
+                        <div class="tooltip">Totaal aantal Eerste Kamerzetels van deze coalitie. Een meerderheid vereist 38 van de 75 zetels voor het passeren van wetten.</div>
+                    </div>
                 </div>
             </div>
-            <p style="margin-top: 1.5em;"><strong>JSD Straf:</strong> ${coalition.jsd_penalty}</p>
-            <p><strong>Partij Straf:</strong> ${coalition.party_penalty}</p>
-            <p><strong>Surplus Straf:</strong> ${coalition.surplus_penalty}</p>
+            <div style="margin-top: 1.5em; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em;">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1em; position: relative;">
+                    <strong style="color: #475569;">JSD Straf: ${coalition.jsd_penalty}</strong>
+                    <div class="info-icon" style="background: #64748b;">i
+                        <div class="tooltip">Jensen-Shannon Divergence als penalty. Meet hoe verschillend partijen spreken over dezelfde onderwerpen. Hogere waarde = meer verschillende retoriek.</div>
+                    </div>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1em; position: relative;">
+                    <strong style="color: #475569;">Partij Straf: ${coalition.party_penalty}</strong>
+                    <div class="info-icon" style="background: #64748b;">i
+                        <div class="tooltip">Penalty voor teveel partijen in de coalitie. Elke partij extra na vier partijen geeft 2 strafpunten. Veel partijen maken regeren namelijk moeilijker.</div>
+                    </div>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1em; position: relative;">
+                    <strong style="color: #475569;">Surplus Straf: ${coalition.surplus_penalty}</strong>
+                    <div class="info-icon" style="background: #64748b;">i
+                        <div class="tooltip">Penalty voor teveel zetels boven de meerderheid. Elke zetel boven de 90 geeft 0.5 strafpunten. Overtollige zetels zijn inefficiënt.</div>
+                    </div>
+                </div>
+            </div>
         `;
     }
 </script>
