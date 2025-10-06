@@ -264,49 +264,36 @@
     // Function to load the latest poll data
     async function loadLatestPollData() {
         try {
-            // Fetch the coalitions directory listing
-            const response = await fetch('model/coalitions/');
-            const html = await response.text();
+            // Load static poll index for GitHub Pages compatibility
+            const indexResponse = await fetch('model/coalitions/poll-index.json');
+            const pollIndex = await indexResponse.json();
             
-            // Look for verdeling files with date patterns
-            const datePattern = /verdeling-(\d{2}-\d{2}-\d{4}-[^.]+)\.json/g;
-            const files = [];
-            let match;
-            
-            while ((match = datePattern.exec(html)) !== null) {
-                const pollId = match[1];
-                const parts = pollId.split('-');
-                
-                if (parts.length >= 4) {
-                    const day = parts[0];
-                    const month = parts[1];
-                    const year = parts[2];
-                    const date = new Date(year, month - 1, day);
-                    files.push({ pollId, date, filename: match[0] });
-                }
-            }
-            
-            // Sort by date (newest first) and get the latest
-            files.sort((a, b) => b.date - a.date);
-            
-            if (files.length > 0) {
-                const latestFile = files[0];
-                console.log('Loading latest poll data:', latestFile.filename);
+            if (pollIndex.length > 0) {
+                // Get the first poll (newest non-election)
+                const latestPoll = pollIndex.find(p => !p.isElection) || pollIndex[0];
+                console.log('Loading latest poll data:', latestPoll.name);
                 
                 // Load the latest seat distribution
-                const seatResponse = await fetch(`model/coalitions/${latestFile.filename}`);
+                const seatResponse = await fetch(latestPoll.files.seats);
                 const seatDistribution = await seatResponse.json();
                 
                 return seatDistribution;
             } else {
-                // Fallback to basic file if no dated files found
+                // Fallback to basic file if no polls in index
                 const fallbackResponse = await fetch('model/coalitions/verdeling.json');
                 return await fallbackResponse.json();
             }
         } catch (error) {
-            console.error('Error loading poll data:', error);
-            // Fallback data (2023 election results)
-            return { "PVV": 37, "GL/PvdA": 25, "VVD": 24, "NSC": 20, "D66": 9, "BBB": 7, "CDA": 5, "SP": 5, "PvdD": 3, "CU": 3, "SGP": 3, "DENK": 3, "FvD": 3, "JA21": 1, "Volt": 2 };
+            console.error('Error loading poll index:', error);
+            try {
+                // Fallback to basic file if index fails
+                const fallbackResponse = await fetch('model/coalitions/verdeling.json');
+                return await fallbackResponse.json();
+            } catch (fallbackError) {
+                console.error('Error loading fallback data:', fallbackError);
+                // Final fallback data (2023 election results)
+                return { "PVV": 37, "GL/PvdA": 25, "VVD": 24, "NSC": 20, "D66": 9, "BBB": 7, "CDA": 5, "SP": 5, "PvdD": 3, "CU": 3, "SGP": 3, "DENK": 3, "FvD": 3, "JA21": 1, "Volt": 2 };
+            }
         }
     }
 

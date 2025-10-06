@@ -1,0 +1,50 @@
+[
+  {
+    "id": "04-10-2025-MauricedeHond",
+    "name": "Maurice de Hond (04-10-2025)",
+    "date": "04-10-2025",
+    "timestamp": 1759528800.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-04-10-2025-MauricedeHond.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-04-10-2025-MauricedeHond.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-04-10-2025-MauricedeHond.json"
+    }
+  },
+  {
+    "id": "30-09-2025-Verian",
+    "name": "Verian (30-09-2025)",
+    "date": "30-09-2025",
+    "timestamp": 1759183200.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-30-09-2025-Verian.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-30-09-2025-Verian.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-30-09-2025-Verian.json"
+    }
+  },
+  {
+    "id": "29-09-2025-IpsosI&O",
+    "name": "Ipsos I&O (29-09-2025)",
+    "date": "29-09-2025",
+    "timestamp": 1759096800.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-29-09-2025-IpsosI&O.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-29-09-2025-IpsosI&O.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-29-09-2025-IpsosI&O.json"
+    }
+  },
+  {
+    "id": "22-11-2023-TweedeKamerVerkiezing",
+    "name": "Tweede Kamer verkiezing 2023",
+    "date": "22-11-2023",
+    "timestamp": 1700607600.0,
+    "isElection": true,
+    "files": {
+      "seats": "model/coalitions/verdeling-22-11-2023-TweedeKamerVerkiezing.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-22-11-2023-TweedeKamerVerkiezing.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-22-11-2023-TweedeKamerVerkiezing.json"
+    }
+  }
+]

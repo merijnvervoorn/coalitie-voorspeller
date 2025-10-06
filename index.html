@@ -488,76 +488,20 @@
         // Start with empty array - we'll populate it dynamically
         availablePolls = [];
 
-        // Check for dynamically generated poll files
-        fetch('model/coalitions/')
-            .then(r => r.text())
-            .then(html => {
-                // Look for files with date patterns (dd-mm-yyyy-pollster format)
-                const datePattern = /verdeling-(\d{2}-\d{2}-\d{4}-[^.]+)\.json/g;
-                let match;
-                const foundPolls = [];
-                const seenIds = new Set(); // Track seen poll IDs to prevent duplicates
-                
-                while ((match = datePattern.exec(html)) !== null) {
-                    const rawPollId = match[1];
-                    
-                    // Decode HTML entities (like &amp; -> &) to get clean poll ID
-                    const pollId = rawPollId.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"');
-                    
-                    // Skip if we've already seen this poll ID (after decoding)
-                    if (seenIds.has(pollId)) {
-                        continue;
-                    }
-                    seenIds.add(pollId);
-                    
-                    const parts = pollId.split('-');
-                    
-                    if (parts.length >= 4) {
-                        const day = parts[0];
-                        const month = parts[1];
-                        const year = parts[2];
-                        const pollster = parts.slice(3).join('-');
-                        
-                        // Create readable name and date for sorting
-                        const date = new Date(year, month - 1, day);
-                        let pollName;
-                        
-                        // Special handling for specific pollsters
-                        if (pollster.includes('TweedeKamerVerkiezing')) {
-                            pollName = `Tweede Kamer verkiezing ${year}`;
-                        } else if (pollster.includes('MauricedeHond')) {
-                            pollName = `Maurice de Hond (${day}-${month}-${year})`;
-                        } else if (pollster.includes('IpsosI&O')) {
-                            pollName = `Ipsos I&O (${day}-${month}-${year})`;
-                        } else if (pollster.includes('Verian')) {
-                            pollName = `Verian (${day}-${month}-${year})`;
-                        } else {
-                            pollName = `${pollster.replace(/([A-Z])/g, ' $1').trim()} (${day}-${month}-${year})`;
-                        }
-                        
-                        foundPolls.push({
-                            id: pollId,
-                            name: pollName,
-                            date: date,
-                            isElection: pollster.includes('TweedeKamerVerkiezing'),
-                            seatFile: `model/coalitions/verdeling-${pollId}.json`,
-                            coalitionWithBiggest: `model/coalitions/coalition_data_with_biggest-${pollId}.json`,
-                            coalitionAny: `model/coalitions/coalition_data_any-${pollId}.json`
-                        });
-                    }
-                }
-                
-                // Sort polls: recent polls first, elections last
-                foundPolls.sort((a, b) => {
-                    // Elections go to bottom
-                    if (a.isElection && !b.isElection) return 1;
-                    if (!a.isElection && b.isElection) return -1;
-                    
-                    // Within same category, sort by date (newest first)
-                    return b.date - a.date;
-                });
-                
-                availablePolls = foundPolls;
+        // Load static poll index for GitHub Pages compatibility
+        fetch('model/coalitions/poll-index.json')
+            .then(r => r.json())
+            .then(pollIndex => {
+                // Use the pre-built poll index
+                availablePolls = pollIndex.map(poll => ({
+                    id: poll.id,
+                    name: poll.name,
+                    date: new Date(poll.timestamp * 1000),
+                    isElection: poll.isElection,
+                    seatFile: poll.files.seats,
+                    coalitionWithBiggest: poll.files.coalitionWithBiggest,
+                    coalitionAny: poll.files.coalitionAny
+                }));
                 
                 // Add fallback option if no polls found
                 if (availablePolls.length === 0) {
