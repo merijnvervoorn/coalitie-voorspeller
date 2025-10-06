@@ -252,25 +252,90 @@
     const partyColors = {
         "PVV": "#2563eb", "CDA": "#059669", "GL/PvdA": "#dc2626", "VVD": "#1e40af",
         "D66": "#16a34a", "JA21": "#374151", "SP": "#dc2626", "PvdD": "#10b981",
-        "CU": "#1e3a8a", "FvD": "#991b1b", "SGP": "#ea580c"
+        "CU": "#1e3a8a", "FvD": "#991b1b", "SGP": "#ea580c", "BBB": "#10b981",
+        "NSC": "#1e40af", "DENK": "#ea580c", "Volt": "#7c3aed", "50PLUS": "#dc2626",
+        "BIJ1": "#059669"
     };
-    const seatData = { "PVV": 34, "CDA": 23, "GL/PvdA": 23, "VVD": 14, "D66": 11, "JA21": 11, "SP": 7, "PvdD": 4, "CU": 4, "FvD": 4, "SGP": 4 };
+    
+    let seatData = {};
     let selected = {};
-    Object.keys(seatData).forEach(p => selected[p] = false);
+
+    // Function to load the latest poll data
+    async function loadLatestPollData() {
+        try {
+            // Fetch the coalitions directory listing
+            const response = await fetch('model/coalitions/');
+            const html = await response.text();
+            
+            // Look for verdeling files with date patterns
+            const datePattern = /verdeling-(\d{2}-\d{2}-\d{4}-[^.]+)\.json/g;
+            const files = [];
+            let match;
+            
+            while ((match = datePattern.exec(html)) !== null) {
+                const pollId = match[1];
+                const parts = pollId.split('-');
+                
+                if (parts.length >= 4) {
+                    const day = parts[0];
+                    const month = parts[1];
+                    const year = parts[2];
+                    const date = new Date(year, month - 1, day);
+                    files.push({ pollId, date, filename: match[0] });
+                }
+            }
+            
+            // Sort by date (newest first) and get the latest
+            files.sort((a, b) => b.date - a.date);
+            
+            if (files.length > 0) {
+                const latestFile = files[0];
+                console.log('Loading latest poll data:', latestFile.filename);
+                
+                // Load the latest seat distribution
+                const seatResponse = await fetch(`model/coalitions/${latestFile.filename}`);
+                const seatDistribution = await seatResponse.json();
+                
+                return seatDistribution;
+            } else {
+                // Fallback to basic file if no dated files found
+                const fallbackResponse = await fetch('model/coalitions/verdeling.json');
+                return await fallbackResponse.json();
+            }
+        } catch (error) {
+            console.error('Error loading poll data:', error);
+            // Fallback data (2023 election results)
+            return { "PVV": 37, "GL/PvdA": 25, "VVD": 24, "NSC": 20, "D66": 9, "BBB": 7, "CDA": 5, "SP": 5, "PvdD": 3, "CU": 3, "SGP": 3, "DENK": 3, "FvD": 3, "JA21": 1, "Volt": 2 };
+        }
+    }
+
+    // Initialize the app
+    async function initializeApp() {
+        seatData = await loadLatestPollData();
+        
+        // Initialize selected state
+        Object.keys(seatData).forEach(p => selected[p] = false);
+        
+        renderPartyButtons();
+        renderTable();
+    }
 
     function renderPartyButtons() {
         const list = document.getElementById('party-list');
         list.innerHTML = '';
         Object.entries(seatData).forEach(([party, seats]) => {
-            const btn = document.createElement('button');
-            btn.className = 'party-btn' + (selected[party] ? ' selected' : '');
-            btn.innerHTML = `<span class="party-color" style="background:${partyColors[party]||'#64748b'}"></span>${party}`;
-            btn.onclick = () => {
-                selected[party] = !selected[party];
-                renderPartyButtons();
-                renderTable();
-            };
-            list.appendChild(btn);
+            // Only show parties with more than 0 seats
+            if (seats > 0) {
+                const btn = document.createElement('button');
+                btn.className = 'party-btn' + (selected[party] ? ' selected' : '');
+                btn.innerHTML = `<span class="party-color" style="background:${partyColors[party]||'#64748b'}"></span>${party}`;
+                btn.onclick = () => {
+                    selected[party] = !selected[party];
+                    renderPartyButtons();
+                    renderTable();
+                };
+                list.appendChild(btn);
+            }
         });
     }
 
@@ -320,8 +385,9 @@
             label.style.color = '#dc2626';
         }
     }
-    renderPartyButtons();
-    renderTable();
+    
+    // Initialize the app when page loads
+    initializeApp();
     </script>
 </body>
     <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0;">

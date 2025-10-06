@@ -3,27 +3,27 @@
     "coalition": [
       "CDA",
       "GL/PvdA",
+      "VVD",
       "D66",
-      "JA21",
-      "PvdD",
-      "CU"
+      "CU",
+      "50PLUS"
     ],
     "seats": 76,
-    "historical_score": 0.83,
-    "ideology_score": 2.96,
-    "ek_score": 0.41,
-    "ek_total_seats": 31,
-    "jsd_penalty": 0.11,
+    "historical_score": 1.17,
+    "ideology_score": 1.92,
+    "ek_score": 1.0,
+    "ek_total_seats": 39,
+    "jsd_penalty": 0.08,
     "party_penalty": 4,
     "surplus_penalty": 0.0,
     "final_score": 0,
     "seat_distribution": {
       "CDA": 23,
       "GL/PvdA": 23,
+      "VVD": 14,
       "D66": 11,
-      "JA21": 11,
-      "PvdD": 4,
-      "CU": 4
+      "CU": 4,
+      "50PLUS": 1
     }
   },
   {
@@ -32,15 +32,16 @@
       "GL/PvdA",
       "VVD",
       "D66",
-      "SP"
+      "PvdD",
+      "50PLUS"
     ],
-    "seats": 78,
+    "seats": 76,
     "historical_score": 1.17,
-    "ideology_score": 2.32,
+    "ideology_score": 2.5,
     "ek_score": 1.0,
-    "ek_total_seats": 38,
-    "jsd_penalty": 0.06,
-    "party_penalty": 2,
+    "ek_total_seats": 39,
+    "jsd_penalty": 0.12,
+    "party_penalty": 4,
     "surplus_penalty": 0.0,
     "final_score": 0,
     "seat_distribution": {
@@ -48,7 +49,8 @@
       "GL/PvdA": 23,
       "VVD": 14,
       "D66": 11,
-      "SP": 7
+      "PvdD": 4,
+      "50PLUS": 1
     }
   },
   {
@@ -56,24 +58,26 @@
       "CDA",
       "GL/PvdA",
       "VVD",
-      "JA21",
-      "SP"
+      "D66",
+      "Volt",
+      "50PLUS"
     ],
-    "seats": 78,
-    "historical_score": 1.05,
-    "ideology_score": 2.96,
-    "ek_score": 0.44,
-    "ek_total_seats": 33,
-    "jsd_penalty": 0.09,
-    "party_penalty": 2,
+    "seats": 76,
+    "historical_score": 1.17,
+    "ideology_score": 2.18,
+    "ek_score": 1.0,
+    "ek_total_seats": 38,
+    "jsd_penalty": 0.1,
+    "party_penalty": 4,
     "surplus_penalty": 0.0,
     "final_score": 0,
     "seat_distribution": {
       "CDA": 23,
       "GL/PvdA": 23,
       "VVD": 14,
-      "JA21": 11,
-      "SP": 7
+      "D66": 11,
+      "Volt": 4,
+      "50PLUS": 1
     }
   }
 ]
