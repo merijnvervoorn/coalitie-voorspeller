@@ -1,5 +1,17 @@
 [
   {
+    "id": "08-10-2025-IpsosIO",
+    "name": "Ipsos I&O (08-10-2025)",
+    "date": "08-10-2025",
+    "timestamp": 1759874400.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-08-10-2025-IpsosIO.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-08-10-2025-IpsosIO.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-08-10-2025-IpsosIO.json"
+    }
+  },
+  {
     "id": "04-10-2025-MauricedeHond",
     "name": "Maurice de Hond (04-10-2025)",
     "date": "04-10-2025",
