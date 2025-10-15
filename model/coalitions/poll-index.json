@@ -1,5 +1,17 @@
 [
   {
+    "id": "14-10-2025-Verian",
+    "name": "Verian (14-10-2025)",
+    "date": "14-10-2025",
+    "timestamp": 1760392800.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-14-10-2025-Verian.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-14-10-2025-Verian.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-14-10-2025-Verian.json"
+    }
+  },
+  {
     "id": "10-10-2025-MauricedeHond",
     "name": "Maurice de Hond (10-10-2025)",
     "date": "10-10-2025",
