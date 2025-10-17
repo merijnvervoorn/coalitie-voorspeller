@@ -1,5 +1,17 @@
 [
   {
+    "id": "16-10-2025-IpsosIO",
+    "name": "Ipsos I&O (16-10-2025)",
+    "date": "16-10-2025",
+    "timestamp": 1760565600.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-16-10-2025-IpsosIO.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-16-10-2025-IpsosIO.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-16-10-2025-IpsosIO.json"
+    }
+  },
+  {
     "id": "14-10-2025-Verian",
     "name": "Verian (14-10-2025)",
     "date": "14-10-2025",
@@ -21,18 +33,6 @@
       "seats": "model/coalitions/verdeling-10-10-2025-MauricedeHond.json",
       "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-10-10-2025-MauricedeHond.json",
       "coalitionAny": "model/coalitions/coalition_data_any-10-10-2025-MauricedeHond.json"
-    }
-  },
-  {
-    "id": "08-10-2025-IpsosIO",
-    "name": "Ipsos I&O (08-10-2025)",
-    "date": "08-10-2025",
-    "timestamp": 1759874400.0,
-    "isElection": false,
-    "files": {
-      "seats": "model/coalitions/verdeling-08-10-2025-IpsosIO.json",
-      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-08-10-2025-IpsosIO.json",
-      "coalitionAny": "model/coalitions/coalition_data_any-08-10-2025-IpsosIO.json"
     }
   },
   {
