@@ -152,7 +152,7 @@
             color: #475569;
         }
 
-        #toggle-biggest {
+        #toggle-biggest, #toggle-yesilgoz {
             width: 50px;
             height: 25px;
             -webkit-appearance: none;
@@ -164,11 +164,11 @@
             transition: all 0.3s ease;
         }
 
-        #toggle-biggest:checked {
+        #toggle-biggest:checked, #toggle-yesilgoz:checked {
             background: #3b82f6;
         }
 
-        #toggle-biggest::before {
+        #toggle-biggest::before, #toggle-yesilgoz::before {
             content: '';
             position: absolute;
             top: 2px;
@@ -181,7 +181,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        #toggle-biggest:checked::before {
+        #toggle-biggest:checked::before, #toggle-yesilgoz:checked::before {
             transform: translateX(25px);
         }
 
@@ -510,7 +510,13 @@
                 <div class="control-group">
                     <div class="switch-container">
                         <span class="switch-label">Coalitie moet grootste partij bevatten</span>
-                        <input type="checkbox" id="toggle-biggest" checked>
+                        <input type="checkbox" id="toggle-biggest">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="switch-container">
+                        <span class="switch-label">Geloof Yesilgöz: <a href="https://www.nu.nl/politiek/6371980/teruglezen-verkiezingen-yesilgoz-samenwerken-met-gl-pvda-gaat-m-niet-worden.html" target="_blank" style="color: #3b82f6; text-decoration: underline;">VVD niet met GL/PvdA als grootste</a></span>
+                        <input type="checkbox" id="toggle-yesilgoz">
                     </div>
                 </div>
                 <div class="control-group">
@@ -674,9 +680,11 @@
     }
 
     document.getElementById('toggle-biggest').addEventListener('change', updateCoalitionList);
+    document.getElementById('toggle-yesilgoz').addEventListener('change', updateCoalitionList);
 
     function updateCoalitionList() {
     const mustIncludeBiggest = document.getElementById('toggle-biggest').checked;
+    const believeYesilgoz = document.getElementById('toggle-yesilgoz').checked;
     currentData = mustIncludeBiggest ? dataWithBiggest : dataAny;
 
     const select = document.getElementById('coalition-select');
@@ -685,25 +693,109 @@
 
     // Filter coalitions with a score > 0
     let filtered = currentData.filter(c => c.final_score > 0);
+    
+    // Apply Yesilgöz filter if enabled
+    if (believeYesilgoz) {
+        // Filter out coalitions where VVD is present and GL/PvdA is the biggest party
+        filtered = filtered.filter(coalition => {
+            const hasVVD = coalition.coalition.includes('VVD');
+            const hasGLPvdA = coalition.coalition.includes('GL/PvdA');
+            
+            if (hasVVD && hasGLPvdA) {
+                // Check if GL/PvdA is the biggest party in this coalition
+                const coalitionParties = coalition.coalition.map(party => ({
+                    party: party,
+                    seats: coalition.seat_distribution[party] || 0
+                }));
+                coalitionParties.sort((a, b) => b.seats - a.seats);
+                const biggestInCoalition = coalitionParties[0].party;
+                
+                // Exclude if GL/PvdA is the biggest in the coalition
+                return biggestInCoalition !== 'GL/PvdA';
+            }
+            
+            return true; // Keep coalition if VVD is not present or GL/PvdA is not present
+        });
+    }
+    
     // If all final_scores are 0, show top 3 by seats (or whatever order)
     if (filtered.length === 0 && currentData.length > 0) {
         filtered = [...currentData].sort((a, b) => b.seats - a.seats).slice(0, 3);
+        
+        // Re-apply Yesilgöz filter to top 3 if needed
+        if (believeYesilgoz) {
+            filtered = filtered.filter(coalition => {
+                const hasVVD = coalition.coalition.includes('VVD');
+                const hasGLPvdA = coalition.coalition.includes('GL/PvdA');
+                
+                if (hasVVD && hasGLPvdA) {
+                    const coalitionParties = coalition.coalition.map(party => ({
+                        party: party,
+                        seats: coalition.seat_distribution[party] || 0
+                    }));
+                    coalitionParties.sort((a, b) => b.seats - a.seats);
+                    const biggestInCoalition = coalitionParties[0].party;
+                    return biggestInCoalition !== 'GL/PvdA';
+                }
+                return true;
+            });
+        }
     }
+    
     // If still nothing, show 'geen coalitie mogelijk'
     if (filtered.length === 0) {
-        select.innerHTML = '<option disabled selected>Geen coalitie mogelijk</option>';
+        let reasonText = 'Geen coalitie mogelijk';
+        let detailText = 'Geen coalitiegegevens beschikbaar om weer te geven.';
+        
+        // Determine the most likely reason for no coalitions
+        // Check if "biggest party" toggle is the main issue
+        if (mustIncludeBiggest) {
+            // Check if there would be coalitions available in dataAny
+            const anyCoalitions = dataAny.filter(c => c.final_score > 0);
+            if (anyCoalitions.length > 0) {
+                reasonText = 'Geen coalitie mogelijk';
+                detailText = 'Geen coalities gevonden die de grootste partij bevatten. Probeer de toggle "Coalitie moet grootste partij bevatten" uit te zetten.';
+            } else {
+                reasonText = 'Geen coalitie mogelijk';
+                detailText = 'Er zijn geen coalities met voldoende score beschikbaar.';
+            }
+        } else if (believeYesilgoz) {
+            // Check if Yesilgöz filter is removing coalitions
+            const withoutYesilgozFilter = currentData.filter(c => c.final_score > 0);
+            const wouldBeFilteredByYesilgoz = withoutYesilgozFilter.filter(coalition => {
+                const hasVVD = coalition.coalition.includes('VVD');
+                const hasGLPvdA = coalition.coalition.includes('GL/PvdA');
+                if (hasVVD && hasGLPvdA) {
+                    const coalitionParties = coalition.coalition.map(party => ({
+                        party: party,
+                        seats: coalition.seat_distribution[party] || 0
+                    }));
+                    coalitionParties.sort((a, b) => b.seats - a.seats);
+                    return coalitionParties[0].party === 'GL/PvdA';
+                }
+                return false;
+            });
+            
+            if (wouldBeFilteredByYesilgoz.length > 0) {
+                reasonText = 'Geen coalitie mogelijk (VVD weigert GL/PvdA als grootste)';
+                detailText = 'Alle mogelijke coalities zijn uitgesloten omdat VVD heeft aangegeven niet samen te werken met GL/PvdA als grootste partij. Probeer de Yesilgöz toggle uit te zetten.';
+            } else {
+                reasonText = 'Geen coalitie mogelijk';
+                detailText = 'Er zijn geen coalities met voldoende score beschikbaar.';
+            }
+        } else {
+            reasonText = 'Geen coalitie mogelijk';
+            detailText = 'Er zijn geen coalities met voldoende score beschikbaar.';
+        }
+        
+        select.innerHTML = `<option disabled selected>${reasonText}</option>`;
         viz.innerHTML = `
-            <div class="loading" style="color: #dc2626;">
-                <div class="spinner"></div>
-                Geen mogelijke coalitie gevonden.
+            <div style="color: #dc2626; text-align: center; padding: 2em; font-size: 1.1em; font-weight: 500;">
+                <div style="margin-bottom: 1em;">${reasonText}</div>
+                <div style="font-size: 0.9em; color: #64748b; font-weight: 400;">${detailText}</div>
             </div>
         `;
-        info.innerHTML = `
-            <div class="loading" style="color: #dc2626;">
-                <div class="spinner"></div>
-                Geen coalitiegegevens beschikbaar om weer te geven.
-            </div>
-        `;
+        info.style.display = 'none';
         return;
     }
     // Update selector
@@ -714,6 +806,10 @@
         option.text = `${coalition.coalition.join(' + ')} (${coalition.seats} zetels, ${coalition.final_score}%)`;
         select.appendChild(option);
     });
+    
+    // Make sure info block is visible again when there are coalitions
+    info.style.display = 'block';
+    
     select.onchange = () => drawCoalitionViz(filtered, select.value);
     drawCoalitionViz(filtered, 0);
 }
