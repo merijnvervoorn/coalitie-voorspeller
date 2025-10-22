@@ -2,9 +2,69 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Coalitie Bouwer Tweede Kamer</title>
+    <title>Bouw je Eigen Coalitie: Kan jij een meerderheid vinden?</title>
+    <meta name="description" content="Bouw je eigen coalitie voor de Nederlandse Tweede Kamer. Interactieve tool om verschillende partijcombinaties te testen en hun haalbaarheid te analyseren op basis van zetelverdeling en politieke compatibiliteit.">
+    <meta name="keywords" content="coalitie bouwer, coalitiebouwer, coalitie bouwen, tweede kamer, coalitie maken, nederlandse politiek, partijcombinaties, coalitie tool, regering samenstellen, kabinet vormen, interactieve politiek, VVD, PVV, GL/PvdA, D66, CDA, maak je eigen coalitie, bouw coalitie">
+    <meta name="author" content="Merijn Vervoorn, Jacco Friedeberg">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://merijnvervoorn.com/coalitie-voorspeller/builder.html">
+    <meta property="og:title" content="Bouw je Eigen Coalitie: Kan jij een meerderheid vinden?">
+    <meta property="og:description" content="Interactieve tool om je eigen coalitie voor de Nederlandse Tweede Kamer samen te stellen. Test verschillende partijcombinaties en analyseer hun politieke haalbaarheid. Ontwikkeld door Merijn Vervoorn en Jacco Friedeberg.">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Coalitie Voorspeller">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://merijnvervoorn.com/coalitie-voorspeller/builder.html">
+    
+    <!-- Favicon -->
     <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    <link rel="apple-touch-icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Coalitie Bouwer Tweede Kamer",
+      "url": "https://merijnvervoorn.com/coalitie-voorspeller/builder.html",
+      "description": "Interactieve tool om je eigen coalitie voor de Nederlandse Tweede Kamer samen te stellen en te analyseren op basis van zetelverdeling en politieke compatibiliteit.",
+      "applicationCategory": "Political Analysis Tool",
+      "operatingSystem": "Web Browser",
+      "author": [
+        {
+          "@type": "Person",
+          "name": "Merijn Vervoorn"
+        },
+        {
+          "@type": "Person", 
+          "name": "Jacco Friedeberg"
+        }
+      ],
+      "creator": [
+        {
+          "@type": "Person",
+          "name": "Merijn Vervoorn"
+        },
+        {
+          "@type": "Person",
+          "name": "Jacco Friedeberg"
+        }
+      ],
+      "dateModified": "2025-10-22",
+      "inLanguage": "nl-NL",
+      "about": {
+        "@type": "Thing",
+        "name": "Nederlandse Politiek",
+        "description": "Coalitievorming en regeringsvorming in Nederland"
+      },
+      "keywords": "coalitie bouwer, tweede kamer, coalitie maken, nederlandse politiek, partijcombinaties, coalitie tool, regering samenstellen, kabinet vormen"
+    }
+    </script>
+    
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="1a61f729-43e1-4b1e-afe6-883487b48bd0"></script>
     <style>
@@ -378,7 +438,19 @@
     initializeApp();
     </script>
 </body>
-    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0;">
-        Pagina gemaakt door Merijn Vervoorn, model gemaakt door Merijn Vervoorn en Jacco Friedeberg
+    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0; padding: 2em; background: #f8fafc; border-radius: 16px; max-width: 1200px; margin-left: auto; margin-right: auto;">
+        <div style="margin-bottom: 1em;">
+            <h3 style="color: #1e3a8a; margin-bottom: 0.5em;">Nederlandse Coalitie Voorspeller</h3>
+            <p style="margin: 0.5em 0;">
+                Model ontwikkeld door <strong>Merijn Vervoorn</strong> en <strong>Jacco Friedeberg</strong>, onderzoek van <strong>Merijn Vervoorn</strong>, <strong>Jacco Friedeberg</strong>, <strong>Leo Shuting Yu</strong>, <strong>Gabriela Mahecha Califa</strong> en <strong>Regina Jarillo</strong> over de analyse van Nederlandse politieke coalitievorming. 
+                Gebaseerd op wetenschappelijk onderzoek van Universiteit van Amsterdam bij Computational Social Science naar Tweede Kamer debatten, verkiezingen, peilingen en regeringsvorming.
+            </p>
+        </div>
+        <div style="font-size: 0.9em; color: #64748b;">
+            <p style="margin-top: 1em;">
+                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" rel="noopener" style="color: #3b82f6;">Open Source</a> | 
+                Data bronnen: Peilingen Nederland, Kieskompas, Opendata Tweede Kamer
+            </p>
+        </div>
     </footer>
 </html>
