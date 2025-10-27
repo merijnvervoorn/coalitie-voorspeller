@@ -417,6 +417,11 @@
             .metric-card {
                 padding: 0.7em;
             }
+            /* Remove padding from news section on mobile */
+            section[style*="max-width: 1200px"] {
+                padding: 0 !important;
+                margin: 2em 0 !important;
+            }
         }
 
         .loading {
@@ -441,6 +446,36 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .folia-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8em;
+            background: #fff;
+            color: #1e3a8a;
+            padding: 1em 2em;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            transform: translateY(0);
+        }
+
+        .folia-btn:hover {
+            background: #f8fafc;
+            color: #162e5c;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .folia-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
         }
 
         .bar-segment {
@@ -542,7 +577,7 @@
     <div class="dutch-pattern"></div>
 
     <header>
-        <h1>Tweede Kamer Coalitie Voorspeller</h1>
+        <h1>Coalitie Voorspeller</h1>
         <p class="subtitle">Voorspellend model voor Nederlandse regeringscoalities op basis van peilingen en historische data</p>
     </header>
 
@@ -607,6 +642,53 @@
         </div>
     </div>
 
+
+    <!-- Press coverage sectie -->
+    <section style="max-width: 1200px; margin: 2em auto; padding: 0 2em; text-align: center;">
+        <a href="https://www.folia.nl/nl/actueel/169043/uva-studenten-voorspellen-wat-is-ideologisch-het-meest-stabiele-kabinet" 
+           target="_blank" 
+           rel="noopener"
+           style="display: inline-block; text-decoration: none; transition: all 0.3s ease;"
+           onmouseover="this.style.transform='translateY(-3px)'"
+           onmouseout="this.style.transform='translateY(0)'">
+            <div style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); padding: 1.8em 2.5em; border-radius: 16px; box-shadow: 0 6px 20px rgba(30,58,138,0.25); transform: rotate(-0.5deg); display: inline-flex; align-items: center; gap: 1.5em;">
+                <svg width="70" height="18" viewBox="0 0 114.8 28.8">
+                    <g>
+                        <rect x="76" y="2.9" fill="#ffffff" width="6" height="25"></rect>
+                        <polygon fill="#ffffff" points="0,2.9 0,27.9 7,27.9 7,20.9 24,20.9 24,14.9 7,14.9 7,14.9 7,9.9 24,9.9 24,2.9"></polygon>
+                        <path fill="#ffffff" d="M39.7,22.3c-3.5,0-6.4-2.9-6.4-6.4c0-3.6,2.9-6.5,6.4-6.5c3.6,0,6.4,2.9,6.4,6.5 C46.1,19.4,43.3,22.3,39.7,22.3 M39.7,2.8c-7.1,0-13,5.9-13,13.1c0,7,5.9,12.8,13,12.8c7.3,0,13-5.9,13-12.8 C52.6,8.7,46.9,2.8,39.7,2.8"></path>
+                        <polygon fill="#ffffff" points="63,21.9 63,2.9 56,2.9 56,27.9 57.2,27.9 62.5,27.9 72,27.9 72,21.9"></polygon>
+                        <path fill="#ffffff" d="M99.5,13.1l3.1,5.8h-6.3L99.5,13.1z M99.5,0l-3.6,6.5L84.2,27.9h7.3l1.8-3h12.4l1.8,3h7.3L103.2,6.5L99.5,0 z"></path>
+                    </g>
+                </svg>
+                <div style="text-align: left;">
+                    <div style="color: white; font-size: 1.1em; font-weight: 600; margin-bottom: 0.3em;">
+                        Interview op Folia
+                    </div>
+                    <div style="color: rgba(255,255,255,0.8); font-size: 0.85em;">
+                        UvA Magazine artikel →
+                    </div>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0; padding: 2em; background: #f8fafc; border-radius: 16px; max-width: 1200px; margin-left: auto; margin-right: auto;">
+        <div style="margin-bottom: 1em;">
+            <h3 style="color: #1e3a8a; margin-bottom: 0.5em;">Coalitie Voorspeller</h3>
+            <p style="margin: 0.5em 0;">
+                Model ontwikkeld door <strong>Merijn Vervoorn</strong> en <strong>Jacco Friedeberg</strong>, onderzoek van <strong>Merijn Vervoorn</strong>, <strong>Jacco Friedeberg</strong>, <strong>Leo Shuting Yu</strong>, <strong>Gabriela Mahecha Califa</strong> en <strong>Regina Jarillo</strong> over de analyse van Nederlandse politieke coalitievorming. 
+                Gebaseerd op wetenschappelijk onderzoek van Universiteit van Amsterdam bij Computational Social Science naar Tweede Kamer debatten, verkiezingen, peilingen en regeringsvorming.
+            </p>
+        </div>
+        <div style="font-size: 0.9em; color: #64748b;">
+            <p style="margin-top: 1em;">
+                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" rel="noopener" style="color: #3b82f6;">Open Source</a> | 
+                Data bronnen: <a href="https://www.peilingennederland.nl/alle-peilingen.html" target="_blank" rel="noopener">Peilingen Nederland</a>, <a href="https://www.kieskompas.nl/" target="_blank" rel="noopener">Kieskompas</a>, <a href="https://opendata.tweedekamer.nl/" target="_blank" rel="noopener">Opendata Tweede Kamer</a>
+            </p>
+        </div>
+    </footer>
+</body>
     <script>
     // Verbeterde partijkleuren met beter contrast en Nederlands politiek thema
     const partyColors = {
@@ -1136,20 +1218,4 @@
         `;
     }
 </script>
-</body>
-    <footer style="text-align:center; color:#64748b; font-size:1em; margin:2em 0 1em 0; padding: 2em; background: #f8fafc; border-radius: 16px; max-width: 1200px; margin-left: auto; margin-right: auto;">
-        <div style="margin-bottom: 1em;">
-            <h3 style="color: #1e3a8a; margin-bottom: 0.5em;">Nederlandse Coalitie Voorspeller</h3>
-            <p style="margin: 0.5em 0;">
-                Model ontwikkeld door <strong>Merijn Vervoorn</strong> en <strong>Jacco Friedeberg</strong>, onderzoek van <strong>Merijn Vervoorn</strong>, <strong>Jacco Friedeberg</strong>, <strong>Leo Shuting Yu</strong>, <strong>Gabriela Mahecha Califa</strong> en <strong>Regina Jarillo</strong> over de analyse van Nederlandse politieke coalitievorming. 
-                Gebaseerd op wetenschappelijk onderzoek van Universiteit van Amsterdam bij Computational Social Science naar Tweede Kamer debatten, verkiezingen, peilingen en regeringsvorming.
-            </p>
-        </div>
-        <div style="font-size: 0.9em; color: #64748b;">
-            <p style="margin-top: 1em;">
-                <a href="https://github.com/merijnvervoorn/cssci-political-speech" target="_blank" rel="noopener" style="color: #3b82f6;">Open Source</a> | 
-                Data bronnen: Peilingen Nederland, Kieskompas, Opendata Tweede Kamer
-            </p>
-        </div>
-    </footer>
 </html>
