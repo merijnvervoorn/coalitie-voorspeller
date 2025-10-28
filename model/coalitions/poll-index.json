@@ -1,5 +1,17 @@
 [
   {
+    "id": "28-10-2025-Verian",
+    "name": "Verian (28-10-2025)",
+    "date": "28-10-2025",
+    "timestamp": 1761606000.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-28-10-2025-Verian.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-Verian.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-Verian.json"
+    }
+  },
+  {
     "id": "25-10-2025-IpsosIO",
     "name": "Ipsos I&O (25-10-2025)",
     "date": "25-10-2025",
@@ -9,18 +21,6 @@
       "seats": "model/coalitions/verdeling-25-10-2025-IpsosIO.json",
       "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-25-10-2025-IpsosIO.json",
       "coalitionAny": "model/coalitions/coalition_data_any-25-10-2025-IpsosIO.json"
-    }
-  },
-  {
-    "id": "21-10-2025-Verian",
-    "name": "Verian (21-10-2025)",
-    "date": "21-10-2025",
-    "timestamp": 1760997600.0,
-    "isElection": false,
-    "files": {
-      "seats": "model/coalitions/verdeling-21-10-2025-Verian.json",
-      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-21-10-2025-Verian.json",
-      "coalitionAny": "model/coalitions/coalition_data_any-21-10-2025-Verian.json"
     }
   },
   {
