@@ -51,31 +51,6 @@
       "VVD",
       "CDA",
       "BBB",
-      "SGP"
-    ],
-    "seats": 76,
-    "historical_score": 2.1,
-    "ideology_score": 1.41,
-    "ek_score": 1.0,
-    "ek_total_seats": 39,
-    "jsd_penalty": 0.08,
-    "party_penalty": 2,
-    "surplus_penalty": 0.0,
-    "final_score": 26.9,
-    "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
-      "CDA": 19,
-      "BBB": 4,
-      "SGP": 3
-    }
-  },
-  {
-    "coalition": [
-      "D66",
-      "VVD",
-      "CDA",
-      "BBB",
       "SP"
     ],
     "seats": 76,
