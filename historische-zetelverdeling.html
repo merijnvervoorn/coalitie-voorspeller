@@ -473,6 +473,11 @@
                     <label>&nbsp;</label>
                     <button class="btn btn-secondary" onclick="clearSelection()">Deselecteer Alle</button>
                 </div>
+                
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary" onclick="downloadChart()" id="downloadBtn" style="display: none;">Download Grafiek</button>
+                </div>
             </div>
         </div>
         
@@ -704,11 +709,13 @@
                 destroyChart();
                 document.querySelector('.chart-info').textContent = 'Selecteer partijen hierboven om hun historische zetelverdeling te bekijken';
                 document.getElementById('legendContainer').style.display = 'none';
+                document.getElementById('downloadBtn').style.display = 'none';
                 return;
             }
             
             if (startYear >= endYear) {
                 document.querySelector('.chart-info').innerHTML = '<div class="error">Startjaar moet kleiner zijn dan eindjaar</div>';
+                document.getElementById('downloadBtn').style.display = 'none';
                 return;
             }
             
@@ -824,6 +831,9 @@
             
             // Update info text
             document.querySelector('.chart-info').textContent = `Toont ${selectedParties.length} partij${selectedParties.length !== 1 ? 'en' : ''} van ${startYear} tot ${endYear}`;
+            
+            // Show download button
+            document.getElementById('downloadBtn').style.display = 'block';
         }
         
         // Update custom legend
@@ -859,6 +869,50 @@
                 chart.destroy();
                 chart = null;
             }
+            // Hide download button when chart is destroyed
+            document.getElementById('downloadBtn').style.display = 'none';
+        }
+        
+        // Download chart as image
+        function downloadChart() {
+            if (!chart) {
+                alert('Geen grafiek beschikbaar om te downloaden');
+                return;
+            }
+            
+            // Get selected parties and years for filename
+            const selectedParties = allParties.filter(party => 
+                document.getElementById(`party-${party}`).checked
+            );
+            const startYear = document.getElementById('startYear').value;
+            const endYear = document.getElementById('endYear').value;
+            
+            // Create dynamic filename
+            const partiesText = selectedParties.length <= 3 
+                ? selectedParties.join('-') 
+                : `${selectedParties.length}-partijen`;
+            const filename = `zetelverdeling-${partiesText}-${startYear}-${endYear}.png`;
+            
+            // Create canvas with white background
+            const canvas = document.getElementById('historicalChart');
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            
+            // Fill with white background
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            
+            // Draw the chart on top
+            tempCtx.drawImage(canvas, 0, 0);
+            
+            // Download the image
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = tempCanvas.toDataURL('image/png');
+            link.click();
         }
         
         // Initialize
