@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Coalitie Voorspeller: Welke coalitie gaat Nederland regeren?</title>
-    <meta name="description" content="Een voorspellend model voor mogelijke regeringscoalities in de Nederlandse Tweede Kamer op basis van de meest recente peilingen. Of creeër een eigen coalitie met de interactieve bouwer.">
-    <meta name="keywords" content="tweede kamer, coalitie, voorspelling, nederlandse politiek, verkiezingen, peilingen, regering, kabinet, partijen, VVD, PVV, GL/PvdA, D66, CDA, coalitievorming, coalitie voorspelling, recente peilingen, coalitie bouwer, coalitiebouwer, maak je eigen coalitie, bouw coalitie">
+    <meta name="description" content="Een voorspellend model voor mogelijke regeringscoalities in de Tweede Kamer op basis van de meest recente peilingen. Of creeër een eigen coalitie met de interactieve bouwer.">
+    <meta name="keywords" content="tweede kamer, coalitie, voorspelling, politiek, verkiezingen, peilingen, regering, kabinet, partijen, VVD, PVV, GL/PvdA, D66, CDA, coalitievorming, coalitie voorspelling, recente peilingen, coalitie bouwer, coalitiebouwer, maak je eigen coalitie, bouw coalitie">
     <meta name="author" content="Merijn Vervoorn, Jacco Friedeberg">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://merijnvervoorn.com/coalitie-voorspeller">
     <meta property="og:title" content="Coalitie Voorspeller Tweede Kamer">
-    <meta property="og:description" content="een voorspellend model voor mogelijke regeringscoalities in de Nederlandse Tweede Kamer op basis van actuele peilingen, historische data en politieke analyse. Ontwikkeld door Merijn Vervoorn en Jacco Friedeberg.">
+    <meta property="og:description" content="een voorspellend model voor mogelijke regeringscoalities in de Tweede Kamer op basis van actuele peilingen, historische data en politieke analyse. Ontwikkeld door Merijn Vervoorn en Jacco Friedeberg.">
     <meta property="og:locale" content="nl_NL">
     <meta property="og:site_name" content="Coalitie Voorspeller">
     
@@ -23,47 +23,6 @@
     <!-- Favicon -->
     <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
     <link rel="apple-touch-icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
-    
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Tweede Kamer Coalitie Voorspeller",
-      "url": "https://merijnvervoorn.com/coalitie-voorspeller/",
-      "description": "Interactieve tool om mogelijke regeringscoalities in de Nederlandse Tweede Kamer te voorspellen op basis van peilingen, historische data en ideologische analyse.",
-      "applicationCategory": "Political Analysis Tool",
-      "operatingSystem": "Web Browser",
-      "author": [
-        {
-          "@type": "Person",
-          "name": "Merijn Vervoorn"
-        },
-        {
-          "@type": "Person", 
-          "name": "Jacco Friedeberg"
-        }
-      ],
-      "creator": [
-        {
-          "@type": "Person",
-          "name": "Merijn Vervoorn"
-        },
-        {
-          "@type": "Person",
-          "name": "Jacco Friedeberg"
-        }
-      ],
-      "dateModified": "2025-10-21",
-      "inLanguage": "nl-NL",
-      "about": {
-        "@type": "Thing",
-        "name": "Nederlandse Politiek",
-        "description": "Coalitievorming en regeringsvorming in Nederland"
-      },
-      "keywords": "tweede kamer, coalitie, voorspelling, nederlandse politiek, verkiezingen, peilingen, regering, kabinet, partijen, VVD, PVV, GL/PvdA, D66, CDA, coalitievorming, coalitie voorspelling, recente peilingen, coalitie bouwer"
-    }
-    </script>
     
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="1a61f729-43e1-4b1e-afe6-883487b48bd0"></script>
@@ -94,6 +53,79 @@
         .navbar a.active, .navbar a:hover, .navbar a:focus {
             background: #3b82f6;
             color: #fff;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-radius: 12px;
+            top: calc(100% + 2px);
+            left: 0;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #334155;
+            padding: 1em 1.4em;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            border-radius: 0;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            transform: translateX(4px);
+        }
+        
+        .dropdown-content a.active {
+            background-color: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            margin-left: 0.5em;
+            transition: transform 0.2s ease;
+        }
+        
+        .dropdown:hover > a::after {
+            transform: rotate(180deg);
         }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -571,8 +603,15 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="active">Voorspelling</a>
-        <a href="builder.html">Build it Yourself</a>
+        <a href="index.html" class="active">Coalitie Voorspeller</a>
+        <a href="builder.html">Coalitie Bouwer</a>
+        <div class="dropdown">
+            <a href="#">Data & Analyse</a>
+            <div class="dropdown-content">
+                <a href="vergelijken.html">Peilingen Vergelijken</a>
+                <a href="historische-zetelverdeling.html">Historische Zetelverdeling</a>
+            </div>
+        </div>
     </nav>
     <div class="dutch-pattern"></div>
 

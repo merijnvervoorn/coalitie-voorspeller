@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+        <title>Peilingen Vergelijken - Coalitie Voorspeller</title>
+    <meta name="description" content="Vergelijk verschillende peilingen, exitpolls en verkiezingsuitslagen en zie de verschillen in zetelverdeling en coalitiekansen. Interactieve analyse tool voor politieke trends.">
+    <meta name="keywords" content="peilingen vergelijken, verkiezingsdata vergelijken, politiek, zetelverdeling, coalitie analyse, politieke trends, verkiezingen Nederland, peilingen, exitpolls, uitslagen">
+    <meta name="author" content="Merijn Vervoorn, Jacco Friedeberg">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://merijnvervoorn.com/coalitie-voorspeller/vergelijken.html">
+    <meta property="og:title" content="Peilingen Vergelijken - Coalitie Voorspeller">
+    <meta property="og:description" content="Vergelijk verschillende peilingen, exitpolls en verkiezingsuitslagen en zie de verschillen in zetelverdeling en coalitiekansen.">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Coalitie Voorspeller">`
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://merijnvervoorn.com/coalitie-voorspeller/vergelijken.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    <link rel="apple-touch-icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="1a61f729-43e1-4b1e-afe6-883487b48bd0"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        .navbar {
+            width: 100%;
+            background: #1e3a8a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2em;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0.7em 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.3em 1.2em;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover, .navbar a:focus {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-radius: 12px;
+            top: calc(100% + 2px);
+            left: 0;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #334155;
+            padding: 1em 1.4em;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            border-radius: 0;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            transform: translateX(4px);
+        }
+        
+        .dropdown-content a.active {
+            background-color: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            margin-left: 0.5em;
+            transition: transform 0.2s ease;
+        }
+        
+        .dropdown:hover > a::after {
+            transform: rotate(180deg);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+        
+        .dutch-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 50%, #ef4444 100%);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        header { 
+            background: #1e3a8a;
+            color: #fff; 
+            padding: 3em 2em 2em;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5em; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.3em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .poll-selectors {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2em;
+            margin-bottom: 2em;
+            background: white;
+            border-radius: 16px;
+            padding: 2em;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .poll-selector {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .poll-selector h2 {
+            color: #1e3a8a;
+            margin-bottom: 1em;
+            font-size: 1.4em;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .poll-dropdown {
+            width: 100%;
+            padding: 1em 1.2em;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1em;
+            background: white;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .poll-dropdown:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .comparison-visualization {
+            background: white;
+            border-radius: 16px;
+            padding: 2em;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .comparison-visualization h2 {
+            color: #1e3a8a;
+            margin-bottom: 1.5em;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .comparison-header {
+            text-align: center;
+            margin-bottom: 1.5em;
+            padding: 1em;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .comparison-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5em;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .comparison-table th {
+            background: #1e3a8a;
+            color: white;
+            padding: 1.2em 1em;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        
+        .comparison-table th:first-child {
+            border-radius: 12px 0 0 0;
+            width: 120px;
+        }
+        
+        .comparison-table th:last-child {
+            border-radius: 0 12px 0 0;
+            width: 100px;
+        }
+        
+        .comparison-table th:nth-child(2),
+        .comparison-table th:nth-child(3) {
+            width: 200px;
+        }
+        
+        .comparison-table td {
+            padding: 1em;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 0.95em;
+            vertical-align: middle;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .party-name-cell {
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .seats-cell {
+            text-align: center;
+            color: #475569;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .seats-visual {
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+        }
+        
+        .seats-bar {
+            flex: 1;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .seats-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        
+        .seats-number {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .difference-cell {
+            text-align: center;
+            font-weight: 700;
+            padding: 0.5em;
+        }
+        
+        .difference-positive {
+            color: #10b981;
+            background: #ecfdf5;
+            border-radius: 8px;
+            padding: 0.4em 0.8em;
+            font-size: 0.9em;
+        }
+        
+        .difference-negative {
+            color: #ef4444;
+            background: #fef2f2;
+            border-radius: 8px;
+            padding: 0.4em 0.8em;
+            font-size: 0.9em;
+        }
+        
+        .difference-neutral {
+            color: #6b7280;
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 0.4em 0.8em;
+            font-size: 0.9em;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+            padding: 3em;
+        }
+        
+        .error {
+            text-align: center;
+            color: #ef4444;
+            padding: 3em;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3em 2em;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2em;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 12px;
+            margin: 1em 0;
+            border: 1px solid #fecaca;
+        }
+        
+        .party-colors {
+            --vvd: #003da5;
+            --pvv: #003da5;
+            --cda: #00a74a;
+            --d66: #00a74a;
+            --gl-pvda: #ed1c24;
+            --sp: #ed1c24;
+            --pvdd: #00a74a;
+            --cu: #00a74a;
+            --sgp: #003da5;
+            --denk: #00a74a;
+            --fvd: #8B4513;
+            --ja21: #003da5;
+            --volt: #663399;
+            --bij1: #ffff00;
+            --bbb: #7FB069;
+            --nsc: #ff6b35;
+            --50plus: #663399;
+            --bvnl: #FF4500;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-container {
+                padding: 1em;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .difference-values {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5em;
+            }
+            
+            .party-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5em;
+            }
+            
+            .party-seats-bar {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Coalitie Voorspeller</a>
+        <a href="builder.html">Coalitie Bouwer</a>
+        <div class="dropdown">
+            <a href="#" class="active">Data & Analyse</a>
+            <div class="dropdown-content">
+                <a href="vergelijken.html" class="active">Peilingen Vergelijken</a>
+                <a href="historische-zetelverdeling.html">Historische Zetelverdeling</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dutch-pattern"></div>
+    
+    <header>
+        <h1>Peilingen Vergelijken</h1>
+        <p class="subtitle">Vergelijk verschillende politieke peilingen, exitpolls en uitslagen en zie waar de verschillen zitten</p>
+    </header>
+    
+    <div class="main-container">
+                <div class="poll-selectors">
+            <div class="poll-selector">
+                <h2>Dataset A</h2>
+                <select id="pollA" class="poll-dropdown">
+                    <option value="">Selecteer een dataset...</option>
+                </select>
+            </div>
+            
+            <div class="poll-selector">
+                <h2>Dataset B</h2>
+                <select id="pollB" class="poll-dropdown">
+                    <option value="">Selecteer een dataset...</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="comparisonVisualization" class="comparison-visualization" style="display: none;">
+            <h2>Vergelijking</h2>
+            
+            <div class="comparison-header">
+                <div class="comparison-title" id="comparisonTitle">Selecteer twee datasets om te vergelijken</div>
+            </div>
+            
+            <div class="table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Partij</th>
+                            <th id="pollAHeader">Dataset A</th>
+                            <th id="pollBHeader">Dataset B</th>
+                            <th>Verschil</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonTableBody">
+                        <!-- Table rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Party colors mapping
+        const partyColors = {
+            'VVD': '#003da5',
+            'PVV': '#003da5', 
+            'CDA': '#00a74a',
+            'D66': '#00a74a',
+            'GL/PvdA': '#ed1c24',
+            'SP': '#ed1c24',
+            'PvdD': '#00a74a',
+            'CU': '#00a74a',
+            'SGP': '#003da5',
+            'DENK': '#00a74a',
+            'FvD': '#8B4513',
+            'JA21': '#003da5',
+            'Volt': '#663399',
+            'BIJ1': '#ffff00',
+            'BBB': '#7FB069',
+            'NSC': '#ff6b35',
+            '50PLUS': '#663399',
+            'BVNL': '#FF4500'
+        };
+        
+        let pollIndex = [];
+        let pollAData = null;
+        let pollBData = null;
+        
+        // Load poll index
+        async function loadPollIndex() {
+            try {
+                const response = await fetch('model/coalitions/poll-index.json');
+                pollIndex = await response.json();
+                populateDropdowns();
+            } catch (error) {
+                console.error('Error loading poll index:', error);
+                // Show error in console, but don't try to update non-existent elements
+            }
+        }
+        
+        // Populate dropdown options
+        function populateDropdowns() {
+            const pollASelect = document.getElementById('pollA');
+            const pollBSelect = document.getElementById('pollB');
+            
+            pollIndex.forEach(poll => {
+                const optionA = document.createElement('option');
+                optionA.value = poll.id;
+                optionA.textContent = poll.name;
+                pollASelect.appendChild(optionA);
+                
+                const optionB = document.createElement('option');
+                optionB.value = poll.id;
+                optionB.textContent = poll.name;
+                pollBSelect.appendChild(optionB);
+            });
+            
+            // Set default selections
+            setDefaultSelections();
+        }
+        
+        // Set default selections and load data
+        async function setDefaultSelections() {
+            // Find 2023 election results and exitpoll
+            const election2023 = pollIndex.find(p => p.id === '22-11-2023-TweedeKamerVerkiezing');
+            const exitpoll = pollIndex.find(p => p.id === '29-10-2025-Exitpoll');
+            
+            if (election2023) {
+                document.getElementById('pollA').value = election2023.id;
+                pollAData = await loadPollData(election2023.id);
+            }
+            
+            if (exitpoll) {
+                document.getElementById('pollB').value = exitpoll.id;
+                pollBData = await loadPollData(exitpoll.id);
+            }
+            
+            // Display comparison if both loaded successfully
+            if (pollAData && pollBData) {
+                displayComparisonVisualization();
+            }
+        }
+        
+        // Load poll data
+        async function loadPollData(pollId) {
+            try {
+                const response = await fetch(`model/coalitions/verdeling-${pollId}.json`);
+                return await response.json();
+            } catch (error) {
+                console.error('Error loading poll data:', error);
+                return null;
+            }
+        }
+        
+                // Display enhanced comparison table with visual bars
+        function displayComparisonVisualization() {
+            if (!pollAData || !pollBData) {
+                document.getElementById('comparisonVisualization').style.display = 'none';
+                return;
+            }
+            
+            const pollAInfo = pollIndex.find(p => p.id === document.getElementById('pollA').value);
+            const pollBInfo = pollIndex.find(p => p.id === document.getElementById('pollB').value);
+            
+            // Update headers
+            document.getElementById('comparisonTitle').textContent = `${pollAInfo.name} vs ${pollBInfo.name}`;
+            document.getElementById('pollAHeader').textContent = pollAInfo.name;
+            document.getElementById('pollBHeader').textContent = pollBInfo.name;
+            
+            // Get all unique parties
+            const allParties = new Set([...Object.keys(pollAData), ...Object.keys(pollBData)]);
+            
+            // Calculate differences and find max seats for scaling
+            const differences = [];
+            let maxSeats = 0;
+            
+            allParties.forEach(party => {
+                const seatsA = pollAData[party] || 0;
+                const seatsB = pollBData[party] || 0;
+                const difference = seatsB - seatsA;
+                
+                maxSeats = Math.max(maxSeats, seatsA, seatsB);
+                
+                differences.push({
+                    party,
+                    seatsA,
+                    seatsB,
+                    difference,
+                    absChange: Math.abs(difference)
+                });
+            });
+            
+            // Sort by seats in peiling B (largest first), then by seats in peiling A
+            differences.sort((a, b) => {
+                if (b.seatsB !== a.seatsB) {
+                    return b.seatsB - a.seatsB;
+                }
+                return b.seatsA - a.seatsA;
+            });
+            
+            // Generate table rows with visual bars
+            let tableHtml = '';
+            differences.forEach(({ party, seatsA, seatsB, difference }) => {
+                const color = partyColors[party] || '#64748b';
+                const percentageA = maxSeats > 0 ? (seatsA / maxSeats) * 100 : 0;
+                const percentageB = maxSeats > 0 ? (seatsB / maxSeats) * 100 : 0;
+                
+                let differenceClass = 'difference-neutral';
+                let differenceText = '0';
+                
+                if (difference > 0) {
+                    differenceClass = 'difference-positive';
+                    differenceText = `+${difference}`;
+                } else if (difference < 0) {
+                    differenceClass = 'difference-negative';
+                    differenceText = `${difference}`;
+                }
+                
+                tableHtml += `
+                    <tr>
+                        <td class="party-name-cell">${party}</td>
+                        <td class="seats-cell">
+                            <div class="seats-visual">
+                                <div class="seats-bar">
+                                    <div class="seats-bar-fill" style="width: ${percentageA}%; background-color: ${color};"></div>
+                                </div>
+                                <div class="seats-number">${seatsA}</div>
+                            </div>
+                        </td>
+                        <td class="seats-cell">
+                            <div class="seats-visual">
+                                <div class="seats-bar">
+                                    <div class="seats-bar-fill" style="width: ${percentageB}%; background-color: ${color};"></div>
+                                </div>
+                                <div class="seats-number">${seatsB}</div>
+                            </div>
+                        </td>
+                        <td class="difference-cell">
+                            <span class="${differenceClass}">${differenceText}</span>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            document.getElementById('comparisonTableBody').innerHTML = tableHtml;
+            document.getElementById('comparisonVisualization').style.display = 'block';
+        }
+        
+        // Event listeners
+        document.getElementById('pollA').addEventListener('change', async (e) => {
+            if (e.target.value) {
+                pollAData = await loadPollData(e.target.value);
+                displayComparisonVisualization();
+            } else {
+                pollAData = null;
+                displayComparisonVisualization();
+            }
+        });
+        
+        document.getElementById('pollB').addEventListener('change', async (e) => {
+            if (e.target.value) {
+                pollBData = await loadPollData(e.target.value);
+                displayComparisonVisualization();
+            } else {
+                pollBData = null;
+                displayComparisonVisualization();
+            }
+        });
+        
+        // Initialize
+        loadPollIndex();
+    </script>
+</body>
+</html>

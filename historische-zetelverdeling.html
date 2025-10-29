@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Historische Zetelverdeling - Coalitie Voorspeller</title>
+    <meta name="description" content="Bekijk de historische ontwikkeling van Nederlandse politieke partijen vanaf 1956. Interactieve grafieken tonen zetelverdeling over tijd.">
+    <meta name="keywords" content="historische zetelverdeling, Nederlandse politiek historie, zetelverdeling geschiedenis, politieke partijen ontwikkeling, tweede kamer geschiedenis, verkiezingen Nederland">
+    <meta name="author" content="Merijn Vervoorn, Jacco Friedeberg">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://merijnvervoorn.com/coalitie-voorspeller/historische-zetelverdeling.html">
+    <meta property="og:title" content="Historische Zetelverdeling - Coalitie Voorspeller">
+    <meta property="og:description" content="Bekijk de historische ontwikkeling van Nederlandse politieke partijen vanaf 1956. Interactieve grafieken tonen zetelverdeling over tijd.">
+    <meta property="og:locale" content="nl_NL">
+    <meta property="og:site_name" content="Coalitie Voorspeller">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://merijnvervoorn.com/coalitie-voorspeller/historische-zetelverdeling.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    <link rel="apple-touch-icon" href="https://merijnvervoorn.com/static/projects/coalitie-voorspeller-icon.png">
+    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="1a61f729-43e1-4b1e-afe6-883487b48bd0"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        .navbar {
+            width: 100%;
+            background: #1e3a8a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2em;
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0.7em 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.3em 1.2em;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover, .navbar a:focus {
+            background: #3b82f6;
+            color: #fff;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 220px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-radius: 12px;
+            top: calc(100% + 2px);
+            left: 0;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #334155;
+            padding: 1em 1.4em;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            border-radius: 0;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: #1e3a8a;
+            transform: translateX(4px);
+        }
+        
+        .dropdown-content a.active {
+            background-color: #eff6ff;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.2s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.7em;
+            margin-left: 0.5em;
+            transition: transform 0.2s ease;
+        }
+        
+        .dropdown:hover > a::after {
+            transform: rotate(180deg);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+        
+        .dutch-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 50%, #ef4444 100%);
+            opacity: 0.05;
+            z-index: 0;
+        }
+        
+        header { 
+            background: #1e3a8a;
+            color: #fff; 
+            padding: 3em 2em 2em;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5em; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.3em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            font-weight: 400;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .controls-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2em;
+            margin-bottom: 2em;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .controls-section h2 {
+            color: #1e3a8a;
+            margin-bottom: 1.5em;
+            font-size: 1.4em;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .party-selection {
+            margin-bottom: 2em;
+        }
+        
+        .party-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 0.8em 1em;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .party-checkbox:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+        
+        .historical-party {
+            opacity: 0.8;
+        }
+        
+        .historical-party:hover {
+            opacity: 1;
+        }
+        
+        .party-checkbox input[type="checkbox"] {
+            margin-right: 0.8em;
+            transform: scale(1.2);
+        }
+        
+        .party-checkbox span {
+            font-weight: 500;
+            color: #334155;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .chart-controls {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+        
+        .control-group label {
+            font-weight: 500;
+            color: #475569;
+            font-size: 0.9em;
+        }
+        
+        .control-input {
+            padding: 0.8em 1em;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9em;
+            background: white;
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .control-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn {
+            padding: 0.8em 1.5em;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            font-size: 0.9em;
+        }
+        
+        .btn-primary {
+            background: #1e3a8a;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1e40af;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+        
+        .chart-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2em;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 600px;
+            margin-bottom: 2em;
+        }
+        
+        .chart-info {
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+            margin-bottom: 1em;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+            padding: 3em;
+        }
+        
+        .error {
+            text-align: center;
+            color: #dc2626;
+            background: #fef2f2;
+            border-radius: 12px;
+            padding: 2em;
+            margin: 1em 0;
+            border: 1px solid #fecaca;
+        }
+        
+        .legend-container {
+            margin-top: 1.5em;
+            padding: 1.5em;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .legend-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.8em;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8em;
+            padding: 0.5em;
+            border-radius: 6px;
+            background: white;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .legend-label {
+            font-size: 0.9em;
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1em;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .party-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-controls {
+                flex-direction: column;
+            }
+            
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="index.html">Coalitie Voorspeller</a>
+        <a href="builder.html">Coalitie Bouwer</a>
+        <div class="dropdown">
+            <a href="#" class="active">Data & Analyse</a>
+            <div class="dropdown-content">
+                <a href="vergelijken.html">Peilingen Vergelijken</a>
+                <a href="historische-zetelverdeling.html" class="active">Historische Zetelverdeling</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="dutch-pattern"></div>
+    
+    <header>
+        <h1>Historische Zetelverdeling</h1>
+        <p class="subtitle">Bekijk de historische ontwikkeling van Nederlandse politieke partijen vanaf 1956</p>
+    </header>
+    
+    <div class="main-container">
+        <div class="controls-section">
+            <h2>Selecteer Partijen en Periode</h2>
+            
+            <div class="party-selection" id="partySelection">
+                <!-- Party checkboxes will be populated here -->
+            </div>
+            
+            <div class="chart-controls">
+                <div class="control-group">
+                    <label for="startYear">Startjaar</label>
+                    <input type="number" id="startYear" class="control-input" min="1956" max="2025" value="1980">
+                </div>
+                
+                <div class="control-group">
+                    <label for="endYear">Eindjaar</label>
+                    <input type="number" id="endYear" class="control-input" min="1956" max="2025" value="2025">
+                </div>
+                
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary" onclick="updateChart()">Grafiek Bijwerken</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-secondary" onclick="selectMajorParties()">Grote Partijen</button>
+                </div>
+                
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-secondary" onclick="clearSelection()">Deselecteer Alle</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chart-section">
+            <div class="chart-info">
+                Selecteer partijen hierboven om hun historische zetelverdeling te bekijken
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="historicalChart"></canvas>
+            </div>
+            
+            <div class="legend-container" id="legendContainer" style="display: none;">
+                <div class="legend-title">Geselecteerde Partijen</div>
+                <div class="legend-grid" id="legendGrid">
+                    <!-- Legend items will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let historicalData = [];
+        let chart = null;
+        let allParties = [];
+        
+        // Color palette for parties
+        const partyColors = {
+            'PvdA': '#ed1c24',
+            'VVD': '#003da5',
+            'CDA': '#00a74a',
+            'D66': '#00a74a',
+            'SP': '#ed1c24',
+            'PVV': '#003da5',
+            'GL-PvdA': '#ed1c24',
+            'GroenLinks': '#00a74a',
+            'SGP': '#003da5',
+            'ChristenUnie': '#00a74a',
+            'PvdD': '#00a74a',
+            'FVD': '#8B4513',
+            'JA21': '#003da5',
+            'Volt': '#663399',
+            'BIJ1': '#ffff00',
+            'BBB': '#7FB069',
+            'NSC': '#ff6b35',
+            '50Plus': '#663399',
+            'DENK': '#00a74a',
+            'LPF': '#FF4500',
+            'Leefbaar Nederland': '#FF8C00',
+            'CD': '#32CD32',
+            'CPN': '#DC143C',
+            'PPR': '#228B22',
+            'PSP': '#FF69B4',
+            'GPV': '#4169E1',
+            'RPF': '#4169E1',
+            'AOV': '#DDA0DD',
+            'Unie 55+': '#9370DB',
+            'KVP': '#4169E1',
+            'ARP': '#4169E1',
+            'CHU': '#4169E1'
+        };
+        
+        // Generate unique colors for parties not in the predefined list
+        function getPartyColor(party) {
+            if (partyColors[party]) {
+                return partyColors[party];
+            }
+            
+            // Generate a hash-based color for consistency
+            let hash = 0;
+            for (let i = 0; i < party.length; i++) {
+                hash = party.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            
+            const hue = Math.abs(hash) % 360;
+            return `hsl(${hue}, 60%, 50%)`;
+        }
+        
+        // Load historical data
+        async function loadHistoricalData() {
+            try {
+                const response = await fetch('data/zetelverdeling/zetel-data/tk_zetels150_1956-nu.csv');
+                const csvText = await response.text();
+                
+                // Parse CSV
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                
+                historicalData = [];
+                allParties = new Set();
+                
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',');
+                    const party = values[0];
+                    const year = parseInt(values[1]);
+                    const seats = parseInt(values[2]);
+                    
+                    if (seats > 0) { // Only include parties with seats
+                        historicalData.push({ party, year, seats });
+                        allParties.add(party);
+                    }
+                }
+                
+                allParties = Array.from(allParties).sort();
+                populatePartySelection();
+                
+            } catch (error) {
+                console.error('Error loading historical data:', error);
+                document.querySelector('.chart-info').innerHTML = '<div class="error">Kon historische data niet laden</div>';
+            }
+        }
+        
+        // Categorize parties into current and historical
+        function categorizeParties() {
+            const currentParties = ['VVD', 'PVV', 'CDA', 'D66', 'GL-PvdA', 'GroenLinks', 'PvdA', 'SP', 'ChristenUnie', 'SGP', 'PvdD', 'FVD', 'JA21', 'Volt', 'BIJ1', 'BBB', 'NSC', '50Plus', 'DENK'];
+            
+            const current = allParties.filter(party => currentParties.includes(party));
+            const historical = allParties.filter(party => !currentParties.includes(party));
+            
+            return { current: current.sort(), historical: historical.sort() };
+        }
+        
+        // Populate party selection checkboxes
+        function populatePartySelection() {
+            const container = document.getElementById('partySelection');
+            const { current, historical } = categorizeParties();
+            
+            container.innerHTML = `
+                <div style="grid-column: 1 / -1; margin-bottom: 1em;">
+                    <h3 style="color: #1e3a8a; font-size: 1.1em; margin-bottom: 0.8em; text-align: center;">Huidige Partijen</h3>
+                    <div class="current-parties" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em;">
+                        ${current.map(party => `
+                            <div class="party-checkbox" onclick="toggleParty('${party}', event)">
+                                <input type="checkbox" id="party-${party}">
+                                <span>${party}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div style="grid-column: 1 / -1; margin-top: 1.5em;">
+                    <div style="text-align: center; margin-bottom: 0.8em;">
+                        <button class="btn btn-secondary" onclick="toggleHistoricalParties()" style="font-size: 0.9em; padding: 0.5em 1em;">
+                            <span id="historicalToggleText">Toon Historische Partijen</span>
+                        </button>
+                    </div>
+                    <div id="historicalParties" style="display: none;">
+                        <h3 style="color: #64748b; font-size: 1em; margin-bottom: 0.8em; text-align: center;">Historische Partijen (niet meer actief)</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1em; opacity: 0.7;">
+                            ${historical.map(party => `
+                                <div class="party-checkbox historical-party" onclick="toggleParty('${party}', event)">
+                                    <input type="checkbox" id="party-${party}">
+                                    <span>${party}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Toggle party selection
+        function toggleParty(party, event) {
+            // If the click was on the checkbox itself, let it handle naturally
+            if (event && event.target.type === 'checkbox') {
+                // Still update chart after checkbox change
+                setTimeout(updateChart, 0);
+                return;
+            }
+            
+            // For clicks on the container or label, toggle the checkbox
+            const checkbox = document.getElementById(`party-${party}`);
+            checkbox.checked = !checkbox.checked;
+            updateChart();
+        }
+        
+        // Toggle historical parties visibility
+        function toggleHistoricalParties() {
+            const historicalSection = document.getElementById('historicalParties');
+            const toggleText = document.getElementById('historicalToggleText');
+            
+            if (historicalSection.style.display === 'none') {
+                historicalSection.style.display = 'block';
+                toggleText.textContent = 'Verberg Historische Partijen';
+            } else {
+                historicalSection.style.display = 'none';
+                toggleText.textContent = 'Toon Historische Partijen';
+            }
+        }
+        
+        // Select major parties by default
+        function selectMajorParties() {
+            const majorParties = ['PvdA', 'VVD', 'CDA', 'D66', 'SP', 'PVV', 'GL-PvdA', 'GroenLinks'];
+            
+            // Clear all selections
+            allParties.forEach(party => {
+                document.getElementById(`party-${party}`).checked = false;
+            });
+            
+            // Select major parties
+            majorParties.forEach(party => {
+                const checkbox = document.getElementById(`party-${party}`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+            
+            updateChart();
+        }
+        
+        // Clear all selections
+        function clearSelection() {
+            allParties.forEach(party => {
+                document.getElementById(`party-${party}`).checked = false;
+            });
+            updateChart();
+        }
+        
+        // Update chart based on selections
+        function updateChart() {
+            const selectedParties = allParties.filter(party => 
+                document.getElementById(`party-${party}`).checked
+            );
+            
+            const startYear = parseInt(document.getElementById('startYear').value);
+            const endYear = parseInt(document.getElementById('endYear').value);
+            
+            if (selectedParties.length === 0) {
+                destroyChart();
+                document.querySelector('.chart-info').textContent = 'Selecteer partijen hierboven om hun historische zetelverdeling te bekijken';
+                document.getElementById('legendContainer').style.display = 'none';
+                return;
+            }
+            
+            if (startYear >= endYear) {
+                document.querySelector('.chart-info').innerHTML = '<div class="error">Startjaar moet kleiner zijn dan eindjaar</div>';
+                return;
+            }
+            
+            createChart(selectedParties, startYear, endYear);
+        }
+        
+        // Create the chart
+        function createChart(selectedParties, startYear, endYear) {
+            const ctx = document.getElementById('historicalChart').getContext('2d');
+            
+            // Get unique years in range
+            const years = [...new Set(historicalData
+                .filter(d => d.year >= startYear && d.year <= endYear)
+                .map(d => d.year)
+            )].sort((a, b) => a - b);
+            
+            // Prepare datasets
+            const datasets = selectedParties.map(party => {
+                const partyData = years.map(year => {
+                    const entry = historicalData.find(d => d.party === party && d.year === year);
+                    return entry ? entry.seats : 0;
+                });
+                
+                return {
+                    label: party,
+                    data: partyData,
+                    borderColor: getPartyColor(party),
+                    backgroundColor: getPartyColor(party) + '20',
+                    borderWidth: 3,
+                    fill: false,
+                    tension: 0.1,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                };
+            });
+            
+            // Destroy existing chart
+            destroyChart();
+            
+            // Create new chart
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `Zetelverdeling ${startYear} - ${endYear}`,
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            },
+                            color: '#1e293b'
+                        },
+                        legend: {
+                            display: false // We'll create our own legend
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y} zetels`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Jaar',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: '#f1f5f9'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Aantal Zetels',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            beginAtZero: true,
+                            max: 55,
+                            grid: {
+                                color: '#f1f5f9'
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+            
+            // Update legend
+            updateLegend(selectedParties);
+            
+            // Update info text
+            document.querySelector('.chart-info').textContent = `Toont ${selectedParties.length} partij${selectedParties.length !== 1 ? 'en' : ''} van ${startYear} tot ${endYear}`;
+        }
+        
+        // Update custom legend
+        function updateLegend(selectedParties) {
+            const legendContainer = document.getElementById('legendContainer');
+            const legendGrid = document.getElementById('legendGrid');
+            
+            if (selectedParties.length === 0) {
+                legendContainer.style.display = 'none';
+                return;
+            }
+            
+            legendGrid.innerHTML = '';
+            
+            selectedParties.forEach(party => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background-color: ${getPartyColor(party)}"></div>
+                    <div class="legend-label">${party}</div>
+                `;
+                
+                legendGrid.appendChild(legendItem);
+            });
+            
+            legendContainer.style.display = 'block';
+        }
+        
+        // Destroy existing chart
+        function destroyChart() {
+            if (chart) {
+                chart.destroy();
+                chart = null;
+            }
+        }
+        
+        // Initialize
+        loadHistoricalData();
+    </script>
+</body>
+</html>
