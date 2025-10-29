@@ -261,10 +261,11 @@ def predict_coalitions(seat_distribution, coalition_counter, ek_zetels, Jaar, th
         for combo in combinations(parties, r):
 
             # -------------------------------
-            # Check if the coalition includes the largest party (comment if opposition coalition)
-            largest_party = max(seat_distribution.items(), key=lambda x: x[1])[0]
-            if largest_party not in combo:
-                continue  # Skip coalitions that don't include the largest party 
+            # Check if the coalition includes at least one of the largest parties
+            max_seats = max(seat_distribution.values())
+            largest_parties = [party for party, seats in seat_distribution.items() if seats == max_seats]
+            if not any(party in combo for party in largest_parties):
+                continue  # Skip coalitions that don't include at least one of the largest parties 
             # -------------------------------
 
             seats = sum(seat_distribution[p] for p in combo)

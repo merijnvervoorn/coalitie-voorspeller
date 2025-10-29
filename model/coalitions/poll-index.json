@@ -1,5 +1,17 @@
 [
   {
+    "id": "28-10-2025-MauricedeHond",
+    "name": "Maurice de Hond (28-10-2025)",
+    "date": "28-10-2025",
+    "timestamp": 1761606000.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-28-10-2025-MauricedeHond.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-MauricedeHond.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-MauricedeHond.json"
+    }
+  },
+  {
     "id": "28-10-2025-IpsosIO",
     "name": "Ipsos I&O (28-10-2025)",
     "date": "28-10-2025",
@@ -33,18 +45,6 @@
       "seats": "model/coalitions/verdeling-28-10-2025-Peilingwijzer.json",
       "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-Peilingwijzer.json",
       "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-Peilingwijzer.json"
-    }
-  },
-  {
-    "id": "24-10-2025-MauricedeHond",
-    "name": "Maurice de Hond (24-10-2025)",
-    "date": "24-10-2025",
-    "timestamp": 1761256800.0,
-    "isElection": false,
-    "files": {
-      "seats": "model/coalitions/verdeling-24-10-2025-MauricedeHond.json",
-      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-24-10-2025-MauricedeHond.json",
-      "coalitionAny": "model/coalitions/coalition_data_any-24-10-2025-MauricedeHond.json"
     }
   },
   {
