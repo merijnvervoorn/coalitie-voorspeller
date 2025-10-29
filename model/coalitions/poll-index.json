@@ -1,14 +1,14 @@
 [
-    {
-    "id": "28-10-2025-IpsosIO",
-    "name": "Ipsos I&O (28-10-2025)",
-    "date": "28-10-2025",
-    "timestamp": 1761606000.0,
+  {
+    "id": "29-10-2025-Exitpoll",
+    "name": "Exitpoll (29-10-2025)",
+    "date": "29-10-2025",
+    "timestamp": 1761692400.0,
     "isElection": false,
     "files": {
-      "seats": "model/coalitions/verdeling-28-10-2025-IpsosIO.json",
-      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-IpsosIO.json",
-      "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-IpsosIO.json"
+      "seats": "model/coalitions/verdeling-29-10-2025-Exitpoll.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-29-10-2025-Exitpoll.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-29-10-2025-Exitpoll.json"
     }
   },
   {
@@ -21,6 +21,18 @@
       "seats": "model/coalitions/verdeling-28-10-2025-MauricedeHond.json",
       "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-MauricedeHond.json",
       "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-MauricedeHond.json"
+    }
+  },
+  {
+    "id": "28-10-2025-IpsosIO",
+    "name": "Ipsos I&O (28-10-2025)",
+    "date": "28-10-2025",
+    "timestamp": 1761606000.0,
+    "isElection": false,
+    "files": {
+      "seats": "model/coalitions/verdeling-28-10-2025-IpsosIO.json",
+      "coalitionWithBiggest": "model/coalitions/coalition_data_with_biggest-28-10-2025-IpsosIO.json",
+      "coalitionAny": "model/coalitions/coalition_data_any-28-10-2025-IpsosIO.json"
     }
   },
   {
