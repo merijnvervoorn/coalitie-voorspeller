@@ -6,7 +6,7 @@
       "GL/PvdA",
       "CDA"
     ],
-    "seats": 89,
+    "seats": 86,
     "historical_score": 1.17,
     "ideology_score": 2.25,
     "ek_score": 0.47,
@@ -16,83 +16,10 @@
     "surplus_penalty": 0.0,
     "final_score": 33.0,
     "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
+      "D66": 26,
+      "VVD": 22,
       "GL/PvdA": 20,
-      "CDA": 19
-    }
-  },
-  {
-    "coalition": [
-      "D66",
-      "VVD",
-      "CDA",
-      "JA21"
-    ],
-    "seats": 78,
-    "historical_score": 1.33,
-    "ideology_score": 2.34,
-    "ek_score": 0.28,
-    "ek_total_seats": 21,
-    "jsd_penalty": 0.08,
-    "party_penalty": 0,
-    "surplus_penalty": 0.0,
-    "final_score": 30.7,
-    "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
-      "CDA": 19,
-      "JA21": 9
-    }
-  },
-  {
-    "coalition": [
-      "D66",
-      "VVD",
-      "CDA",
-      "BBB",
-      "SP"
-    ],
-    "seats": 76,
-    "historical_score": 2.1,
-    "ideology_score": 2.09,
-    "ek_score": 1.0,
-    "ek_total_seats": 40,
-    "jsd_penalty": 0.08,
-    "party_penalty": 2,
-    "surplus_penalty": 0.0,
-    "final_score": 13.7,
-    "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
-      "CDA": 19,
-      "BBB": 4,
-      "SP": 3
-    }
-  },
-  {
-    "coalition": [
-      "D66",
-      "VVD",
-      "CDA",
-      "BBB",
-      "DENK"
-    ],
-    "seats": 76,
-    "historical_score": 2.1,
-    "ideology_score": 2.07,
-    "ek_score": 0.49,
-    "ek_total_seats": 37,
-    "jsd_penalty": 0.1,
-    "party_penalty": 2,
-    "surplus_penalty": 0.0,
-    "final_score": 11.3,
-    "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
-      "CDA": 19,
-      "BBB": 4,
-      "DENK": 3
+      "CDA": 18
     }
   },
   {
@@ -102,7 +29,7 @@
       "GL/PvdA",
       "JA21"
     ],
-    "seats": 79,
+    "seats": 77,
     "historical_score": 1.1,
     "ideology_score": 3.2,
     "ek_score": 0.39,
@@ -112,8 +39,8 @@
     "surplus_penalty": 0.0,
     "final_score": 10.2,
     "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
+      "D66": 26,
+      "VVD": 22,
       "GL/PvdA": 20,
       "JA21": 9
     }
@@ -122,25 +49,25 @@
     "coalition": [
       "D66",
       "VVD",
+      "GL/PvdA",
       "CDA",
-      "BBB",
-      "PvdD"
+      "CU"
     ],
-    "seats": 76,
-    "historical_score": 2.1,
-    "ideology_score": 2.6,
+    "seats": 89,
+    "historical_score": 1.17,
+    "ideology_score": 2.03,
     "ek_score": 1.0,
-    "ek_total_seats": 40,
-    "jsd_penalty": 0.11,
+    "ek_total_seats": 38,
+    "jsd_penalty": 0.05,
     "party_penalty": 2,
     "surplus_penalty": 0.0,
-    "final_score": 1.0,
+    "final_score": 0.2,
     "seat_distribution": {
-      "D66": 27,
-      "VVD": 23,
-      "CDA": 19,
-      "BBB": 4,
-      "PvdD": 3
+      "D66": 26,
+      "VVD": 22,
+      "GL/PvdA": 20,
+      "CDA": 18,
+      "CU": 3
     }
   }
 ]
